@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SheetTypes;
 use Illuminate\Http\Request;
+use App\Models\Species;
 
-class ProductCategoriesController extends Controller
+class SpeciesController extends Controller
 {
     protected $data = [];
 
@@ -17,8 +17,8 @@ class ProductCategoriesController extends Controller
 
     public function index()
     {
-       $this->data['nav'] = 'product-categories';
-       $this->data['collection'] = SheetTypes::with('status')->get();
+       $this->data['nav'] = 'species';
+       $this->data['collection'] = Species::with('status')->get();
        return view('admin.components')->with($this->data);
     }
 
@@ -39,8 +39,9 @@ class ProductCategoriesController extends Controller
 
         if($request->name)
         {
-            $record = SheetTypes::create([
+            $record = Species::create([
                 'name'      => $request->name,
+                'remark'      => $request->remark,
                 'image'     => ($file)?$file:'',
                 'status_id' => $request->status
             ]);
@@ -50,9 +51,10 @@ class ProductCategoriesController extends Controller
 
     public function update(Request $request)
     {
-        $record = SheetTypes::find($request->id);
+        $record = Species::find($request->id);
         
         $record->name = $request->name;
+        $record->remark = $request->remark;
         $record->status_id = $request->status;
 
         $destination_path = public_path('media/components/');
@@ -73,7 +75,7 @@ class ProductCategoriesController extends Controller
 
     public function destroy(Request $request)
     {
-        $record = SheetTypes::find($request->id);
+        $record = Species::find($request->id);
         $record->delete();  
         return ['success'];
     }

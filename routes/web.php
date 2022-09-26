@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::post('/crop-image-upload', [App\Http\Controllers\Admin\CropperController::class, 'upload'])->name('cropper-upload')->defaults('menu', 'cropper');
 
     // Components URLs
-    Route::get('/components/speceis', [App\Http\Controllers\Admin\SpeceisController::class, 'index'])->name('speceis')->defaults('menu', 'components');
+    Route::get('/components/species', [App\Http\Controllers\Admin\SpeciesController::class, 'index'])->name('species')->defaults('menu', 'components');
     Route::get('/components/product-categories', [App\Http\Controllers\Admin\ProductCategoriesController::class, 'index'])->name('product-categories')->defaults('menu', 'components');
     Route::get('/components/cuts', [App\Http\Controllers\Admin\CutsController::class, 'index'])->name('cuts')->defaults('menu', 'components');
     Route::get('/components/matching', [App\Http\Controllers\Admin\MatchingsController::class, 'index'])->name('matching')->defaults('menu', 'components');
@@ -26,7 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::get('/components/backers', [App\Http\Controllers\Admin\BackersController::class, 'index'])->name('backers')->defaults('menu', 'components');
     Route::get('/components/panel-options', [App\Http\Controllers\Admin\PanelOptionsController::class, 'index'])->name('panel_options')->defaults('menu', 'components');
     
-   
+    // Logics
+    Route::get('/logic-graph', [App\Http\Controllers\Admin\LogicController::class, 'index'])->name('logic-graph')->defaults('menu', 'logic-graph');
+
     // Profile and Settigns
     Route::get('/profile', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('profile')->defaults('menu', 'profile');
     Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');

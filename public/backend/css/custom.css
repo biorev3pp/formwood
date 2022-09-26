@@ -1,4 +1,4 @@
-body .content .content-wrapper{height:calc(100vh - 166px);font-family:'Montserrat',sans-serif;overflow-y:auto;overflow-x:hidden}
+body .content .content-wrapper{height:calc(100vh - 157px);font-family:'Montserrat',sans-serif;overflow-y:auto;overflow-x:hidden}
 .custom-control-label{cursor:pointer}
 .content-header .nav-pills .nav-link{font-weight:600;text-transform:uppercase;font-size:13px;margin-right:5px}
 .all-components .tab-pane.active{height:calc(100vh - 167px)}
@@ -25,3 +25,124 @@ body .content .content-wrapper{height:calc(100vh - 166px);font-family:'Montserra
 .biorev-table thead th .icon-btn{position: relative; top: 3px;}
 h3.modal-title{font-size: 1.2rem;}
 .img-thumb{max-width: 80px; max-height: 120px;}
+.loader{text-align: center; padding: 12px; width: 100%;}
+.loader img{width: 36px; height: 36px;}
+#image{
+    max-width: 100%;
+    height: 100%;
+}
+.crop-actions button{
+    position: relative;
+    top: -1px;
+}
+.croppreviewcss {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    margin: 10px;
+    border: 1px solid #323232;
+    box-shadow: 0 0 4px 0 rgb(95 95 95 / 14%), 0 3px 4px 0 rgb(95 95 95 / 12%), 0 1px 5px 0 rgb(95 95 95 / 20%);
+}
+.croppergap .modal-dialog{
+    margin: 3rem auto;
+}
+.logic-header{
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-right: 5px;
+    display: flex;
+}
+.logic-header > div{
+    min-width: 200px;
+    width:calc(14%);
+    display: inline-flex;
+    border-right:1px solid #ccc;
+    padding: 17px 10px 13px;
+}
+
+.logic-header div:last-child{
+    border: none;
+}
+.logic-body{
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 13px;
+    display: flex;
+    margin-right: 5px;
+}
+.logic-body > div{
+    min-width: 200px;
+    width:calc(14%);
+    display: inline-flex;
+    border-right:1px solid #ccc;
+    padding: 0px;
+    height: calc(100vh - 160px);
+    overflow: auto;
+}
+
+.logic-body div:last-child{
+    border: none;
+}
+
+.logic-body > div::-webkit-scrollbar{
+    width: .4em;
+    background: transparent;
+}
+
+.logic-body > div::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+.logic-section ul{
+    list-style: none;
+    padding: 0 0 0;
+    width: 100%;
+    margin: 0;
+}
+.logic-section ul.step1ul li a{
+    border-bottom: 1px solid #f2f2f2;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+    transition:all .3s ease;
+    color:#323232;
+}
+.logic-section ul.step2ul li, .logic-section ul.step3ul li, .logic-section ul.step4ul li, .logic-section ul.step5ul li, .logic-section ul.step6ul li, .logic-section ul.step7ul li{
+    border-bottom: 1px solid #f2f2f2;
+    padding: 5px;
+    display: block;
+    transition:all .3s ease;
+}
+.logic-section ul.step2ul li a, .logic-section ul.step3ul li a, .logic-section ul.step4ul li a, .logic-section ul.step5ul li a, .logic-section ul.step6ul li a, .logic-section ul.step7ul li a{
+    color:#323232;
+}
+.logic-section ul.step1ul li a:hover{
+    background: #dedede;
+}
+.logic-section ul.step1ul li.active a{
+    background: rgba(64, 31, 32, 0.85);
+    color: #fff;
+}
+.logic-section ul.step2ul li:hover, .logic-section ul.step3ul li:hover, .logic-section ul.step4ul li:hover, .logic-section ul.step5ul li:hover, .logic-section ul.step6ul li:hover, .logic-section ul.step7ul li:hover{
+    background: #dedede;
+}
+.logic-section ul.step2ul li.active, .logic-section ul.step3ul li.active, .logic-section ul.step4ul li.active, .logic-section ul.step5ul li.active, .logic-section ul.step6ul li.active, .logic-section ul.step7ul li.active{
+    background: rgba(64, 31, 32, 0.85);
+    color: #fff;
+}
+.logic-section ul.step2ul li.active a, .logic-section ul.step3ul li.active a, .logic-section ul.step4ul li.active a, .logic-section ul.step5ul li.active a, .logic-section ul.step6ul li.active a, .logic-section ul.step7ul li.active a{
+    color: #fff;
+}
+.sidecheckbox{
+    position: relative;
+    width: 15px;
+    height: 15px;
+    top: 3px;
+    float: right;
+    right: 3px;
+    cursor: pointer;
+}
+.top-6{
+    top: 6px;
+}

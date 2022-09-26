@@ -9,7 +9,7 @@
             <a class="nav-link {{ ($nav == 'sizes')?'active':'' }}" href="{{ route('sizes') }}">Sizes</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ ($nav == 'speceis')?'active':'' }}" href="{{ route('speceis') }}">Speceis</a>
+            <a class="nav-link {{ ($nav == 'species')?'active':'' }}" href="{{ route('species') }}">Species</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ ($nav == 'cuts')?'active':'' }}" href="{{ route('cuts') }}">Cuts</a>
@@ -34,8 +34,8 @@
         <div role="tabpanel" class="tab-pane active pt-50">
             @if($nav == 'product-categories')
                 @include('admin.components.product-categories')
-            @elseif($nav == 'speceis')
-                @include('admin.components.speceis')
+            @elseif($nav == 'species')
+                @include('admin.components.species')
             @elseif($nav == 'cuts')
                 @include('admin.components.cuts')
             @elseif($nav == 'quality')

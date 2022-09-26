@@ -6,6 +6,7 @@
                     <th class="sno">SNo</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>Remark</th>
                     <th class="action-3">Status</th>
                     <th class="action-3">
                         <button class="icon-btn" type="button" onclick="addCategory(false)">
@@ -27,13 +28,14 @@
                             <td>
                                 {{ $item->name }}
                             </td>
+                            <td>{{ $item->remark }}</td>
                             <td>
                                 <span class="{{ $item->status->label }}">
                                     {!! $item->status->icon !!} {{ $item->status->status }}
                                 </span>
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '{{$item->name}}', {{$item->status_id}}, '{{$item->image}}', {{$item->id}}, {{ $key+1}})">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '{{$item->name}}', {{$item->status_id}}, '{{$item->image}}', '{{$item->remark}}', {{$item->id}}, {{ $key+1}})">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal({{$item->id}})">
@@ -44,7 +46,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                             <p class="text-danger p-0 m-0">
                                 No items found in collection.
                             </p>
@@ -60,7 +62,7 @@
         <div class="modal-content">
             <form id="recordForm">
                 <div class="modal-header border-bottom">
-                    <h3 class="modal-title"> Add New Product Category</h3>
+                    <h3 class="modal-title"> Add New Species</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="ft-x text-secondary"></i>
                     </button>
@@ -71,6 +73,10 @@
                             <div class="form-group">
                                 <label class="text-uppercase">Name</label>
                                 <input id="name" class="form-control border px-50" type="text" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-uppercase">Remark</label>
+                                <textarea id="remark" name="remark" class="form-control border px-50"></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="d-inline-block mr-1 text-uppercase m-0">Activate </label>
@@ -139,7 +145,7 @@
         const modal = $('#addRecordModal');
 
         if(values[0] == true){
-            modal.find('.modal-title').text('Edit Product Category')
+            modal.find('.modal-title').text('Edit Species')
             modal.find('.modal-footer button .button-text').text('Save Changes')
             const radioButtons = $('#recordForm input[name="status"]');
 
@@ -153,14 +159,15 @@
             if(values[3] != ""){
                 modal.find('.preview').attr('src', `${path}/${values[3]}`);
             }
-            modal.find('#submitButton').attr('data-id', values[4]);
-            modal.find('#submitButton').attr('data-rid', values[5]);
+            modal.find('#remark').val(values[4]);
+            modal.find('#submitButton').attr('data-id', values[5]);
+            modal.find('#submitButton').attr('data-rid', values[6]);
             modal.find('#submitButton').attr('onclick', 'submitForm(true)');
             modal.modal('show');
         }
         else{
             var form = document.getElementById('recordForm');
-            modal.find('.modal-title').text('Add New Product Category')
+            modal.find('.modal-title').text('Add New Species')
             modal.find('.modal-footer button .button-text').text('Add New')
             modal.find('.img-thumbnail').attr('src', '{{asset("media/placeholder.jpg")}}')
             modal.find('#submitButton').attr('data-id', '');
@@ -207,6 +214,7 @@
     function submitForm(editable){
         
         const name = $('#name').val();
+        const remark = $('#remark').val();
         const status = $('input[name="status"]:checked').val();
 
         // Validations
@@ -239,6 +247,7 @@
         formData.append('name', name);
         formData.append('status', status);
         formData.append('image', baseImage);
+        formData.append('remark', remark);
         $("#add Modal").find('#submitButton').addClass('disable');
         $("#addRecordModal").find('#submitButton .button-text').addClass('hide-button-text');
         $("#addRecordModal").find('#submitButton .spinner-border').addClass('show-spinner');
@@ -250,7 +259,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/update/product-category/'+HomePlanId,
+                url: siteURL+'/api/update/species/'+HomePlanId,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
@@ -264,6 +273,9 @@
                             </td>
                             <td>
                                 ${response.name}
+                            </td>
+                            <td>
+                                ${response.remark}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
@@ -288,7 +300,7 @@
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/create/product-category',
+                url: siteURL+'/api/create/species',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
@@ -303,6 +315,9 @@
                             </td>
                             <td>
                                 ${response.name}
+                            </td>
+                            <td>
+                                ${response.remark}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
@@ -433,7 +448,7 @@
     function deleteRecord(id){
         $.ajax({
             type: 'delete',
-            url: '/api/delete/product-category',
+            url: '/api/delete/species',
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();
