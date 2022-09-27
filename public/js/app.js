@@ -32520,7 +32520,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12 col-sm-12" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-8" }, [
+                      _c("div", { staticClass: "col-12 col-md-8" }, [
                         _c("div", { staticClass: "form-group mb-4" }, [
                           _c(
                             "div",
@@ -32549,7 +32549,7 @@ var staticRenderFns = [
                         ]),
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-4 d-flex" }, [
+                      _c("div", { staticClass: "col-12 col-md-4 d-flex" }, [
                         _c(
                           "button",
                           {
@@ -32572,24 +32572,28 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-12 col-sm-12 sel-prdts" }, [
-                      _c("h5", [_vm._v("Selected Products")]),
-                      _vm._v(" "),
-                      _c("ul", { staticClass: "selected-p" }, [
-                        _c("li", [
-                          _c("label", { staticClass: "checkbox-item" }, [
-                            _vm._v(
-                              "Maple plain sliced, Quality B, Book Matched, Panel 48 x 120, Nauf MDF 3/4” 18mm\n                                     "
-                            ),
-                            _c("input", {
-                              attrs: { type: "checkbox", checked: "checked" },
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "checkmark" }),
+                    _c(
+                      "div",
+                      { staticClass: "col-12 col-sm-12 mt-3 sel-prdts" },
+                      [
+                        _c("h5", [_vm._v("Selected Products")]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "selected-p" }, [
+                          _c("li", [
+                            _c("label", { staticClass: "checkbox-item" }, [
+                              _vm._v(
+                                "Maple plain sliced, Quality B, Book Matched, Panel 48 x 120, Nauf MDF 3/4” 18mm\n                                     "
+                              ),
+                              _c("input", {
+                                attrs: { type: "checkbox", checked: "checked" },
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "checkmark" }),
+                            ]),
                           ]),
                         ]),
-                      ]),
-                    ]),
+                      ]
+                    ),
                   ]),
                 ]),
               ]
@@ -32630,7 +32634,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("form", { staticClass: "mb-5" }, [
+      _c("form", { staticClass: "mb-5 sel-1" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -32668,7 +32672,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row row-wmatching justify-content-center" }, [
-        _c("div", { staticClass: "col-quality col-6 col-md-6 mb-1 mb-sm-4" }, [
+        _c("div", { staticClass: "col-quality col-12 col-md-6 mb-1 mb-sm-4" }, [
           _c("input", {
             staticClass: "fw-product-builder-radio",
             attrs: {
@@ -32748,7 +32752,7 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4" },
+            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -32781,7 +32785,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4" },
+            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -32814,7 +32818,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4" },
+            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
             [
               _c("form", { staticClass: "mb-5" }, [
                 _c("div", { staticClass: "row" }, [
@@ -33117,7 +33121,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("form", { staticClass: "mb-5" }, [
+      _c("form", { staticClass: "mb-5 sel-1" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -33160,7 +33164,7 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-quality col-4 col-md-4 mb-1 mb-sm-4" },
+            { staticClass: "col-quality col-12 col-md-4 mb-1 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33205,7 +33209,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-wquality col-4 col-md-4 mb-1 mb-sm-4" },
+            { staticClass: "col-wquality col-12 col-md-4 mb-1 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33250,7 +33254,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-wquality col-4 col-md-4 mb-1 mb-sm-4" },
+            { staticClass: "col-wquality col-12 col-md-4 mb-1 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33330,7 +33334,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("form", { staticClass: "mb-5" }, [
+      _c("form", { staticClass: "mb-5 sel-1" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -33383,7 +33387,7 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33428,7 +33432,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33476,7 +33480,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33524,7 +33528,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33572,7 +33576,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33620,7 +33624,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-slicing col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33700,7 +33704,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("form", { staticClass: "mb-5" }, [
+      _c("form", { staticClass: "mb-5 sel-1" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -33753,7 +33757,7 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33798,7 +33802,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33846,7 +33850,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33894,7 +33898,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33942,7 +33946,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",
@@ -33990,7 +33994,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-species col-3 col-md-3 mb-1 mb-sm-4" },
+            { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
             [
               _c("input", {
                 staticClass: "fw-product-builder-radio",

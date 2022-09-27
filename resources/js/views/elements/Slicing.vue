@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="mb-5">
+        <form class="mb-5 sel-1">
             <div class="row">
                 <div class="col-sm-12 col-lg-12 mb-2 mb-lg-0">
                     <div class="form-group">
@@ -21,7 +21,7 @@
         </form>
 
         <div class="row row-slicing justify-content-center gx-md-5 gy-md-4">
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-1" name="slicing" data-delete="Maple" value="1" />
                 <label for="fw-slicing-1">
                     <div class="radio-img">
@@ -37,7 +37,7 @@
                 </label>
             </div>
 
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-2" name="slicing" data-delete="Plain slide light" value="2" />
                 <label for="fw-slicing-2">
                     <div class="radio-img">
@@ -53,7 +53,7 @@
                 </label>
             </div>
 
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-3" name="slicing" data-delete="Rift dark" value="3" />
                 <label for="fw-slicing-3">
                     <div class="radio-img">
@@ -69,7 +69,7 @@
                 </label>
             </div>
 
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-4" name="slicing" data-delete="Rift light" value="4" />
                 <label for="fw-slicing-4">
                     <div class="radio-img">
@@ -85,7 +85,7 @@
                 </label>
             </div>
 
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-5" name="slicing" data-delete="Plain slice dark" value="5" />
                 <label for="fw-slicing-5">
                     <div class="radio-img">
@@ -101,7 +101,7 @@
                 </label>
             </div>
 
-            <div class="col-slicing col-3 col-md-3 mb-1 mb-sm-4">
+            <div class="col-slicing col-6 col-md-3 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-slicing-6" name="slicing" data-delete="Rift red oak" value="6" />
                 <label for="fw-slicing-6">
                     <div class="radio-img">

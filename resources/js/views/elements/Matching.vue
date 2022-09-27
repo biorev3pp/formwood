@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="mb-5">
+        <form class="mb-5 sel-1">
             <div class="row">
                 <div class="col-sm-12 col-lg-12 mb-2 mb-lg-0">
                     <div class="form-group">
@@ -19,7 +19,7 @@
         </form>
 
         <div class="row row-wmatching justify-content-center">
-            <div class="col-quality col-6 col-md-6 mb-1 mb-sm-4">
+            <div class="col-quality col-12 col-md-6 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wmatching-1" name="wmatching" data-delete="Book match" value="1" />
                 <label for="fw-wmatching-1">
                     <div class="radio-img">

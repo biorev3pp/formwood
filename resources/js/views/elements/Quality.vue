@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="mb-5">
+        <form class="mb-5 sel-1">
             <div class="row">
                 <div class="col-sm-12 col-lg-12 mb-2 mb-lg-0">
                     <div class="form-group">
@@ -19,7 +19,7 @@
         </form>
 
         <div class="row row-wquality justify-content-center gx-5">
-            <div class="col-quality col-4 col-md-4 mb-1 mb-sm-4">
+            <div class="col-quality col-12 col-md-4 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-1" name="wquality" data-delete="B" value="1" />
                 <label for="fw-wquality-1">
                     <div class="radio-img">
@@ -35,7 +35,7 @@
                 </label>
             </div>
 
-            <div class="col-wquality col-4 col-md-4 mb-1 mb-sm-4">
+            <div class="col-wquality col-12 col-md-4 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-2" name="wquality" data-delete="A" value="2" />
                 <label for="fw-wquality-2">
                     <div class="radio-img">
@@ -51,7 +51,7 @@
                 </label>
             </div>
 
-            <div class="col-wquality col-4 col-md-4 mb-1 mb-sm-4">
+            <div class="col-wquality col-12 col-md-4 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-3" name="wquality" data-delete="AA" value="3" />
                 <label for="fw-wquality-3">
                     <div class="radio-img">

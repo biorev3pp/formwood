@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row row-wpanels justify-content-center gx-md-5">
-            <div class="col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4">
+            <div class="col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="p-cat-1" name="category" data-delete="fw-panel" value="1" />
                 <label for="p-cat-1">
                     <div class="radio-img">
@@ -11,7 +11,7 @@
                 </label>
             </div>
 
-            <div class="col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4">
+            <div class="col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="p-cat-2" name="category" data-delete="fw-sheet" value="2" />
                 <label for="p-cat-2">
                     <div class="radio-img">
@@ -21,7 +21,7 @@
                 </label>
             </div>
 
-            <div class="col-wpanels col-4 col-xxl-4 mb-1 mb-sm-4">
+            <div class="col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4">
                 <form class="mb-5">
                     <div class="row">
                         <div class="col-sm-12 col-lg-5 mb-2 mb-lg-0">

@@ -930,8 +930,8 @@ select:focus {
 
 
 
-
 @media (max-width: 991px){
+header { height: 60px;  padding: 10px 15px;  }
 #nav-icon {    left: 0;    margin-right: 4px;    }
 #nav-icon {    width: 25.6px;    position: relative;    transform: rotate(0deg);    transition: .5s ease-in-out;
 cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-right: 4px;}
@@ -953,5 +953,41 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
 #nav-icon span:nth-child(3), #nav-icon span:nth-child(4) {   top: 18px;   }
 #nav-icon span:nth-child(5), #nav-icon span:nth-child(6) {    top: 25px;   }
 
-.fw_container { position: absolute; top: 130px;}
+.fw_container { position: absolute;  top: 76px;  width: 95%; display: flex;  justify-content: center;}
+.main-wrapper {  height: calc(100vh - 60px);   margin-top: 60px;}
+.main-wrapper .section-center { margin-left: 0;  height: calc(100% - 38px);}
+.sidemenu {  width: 0; top: 60px; height: calc(100vh - 97px); transition: all .3s ease;}
+.sidebar-show {  width: 280px!important;}
+.footer {  width: 100%;  margin: 0;   transition: all .3s ease;}
+.footer-btns { visibility: visible; transition: visibility .3s ease;}
+.footer .close-arrow { position: absolute;  left: 0;  right: 0;  margin: 0 auto;  top: -19.3px;  width: 24px;  text-align: center;
+    border: 1px solid #cacaca;  border-bottom: none; background: #fff;  height: 20px; font-size: 24px;  display: flex;
+    align-items: center; justify-content: center; border-top-left-radius: 10px;  border-top-right-radius: 10px;}
+
 }
+@media (max-width: 810px){
+.footer-btns a { font-size: 13px;}
+}
+@media (max-width: 555px){
+
+    header { height: 55px;  padding: 10px;}
+    footer p { font-size: 10px;  }
+    footer { padding: 0 10px; }
+    .main-wrapper {   height: calc(100vh - 55px);  }
+    .sidemenu { top: 55px;    height: calc(100vh - 92px);  display: none;  }
+    #mainCntWrap {  padding: 4% 8% 42%; top: 12%;   }
+    .radio-txt.match-height{height: 70px!important;}
+    .fw-product-builder-radio + label .radio-txt {    line-height: 1.6; font-size: .85rem; padding: 1.35rem;  }
+    
+    .progressbar li { width: 45px;}
+    .progressbar li span {  left: 30%;top: 7px; width: 18px; font-size: 14px;}
+    .progressbar li:before {  width: 26px;  height: 26px;}
+    .progressbar li:first-child::after {        top: 12px;}
+    .progressbar li:after {        top: 12px;}
+    .footer div.row {  float: none;     justify-content: center;  }
+    .footer-btns button{width: 108px;}
+    .sel-1{margin-bottom: 15px!important;}
+    .progressbar li {font-size: 0px;    }
+    .progressbar li.active {font-size: 10px;    }
+
+    }

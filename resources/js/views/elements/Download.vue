@@ -263,23 +263,23 @@
 
                         <div class="col-12 col-sm-12">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-12 col-md-8">
                                     <div class="form-group mb-4">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" required="" class="form custom-control-input" name="13" id="field_13" />
                                             <label for="field_13" class="custom-control-label">I agree with the privacy policy *</label>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                                <div class="col-4 d-flex">
+                                <div class="col-12 col-md-4 d-flex">
                                     <button type="" class="btn btn-primary add-prdt">Add another product</button>
                                     <button type="submit" class="btn btn-primary sbmt">Submit</button>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-sm-12 sel-prdts">
+                            <div class="col-12 col-sm-12 mt-3 sel-prdts">
                                 <h5>Selected Products</h5>
                                 <ul class="selected-p">
                                     <li>
