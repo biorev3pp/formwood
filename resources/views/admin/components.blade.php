@@ -9,16 +9,16 @@
             <a class="nav-link {{ ($nav == 'sizes')?'active':'' }}" href="{{ route('sizes') }}">Sizes</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ ($nav == 'species')?'active':'' }}" href="{{ route('species') }}">Species</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link {{ ($nav == 'cuts')?'active':'' }}" href="{{ route('cuts') }}">Cuts</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ ($nav == 'quality')?'active':'' }}" href="{{ route('quality') }}">Quality</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ ($nav == 'matching')?'active':'' }}" href="{{ route('matching') }}">Matching</a>
+            <a class="nav-link {{ ($nav == 'species')?'active':'' }}" href="{{ route('species') }}">Species</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ ($nav == 'matchings')?'active':'' }}" href="{{ route('matchings') }}">Matching</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ ($nav == 'panel-options')?'active':'' }}" href="{{ route('panel_options') }}">Panel Options</a>
@@ -31,7 +31,7 @@
 <div class="content-overlay"></div>
 <div class="content-wrapper p-0 border-top">
     <div class="tab-content all-components">
-        <div role="tabpanel" class="tab-pane active pt-50">
+        <div role="tabpanel" class="tab-pane active">
             @if($nav == 'product-categories')
                 @include('admin.components.product-categories')
             @elseif($nav == 'species')
@@ -40,7 +40,7 @@
                 @include('admin.components.cuts')
             @elseif($nav == 'quality')
                 @include('admin.components.quality')
-            @elseif($nav == 'matching')
+            @elseif($nav == 'matchings')
                 @include('admin.components.matching')
             @elseif($nav == 'sizes')
                 @include('admin.components.sizes')

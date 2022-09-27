@@ -9,6 +9,7 @@ use App\Models\Species;
 use App\Models\Cuts;
 use App\Models\SpeciesCuts;
 use App\Models\CutsQualities;
+use App\Models\Matchings;
 use App\Models\Qualities;
 
 class LogicController extends Controller
@@ -31,25 +32,28 @@ class LogicController extends Controller
     // By Step 1 For Step 2 ... Cuts
     public function getCuts($sid = null)
     {
-        $scuts = SpeciesCuts::where('species_id', $sid)->get()->pluck('cut_id')->toArray();
+        $scuts = Species::where('id', $sid)->first();
+        $scuts = explode(',',$scuts->cuts);
         $cuts = Cuts::where('status_id', 1)->get();
         return view('admin.logicbox.cuts')->with(compact('cuts', 'scuts', 'sid'));
     }
 
-    // By Step 2 For Step 3 ... Qualities
+    // By Step 1 For Step 3 ... Qualities
     public function getQualities($cid = null)
     {
-        $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
+        $squalities = Species::where('id', $cid)->first();
+        $squalities = explode(',',$squalities->qualities);
         $qualities = Qualities::where('status_id', 1)->get();
         return view('admin.logicbox.qualities')->with(compact('qualities', 'squalities', 'cid'));
     }
 
-    // By Step 3 For Step 4 ... matchings
+    // By Step 2 For Step 4 ... matchings
     public function getMatchings($cid = null)
     {
-        $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
-        $qualities = Qualities::where('status_id', 1)->get();
-        return view('admin.logicbox.qualities')->with(compact('qualities', 'squalities', 'cid'));
+        $smatchings = Cuts::where('id', $cid)->first();
+        $smatchings = explode(',',$smatchings->matchings);
+        $matchings = Matchings::where('status_id', 1)->get();
+        return view('admin.logicbox.matchings')->with(compact('matchings', 'smatchings', 'cid'));
     }
 
     // By Step 4 For Step 5 ... CategorySizes
@@ -64,7 +68,7 @@ class LogicController extends Controller
     public function getPanelOptions($cid = null)
     {
         $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
-        $qualities = PanelOptions::where('status_id', 1)->get();
+        $qualities = []; //PanelOptions::where('status_id', 1)->get();
         return view('admin.logicbox.qualities')->with(compact('qualities', 'squalities', 'cid'));
     }
 
@@ -82,13 +86,13 @@ class LogicController extends Controller
 
     public function updateSpeciesCuts(Request $request)
     {
-        $cut_ids = explode(',', $request->cut_ids);
-        SpeciesCuts::where('species_id', $request->species_id)->whereNotIn('cut_id', $cut_ids)->delete();
-        foreach ($cut_ids as $key => $value) {
-            if(SpeciesCuts::where('species_id', $request->species_id)->where('cut_id', $value)->count() == 0) {
-                SpeciesCuts::create(['species_id' => $request->species_id, 'cut_id' => $value]);
-            }
-        }
+        Species::where('id', $request->species_id)->update(['cuts' => $request->cut_ids]);
         return ['success'];
     }
+
+    public function updateSpeciesQualities(Request $request)
+    {
+        Species::where('id', $request->species_id)->update(['qualities' => $request->quality_ids]);
+        return ['success'];
+    }   
 }

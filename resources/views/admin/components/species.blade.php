@@ -1,5 +1,5 @@
 <div>
-    <div class="table-responsive bg-white">
+    <div class="table-responsive bg-white fixed-header-table">
         <table class="table table-striped biorev-table">
             <thead>
                 <tr class="text-uppercase">
@@ -55,6 +55,19 @@
                 @endif
             </tbody>
         </table>
+        <div class="footer-actions">
+            <div class="row m-0">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-7">
+
+                </div>
+                <div class="col-md-3 text-right">
+                    <p class="showing">Showing {{ count($collection) }} records</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="modal fade text-left croppergap" id="addRecordModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">

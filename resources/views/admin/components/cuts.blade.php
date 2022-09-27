@@ -438,7 +438,7 @@
                 deleteRecord(HomePlanId);
                 Swal.fire(
                 'Deleted!',
-                'Product category has been deleted.',
+                'Cut has been deleted.',
                 'success'
                 )
             }

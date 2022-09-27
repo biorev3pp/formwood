@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::get('/components/species', [App\Http\Controllers\Admin\SpeciesController::class, 'index'])->name('species')->defaults('menu', 'components');
     Route::get('/components/product-categories', [App\Http\Controllers\Admin\ProductCategoriesController::class, 'index'])->name('product-categories')->defaults('menu', 'components');
     Route::get('/components/cuts', [App\Http\Controllers\Admin\CutsController::class, 'index'])->name('cuts')->defaults('menu', 'components');
-    Route::get('/components/matching', [App\Http\Controllers\Admin\MatchingsController::class, 'index'])->name('matching')->defaults('menu', 'components');
+    Route::get('/components/matchings', [App\Http\Controllers\Admin\MatchingsController::class, 'index'])->name('matchings')->defaults('menu', 'components');
     Route::get('/components/sizes', [App\Http\Controllers\Admin\SizesController::class, 'index'])->name('sizes')->defaults('menu', 'components');
     Route::get('/components/qualities', [App\Http\Controllers\Admin\QualitiesController::class, 'index'])->name('quality')->defaults('menu', 'components');
     Route::get('/components/backers', [App\Http\Controllers\Admin\BackersController::class, 'index'])->name('backers')->defaults('menu', 'components');

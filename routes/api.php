@@ -29,6 +29,11 @@ Route::post('create/cuts', [App\Http\Controllers\Admin\CutsController::class, 's
 Route::delete('delete/cuts', [App\Http\Controllers\Admin\CutsController::class, 'destroy']);
 Route::post('update/cuts/{id}', [App\Http\Controllers\Admin\CutsController::class, 'update']);
 
+// Matching Operations
+Route::post('create/matchings', [App\Http\Controllers\Admin\MatchingsController::class, 'store']);
+Route::delete('delete/matchings', [App\Http\Controllers\Admin\MatchingsController::class, 'destroy']);
+Route::post('update/matchings/{id}', [App\Http\Controllers\Admin\MatchingsController::class, 'update']);
+
 // Login Graph Operations
 
 // Step 2 data
@@ -37,7 +42,7 @@ Route::post('update-species-cuts', [App\Http\Controllers\Admin\LogicController::
 
 // Step 3 data
 Route::get('get-qualities/{id}', [App\Http\Controllers\Admin\LogicController::class, 'getQualities']);
-
+Route::post('update-species-qualities', [App\Http\Controllers\Admin\LogicController::class, 'updateSpeciesQualities']);
 
 // Step 4 data
 Route::get('get-matchings/{id}', [App\Http\Controllers\Admin\LogicController::class, 'getMatchings']);

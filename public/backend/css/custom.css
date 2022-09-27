@@ -2,6 +2,7 @@ body .content .content-wrapper{height:calc(100vh - 157px);font-family:'Montserra
 .custom-control-label{cursor:pointer}
 .content-header .nav-pills .nav-link{font-weight:600;text-transform:uppercase;font-size:13px;margin-right:5px}
 .all-components .tab-pane.active{height:calc(100vh - 167px)}
+.fixed-header-table{height: calc(100vh - 230px);}
 .filter-box{margin-bottom:10px}
 .filter-box fieldset{max-width:450px;position:relative}
 .filter-box fieldset .input-group{margin:0}
@@ -12,7 +13,7 @@ body .content .content-wrapper{height:calc(100vh - 157px);font-family:'Montserra
 .biorev-table-only{height:calc(100vh - 100px);overflow:auto}
 .biorev-table-with-filter{height:calc(100vh - 150px)!important;overflow:auto}
 .biorev-table-with-filter-paginator{height:calc(100vh - 285px);overflow:auto}
-.biorev-table{font-size:13px}
+.biorev-table{font-size:13px; margin-bottom: 0;}
 .biorev-table thead th{text-transform:uppercase;position:sticky;padding:10px;top:0;background:#fff;z-index:11}
 .biorev-table thead th.sno{width:80px}
 .biorev-table thead th.action{width:80px}
@@ -145,4 +146,21 @@ h3.modal-title{font-size: 1.2rem;}
 }
 .top-6{
     top: 6px;
+}
+.footer-actions{
+    background: #fff;
+    bottom: 10px;
+    box-shadow: 0 1px 15px 1px rgb(62 57 107 / 7%);
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+    height: 58px;
+}
+.showing{
+    margin: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 59px;
+    color: #323232;
 }

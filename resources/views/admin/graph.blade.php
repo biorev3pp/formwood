@@ -26,10 +26,10 @@
             <p class="text-info w-100 p-1 text-center">Please select species to view options</p>
         </div>
         <div class="logic-section logic-section-3">
-            <p class="text-info w-100 p-1 text-center">Please select checked cut to view options</p>
+            <p class="text-info w-100 p-1 text-center">Please select species to view options</p>
         </div>
         <div class="logic-section logic-section-4">
-            <p class="text-info w-100 p-1 text-center">Please select checked quality to view options</p>
+            <p class="text-info w-100 p-1 text-center">Please select checked cut to view options</p>
         </div>
         <div class="logic-section logic-section-5">
             <p class="text-info w-100 p-1 text-center">Please select checked matching to view options</p>
@@ -58,6 +58,7 @@
                 $('.logic-section-2').html(response);
             }
         });
+        selectQuality(sid);
     }
     function updateCuts(val) {
         let cuts = [];
@@ -81,7 +82,29 @@
         });
     }
 
-    function toggleAllCuts(val) {
+    function updateQualities(val) {
+        let cuts = [];
+        $("input:checkbox[name=qualityIds]:checked").each(function(){
+            cuts.push($(this).val());
+        });
+        const formData = new FormData();
+        formData.append('quality_ids', cuts);
+        formData.append('species_id', val);
+        $.ajax({
+            type: 'POST',
+            url: siteURL+'/api/update-species-qualities',
+            processData: false,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: formData,
+            contentType: false,
+            success: function(response){
+                toastr.clear();
+                toastr.success("Species and qualities relation has been Updated Successfully");
+            }
+        });
+    }
+
+    function toggleAllCuts() {
         if($('input:checkbox[name=allCutIds]').is(':checked')) {
             $("input:checkbox[name=cutIds]").prop("checked", true);
         } else {
@@ -99,6 +122,24 @@
         }
     }
 
+    function toggleAllQualities() {
+        if($('input:checkbox[name=allQualityIds]').is(':checked')) {
+            $("input:checkbox[name=qualityIds]").prop("checked", true);
+        } else {
+            $("input:checkbox[name=qualityIds]").prop("checked", false);
+        } 
+    }
+
+    function toggleQualities() {
+        if($("input:checkbox[name=qualityIds]").length == $("input:checkbox[name=qualityIds]:checked").length) 
+        { 
+            $("input:checkbox[name=allQualityIds]").prop("checked", true);
+        }
+        else {
+            $("input:checkbox[name=allQualityIds]").prop("checked", false);            
+        }
+    }
+
     function selectQuality(cid = null) {
         $('.step2_list').removeClass('active');
         $('#step2_'+cid).addClass('active');
@@ -110,6 +151,21 @@
             contentType: false,
             success: function(response){
                 $('.logic-section-3').html(response);
+            }
+        });
+    }
+
+    function selectMatching(cid = null) {
+        $('.step2_list').removeClass('active');
+        $('#step2_'+cid).addClass('active');
+        $('.logic-section-4').html(`<p class="loader"><img src="{{asset('backend/images/loader.gif')}}" /></p>`);
+        $.ajax({
+            type: 'GET',
+            url: siteURL+'/api/get-matchings/'+cid,
+            processData: false,
+            contentType: false,
+            success: function(response){
+                $('.logic-section-4').html(response);
             }
         });
     }

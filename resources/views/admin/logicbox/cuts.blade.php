@@ -5,7 +5,7 @@
     </li>
     @foreach ($cuts as $k => $i)
         <li class="step2_list" id="step2_{{$i->id}}">
-            <a href="javascript:;" onclick="selectQuality({{$i->id}})"> {{$k+1}}. {{ $i->name }} </a>
+            <a href="javascript:;" onclick="selectMatching({{$i->id}})"> {{$k+1}}. {{ $i->name }} </a>
             @if(in_array($i->id, $scuts))
                 <input type="checkbox" class="sidecheckbox cut_checkbox" value="{{$i->id}}" name="cutIds" id="cutId{{$i->id}}" checked="checked" onclick="toggleCuts()" />
             @else
