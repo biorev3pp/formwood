@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Matchings;
+use App\Models\Species;
 
-class MatchingsController extends Controller
+class SpeciesController extends Controller
 {
     protected $data = [];
 
     public function __construct()
     {
-        $this->data['menu'] = 'components';        
+        $this->data['menu'] = 'components';                 
     }
 
     public function index()
     {
-       $this->data['nav'] = 'matchings';
-       $this->data['collection'] = Matchings::with('status')->get();
+       $this->data['nav'] = 'species';
+       $this->data['collection'] = Species::with('status')->get();
        return view('admin.components')->with($this->data);
     }
 
@@ -39,7 +39,7 @@ class MatchingsController extends Controller
 
         if($request->name)
         {
-            $record = Matchings::create([
+            $record = Species::create([
                 'name'      => $request->name,
                 'remark'      => $request->remark,
                 'image'     => ($file)?$file:'',
@@ -51,7 +51,7 @@ class MatchingsController extends Controller
 
     public function update(Request $request)
     {
-        $record = Matchings::find($request->id);
+        $record = Species::find($request->id);
         
         $record->name = $request->name;
         $record->remark = $request->remark;
@@ -75,7 +75,7 @@ class MatchingsController extends Controller
 
     public function destroy(Request $request)
     {
-        $record = Matchings::find($request->id);
+        $record = Species::find($request->id);
         $record->delete();  
         return ['success'];
     }

@@ -34,6 +34,7 @@
                         <img class="img-fluid w-100" src="/media/components/maple.jpg" alt="Maple" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Maple</div>
+                    <fa-icon icon="fa-solid fa-user-secret" />
                 </label>
             </div>
 

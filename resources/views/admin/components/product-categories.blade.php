@@ -55,7 +55,7 @@
         </table>
     </div>
 </div>
-<div class="modal fade text-left" id="addRecordModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+<div class="modal fade text-left croppergap" id="addRecordModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <form id="recordForm">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 col-md-5">
                             <div class="form-group">
                                 <label class="text-uppercase">Name</label>
                                 <input id="name" class="form-control border px-50" type="text" placeholder="Enter name" required>
@@ -84,19 +84,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 col-md-7">
                             <label class="text-uppercase mb-0">Image</label>
                             <div class="form-group d-flex flex-wrap justify-content-between">
-                                <div class="mr-2">
-                                    <span>
-                                        <input type="file" id="image" class="d-none" onchange="readUrl(this, 'view')">
-                                        <label class="btn btn-sm btn-secondary m-0" style="padding:0.59375rem 1rem" for="image"> <i class="ft-image"></i> Choose Image</label>
-                                    </span>
+                                <div class="mr-2" style="width: calc(100% - 250px);">
+                                    <div class="mb-50 crop-actions">
+                                        <span>
+                                            <input type="file" id="newimage" class="d-none">
+                                            <label class="btn btn-sm btn-secondary m-0" style="padding:0.59375rem 1rem" for="newimage"> <i class="ft-image"></i> Choose Image</label>
+                                        </span>
+                                        <button type="button" class="btn btn-sm btn-primary mx-50 skipcropbtn" onclick="skipCropping()">Skip Cropping</button>
+                                        <button type="button" class="btn btn-sm btn-danger resetbtn" onclick="resetCropping()">Reset Cropper</button>
+                                    </div>
+                                    <img id="image" src="{{asset('media/placeholder.jpg')}}" />
                                 </div>
-                                <div class="">
-                                    <figure class="position-relative w-150 mb-0">
-                                        <img src="{{asset('media/placeholder.jpg')}}" class="img-thumbnail preview">
-                                    </figure>
+                                <div class="" style="width:200px">
+                                    <label class="text-uppercase mb-0">Cropping Preview</label>
+                                    <div class="mb-1">(<span id="imgw"></span> x <span id="imgh"></span>px)</div>
+                                    <div class="croppreview">
+                                        <figure class="position-relative w-full mb-0">
+                                            <img src="{{asset('media/placeholder.jpg')}}" class="img-thumbnail preview">
+                                        </figure>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-sm btn-success mx-50 applycropbtn" onclick="applyCropping()" style="display: none">Done With Cropping</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +130,9 @@
     const path = '{{$MEDIA_URL}}';
     const date = new Date();
     let baseImage = null, isChange = null;
-    
+    var image = document.getElementById("image");
+    var cropper;
+
     function addCategory(...values){
         isChange = null;
         baseImage = null;
@@ -140,6 +154,7 @@
                 modal.find('.preview').attr('src', `${path}/${values[3]}`);
             }
             modal.find('#submitButton').attr('data-id', values[4]);
+            modal.find('#submitButton').attr('data-rid', values[5]);
             modal.find('#submitButton').attr('onclick', 'submitForm(true)');
             modal.modal('show');
         }
@@ -167,25 +182,25 @@
             return false;
         }
 
-        if (fileType(baseImage) != "jpeg" && fileType(baseImage) != "jpg" && fileType(baseImage) != "png") {
+       /*  if (fileType(baseImage) != "jpeg" && fileType(baseImage) != "jpg" && fileType(baseImage) != "png") {
             toastr.clear()
             toastr.error('Only jpeg, jpg, png formats are allowed for image');
             return false;
-        }
+        } */
     }
 
     const editImageValidation = () => {
         if(isChange == 'view'){
             if(baseImage == null){
                 toastr.clear()
-                toastr.error('View 1 Base Image is required');
+                toastr.error('Image is required');
                 return false;
             }
-            if (fileType(baseImage) != "jpeg" && fileType(baseImage) != "jpg" && fileType(baseImage) != "png") {
+            /* if (fileType(baseImage) != "jpeg" && fileType(baseImage) != "jpg" && fileType(baseImage) != "png") {
                 toastr.clear()
                 toastr.error('Only jpeg, jpg, png formats are allowed for view 1 base image');
                 return false;
-            }
+            } */
         }
     }
 
@@ -306,6 +321,7 @@
                     $("#addRecordModal").find('#submitButton').removeClass('disable');
                     $("#addRecordModal").find('#submitButton .button-text').removeClass('hide-button-text');
                     $("#addRecordModal").find('#submitButton .spinner-border').removeClass('show-spinner');
+                    baseImage = null;
                 }
             });
         }
@@ -324,6 +340,73 @@
             isChange == 'view';
             
         }
+    }
+
+    $("body").on("change", "#newimage", function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            image.src = url;
+        };
+        var reader;
+        var file;
+        var url;
+        if (files && files.length > 0) {
+            file = files[0];
+            if (URL) {
+                done(URL.createObjectURL(file));
+            } else if (FileReader) {
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        $('.croppreview').addClass('croppreviewcss');
+        cropper = new Cropper(image, {
+            viewMode: 0,
+            preview: ".croppreview",
+        });
+        $('.applycropbtn').show();
+    });
+    
+    image.addEventListener('cropstart', (event) => {
+        $('#imgw').html($('.cropper-crop-box').width())
+        $('#imgh').html($('.cropper-crop-box').height())
+    });
+
+    function applyCropping() {
+        canvas = cropper.getCroppedCanvas();
+        canvas.toBlob(function (blob) {
+            url = URL.createObjectURL(blob);
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                baseImage = reader.result;
+                $('.applycropbtn').hide();
+                cropper.destroy();
+                cropper = null;
+                $('#image').attr('src', '{{asset("media/placeholder.jpg")}}');
+                $('.croppreview').removeClass('croppreviewcss').html(`<figure class="position-relative w-full mb-0"><img src="${baseImage}" class="img-thumbnail preview"></figure>`);
+            };
+        });
+    }
+
+    function skipCropping() {
+        cropper.destroy();
+        cropper = null;
+        baseImage = $('#image').attr('src');
+        $('#image').attr('src', '{{asset("media/placeholder.jpg")}}');
+        $('.croppreview').removeClass('croppreviewcss').html(`<figure class="position-relative w-full mb-0"><img src="${baseImage}" class="img-thumbnail preview"></figure>`);
+        $('.applycropbtn').hide();
+    }
+
+    function resetCropping() {
+        cropper.destroy();
+        cropper = null;
+        $('#image').attr('src', '{{asset("media/placeholder.jpg")}}');
+        $('.croppreview').removeClass('croppreviewcss').html(`<figure class="position-relative w-full mb-0"><img src="${path}/placeholder.jpg" class="img-thumbnail preview"></figure>`);
+        $('.applycropbtn').hide();
     }
 
     function deleteSwal(HomePlanId){

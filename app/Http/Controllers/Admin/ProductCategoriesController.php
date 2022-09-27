@@ -24,25 +24,25 @@ class ProductCategoriesController extends Controller
 
     public function store(Request $request)
     {
-        $destination_path = public_path('media/components');
-        if($request->file('image'))
-        {
-            $view1_file = $request->file('image');
-            $view1_name = $view1_file->getClientOriginalName();
-            $view1_file->move($destination_path, $view1_name);
-        }
+        $destination_path = public_path('media/components/');
 
-        else
-        {
-            $view1_name = null;
-        }
+        if($request->image):
+            $image_parts = explode(";base64,", $request->image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = uniqid() . '.'.$image_type;
+            file_put_contents($destination_path.$file, $image_base64);
+        else:
+            $file = null;
+        endif;
 
         if($request->name)
         {
             $record = SheetTypes::create([
-                'name'             => $request->name,
-                'image'  => ($view1_name)?$view1_name:'',
-                'status_id'         => $request->status
+                'name'      => $request->name,
+                'image'     => ($file)?$file:'',
+                'status_id' => $request->status
             ]);
             return $record;
         }
@@ -55,14 +55,17 @@ class ProductCategoriesController extends Controller
         $record->name = $request->name;
         $record->status_id = $request->status;
 
-        $destination_path = public_path('media/components');
-        if($request->file('image'))
-        {
-            $view1_file = $request->file('image');
-            $view1_name = $view1_file->getClientOriginalName();
-            $view1_file->move($destination_path, $view1_name);
-            $record->image = $view1_name;
-        }
+        $destination_path = public_path('media/components/');
+        
+        if($request->image && $request->image != null && $request->image != 'null'):
+            $image_parts = explode(";base64,", $request->image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = uniqid() . '.'.$image_type;
+            file_put_contents($destination_path.$file, $image_base64);
+            $record->image = $file;
+        endif;
 
         $record->save();
         return $record;

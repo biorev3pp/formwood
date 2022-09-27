@@ -1,5 +1,5 @@
 <div>
-    <div class="table-responsive bg-white">
+    <div class="table-responsive bg-white fixed-header-table">
         <table class="table table-striped biorev-table">
             <thead>
                 <tr class="text-uppercase">
@@ -55,6 +55,19 @@
                 @endif
             </tbody>
         </table>
+        <div class="footer-actions">
+            <div class="row m-0">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-7">
+
+                </div>
+                <div class="col-md-3 text-right">
+                    <p class="showing">Showing {{ count($collection) }} records</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="modal fade text-left croppergap" id="addRecordModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -62,7 +75,7 @@
         <div class="modal-content">
             <form id="recordForm">
                 <div class="modal-header border-bottom">
-                    <h3 class="modal-title"> Add New Cut</h3>
+                    <h3 class="modal-title"> Add New Species</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="ft-x text-secondary"></i>
                     </button>
@@ -145,7 +158,7 @@
         const modal = $('#addRecordModal');
 
         if(values[0] == true){
-            modal.find('.modal-title').text('Edit Cut')
+            modal.find('.modal-title').text('Edit Species')
             modal.find('.modal-footer button .button-text').text('Save Changes')
             const radioButtons = $('#recordForm input[name="status"]');
 
@@ -167,7 +180,7 @@
         }
         else{
             var form = document.getElementById('recordForm');
-            modal.find('.modal-title').text('Add New Cut')
+            modal.find('.modal-title').text('Add New Species')
             modal.find('.modal-footer button .button-text').text('Add New')
             modal.find('.img-thumbnail').attr('src', '{{asset("media/placeholder.jpg")}}')
             modal.find('#submitButton').attr('data-id', '');
@@ -224,7 +237,7 @@
             return false;
         }
 
-        if(!(/^[A-Za-z0-9-_() ]+$/.test(name))){
+        if(!(/^[A-Za-z0-9 ]+$/.test(name))){
             toastr.clear()
             toastr.error('Name field should only contain alphabets and numbers.');
             return false;
@@ -259,7 +272,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/update/cuts/'+HomePlanId,
+                url: siteURL+'/api/update/species/'+HomePlanId,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
@@ -300,7 +313,7 @@
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/create/cuts',
+                url: siteURL+'/api/create/species',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
@@ -438,7 +451,7 @@
                 deleteRecord(HomePlanId);
                 Swal.fire(
                 'Deleted!',
-                'Cut has been deleted.',
+                'Product category has been deleted.',
                 'success'
                 )
             }
@@ -448,7 +461,7 @@
     function deleteRecord(id){
         $.ajax({
             type: 'delete',
-            url: '/api/delete/cuts',
+            url: '/api/delete/species',
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();
