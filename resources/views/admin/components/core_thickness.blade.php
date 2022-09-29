@@ -6,12 +6,10 @@
                     <th class="sno">SNo
                         <input type="checkbox" class="bulk_checkbox_all" name="allRecords" id="allRecords" value="1" />
                     </th>
-                    <th>Product Category</th>
-                    <th>Backer</th>
-                    <th>Remark</th>
+                    <th>Core Thickness</th>
                     <th class="action-3">Status</th>
                     <th class="action-3">
-                        <button class="icon-btn" type="button" onclick="addBacker(false)">
+                        <button class="icon-btn" type="button" onclick="addThickness(false)">
                             <i class="ft-plus-square text-primary"></i>
                         </button>
                     </th>
@@ -22,16 +20,14 @@
                     @foreach ($collection as $key => $item)    
                         <tr id="row{{$item->id}}">
                             <td>{{ $key+1 }}. <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" /></td>
-                            <td>{{ $item->category->name }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->remark }}</td>
                             <td>
                                 <span class="{{ $item->status->label }}">
                                     {!! $item->status->icon !!} {{ $item->status->status }}
                                 </span>
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addBacker(true, '{{$item->sheet_type_id}}', {{$item->status_id}}, '{{$item->name}}', '{{$item->remark}}', {{$item->id}}, {{ $key+1}})">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addThickness(true, {{$item->status_id}}, '{{$item->name}}', {{$item->id}}, {{ $key+1}})">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal({{$item->id}})">
@@ -90,28 +86,15 @@
         <div class="modal-content">
             <form id="recordForm">
                 <div class="modal-header border-bottom">
-                    <h3 class="modal-title"> Add New Backer</h3>
+                    <h3 class="modal-title"> Add Core Thickness</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="ft-x text-secondary"></i>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="text-uppercase">Select Product Category</label>
-                        <select class="form-control  border " name="sheet_type_id" id="sheet_type_id">
-                            <option value="">- Select Category -</option>
-                            @foreach ($categories as $cat)
-                                <option value="{{ $cat->id}}"> {{ $cat->name }} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="text-uppercase">Backer Name</label>
-                        <input id="name" name="name" class="form-control border px-50" type="text" placeholder="Enter name" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="text-uppercase">Remark</label>
-                        <textarea id="remark" name="remark" class="form-control border px-50"></textarea>
+                        <label class="text-uppercase">Core Thickness value</label>
+                        <input id="name" name="name" class="form-control border px-50" type="text" placeholder="Enter value" required>
                     </div>
                     <div class="form-group">
                         <label class="d-inline-block mr-1 text-uppercase m-0">Activate </label>
@@ -141,32 +124,30 @@
     const path = '{{$MEDIA_URL}}';
     const date = new Date();
     
-    function addBacker(...values){
+    function addThickness(...values){
         isChange = null;
         const modal = $('#addRecordModal');
 
         if(values[0] == true){
-            modal.find('.modal-title').text('Edit Backer')
+            modal.find('.modal-title').text('Edit Thickness')
             modal.find('.modal-footer button .button-text').text('Save Changes')
             const radioButtons = $('#recordForm input[name="status"]');
 
-            modal.find('#sheet_type_id').val(values[1]);
             $.each(radioButtons, function(){
-                if($(this).val() == values[2]){
+                if($(this).val() == values[1]){
                     $(this).prop('checked', true);
                 }
             });
            
-            modal.find('#name').val(values[3]);
-            modal.find('#remark').val(values[4]);
-            modal.find('#submitButton').attr('data-id', values[5]);
-            modal.find('#submitButton').attr('data-rid', values[6]);
+            modal.find('#name').val(values[2]);
+            modal.find('#submitButton').attr('data-id', values[3]);
+            modal.find('#submitButton').attr('data-rid', values[4]);
             modal.find('#submitButton').attr('onclick', 'submitForm(true)');
             modal.modal('show');
         }
         else{
             var form = document.getElementById('recordForm');
-            modal.find('.modal-title').text('Add New Backer')
+            modal.find('.modal-title').text('Add New Thickness')
             modal.find('.modal-footer button .button-text').text('Add New')
             modal.find('#submitButton').attr('data-id', '');
             modal.find('#submitButton').attr('onclick', 'submitForm(false)');
@@ -177,9 +158,7 @@
 
     function submitForm(editable){
         
-        const sheet_type_id = $('#sheet_type_id').val();
         const name = $('#name').val();
-        const remark = $('#remark').val();
         const status = $('input[name="status"]:checked').val();
 
         // Validations
@@ -191,44 +170,36 @@
 
         const formData = new FormData();
 
-        formData.append('sheet_type_id', sheet_type_id);
         formData.append('name', name);
-        formData.append('remark', remark);
         formData.append('status', status);
         $("#add Modal").find('#submitButton').addClass('disable');
         $("#addRecordModal").find('#submitButton .button-text').addClass('hide-button-text');
         $("#addRecordModal").find('#submitButton .spinner-border').addClass('show-spinner');
         
         if(editable == true){
-            const HomePlanId = $("#submitButton").attr('data-id');
+            const MainId = $("#submitButton").attr('data-id');
             const RowId = $("#submitButton").attr('data-rid');
-            formData.append('id', HomePlanId);
+            formData.append('id', MainId);
 
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/update/backer/'+HomePlanId,
+                url: siteURL+'/api/update/thickness/'+MainId,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    toastr.info('Backer has been updated successfully.');
+                    toastr.info('Thickness has been updated successfully.');
                     let card = null;
                     card = `<td>${RowId}</td>
                             <td>
-                                ${response.category.name}
-                            </td>
-                            <td>
                                 ${response.name}
-                            </td>
-                            <td>
-                                ${response.remark}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addBacker(true, '${response.sheet_type_id}', '${response.status_id}', '${response.name}', '${response.remark}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addThickness(true, '${response.status_id}', '${response.name}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -247,30 +218,24 @@
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/create/backer',
+                url: siteURL+'/api/create/thickness',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    toastr.info('Backer has been added successfully.');
+                    toastr.info('Thickness has been added successfully.');
                     let card = null;
                     card = `<tr id="row${response.id}">
                             <td>${RowId}</td>
                             <td>
-                                ${response.category.name}
-                            </td>
-                            <td>
                                 ${response.name}
-                            </td>
-                            <td>
-                                ${response.remark}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addBacker(true, '${response.sheet_type_id}', '${response.status_id}', '${response.name}', '${response.remark}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addThickness(true, '${response.status_id}', '${response.name}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -303,7 +268,7 @@
         }
     }
 
-    function deleteSwal(HomePlanId){
+    function deleteSwal(MainId){
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -314,7 +279,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteRecord(HomePlanId);
+                deleteRecord(MainId);
                 Swal.fire(
                 'Deleted!',
                 'Product category has been deleted.',
@@ -328,7 +293,7 @@
     function deleteRecord(id){
         $.ajax({
             type: 'delete',
-            url: '/api/delete/backer',
+            url: '/api/delete/thickness',
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();
@@ -395,7 +360,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: siteURL+'/api/bulk/backer',
+                url: siteURL+'/api/bulk/thickness',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: formData,
                 processData: false,

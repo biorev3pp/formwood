@@ -16,4 +16,9 @@ class SheetTypes extends Model
     {
         return $this->belongsTo(\App\Models\Statuses::class);
     }
+
+    public function sizes()
+    {
+        return $this->hasMany(\App\Models\Sizes::class, 'sheet_type_id')->where('status_id', 1);
+    }
 }

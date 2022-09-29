@@ -71,6 +71,24 @@ class ProductCategoriesController extends Controller
         return $record;
     }
 
+    public function bulkAction(Request $request)
+    {
+        $ids = explode(',', $request->bulk_records);
+        if($request->bulk_action_type == 'stats') {
+            if($request->bulk_status == 'publish') {
+                $status = 1;
+            } else {
+                $status = 2;
+            }
+            SheetTypes::whereIn('id', $ids)->update(['status_id' =>  $status]);
+        } 
+        elseif($request->bulk_action_type == 'del') {
+            SheetTypes::whereIn('id', $ids)->update(['status_id' =>  2]);
+            SheetTypes::whereIn('id', $ids)->delete();
+        }
+        return ['success'];
+    }
+
     public function destroy(Request $request)
     {
         $record = SheetTypes::find($request->id);

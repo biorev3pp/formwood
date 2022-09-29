@@ -56,7 +56,7 @@ h3.modal-title{font-size: 1.2rem;}
 }
 .logic-header > div{
     min-width: 200px;
-    width:calc(14%);
+    width: calc(14.5%);
     display: inline-flex;
     border-right:1px solid #ccc;
     padding: 17px 10px 13px;
@@ -74,7 +74,7 @@ h3.modal-title{font-size: 1.2rem;}
 }
 .logic-body > div{
     min-width: 200px;
-    width:calc(14%);
+    width: calc(14.5%);
     display: inline-flex;
     border-right:1px solid #ccc;
     padding: 0px;
@@ -86,12 +86,12 @@ h3.modal-title{font-size: 1.2rem;}
     border: none;
 }
 
-.logic-body > div::-webkit-scrollbar{
+.logic-body > div::-webkit-scrollbar,.logic-section .step-in-50::-webkit-scrollbar{
     width: .4em;
     background: transparent;
 }
 
-.logic-body > div::-webkit-scrollbar-thumb{
+.logic-body > div::-webkit-scrollbar-thumb, .logic-section .step-in-50::-webkit-scrollbar-thumb{
     background: rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 }
@@ -101,6 +101,20 @@ h3.modal-title{font-size: 1.2rem;}
     width: 100%;
     margin: 0;
 }
+.logic-section p{
+    text-transform: initial;
+}
+.logic-section label.logic-label{
+    background: rgba(11, 90, 66, 0.8);
+    color: #fff;
+    display: block;
+    padding: 0.6rem;
+}
+.logic-section .step-in-50{
+    height: calc(40vh - 25px);
+    overflow: auto;
+    margin-bottom: 5px;
+}
 .logic-section ul.step1ul li a{
     border-bottom: 1px solid #f2f2f2;
     padding: 5px;
@@ -109,13 +123,13 @@ h3.modal-title{font-size: 1.2rem;}
     transition:all .3s ease;
     color:#323232;
 }
-.logic-section ul.step2ul li, .logic-section ul.step3ul li, .logic-section ul.step4ul li, .logic-section ul.step5ul li, .logic-section ul.step6ul li, .logic-section ul.step7ul li{
+.logic-section ul.step2ul li, .logic-section ul.step3ul li, .logic-section ul.step4ul li, .logic-section ul.step5ul li, .logic-section ul.step6ul li, .logic-section ul.step6ul2 li, .logic-section ul.step7ul li{
     border-bottom: 1px solid #f2f2f2;
     padding: 5px;
     display: block;
     transition:all .3s ease;
 }
-.logic-section ul.step2ul li a, .logic-section ul.step3ul li a, .logic-section ul.step4ul li a, .logic-section ul.step5ul li a, .logic-section ul.step6ul li a, .logic-section ul.step7ul li a{
+.logic-section ul.step2ul li a, .logic-section ul.step3ul li a, .logic-section ul.step4ul li a, .logic-section ul.step5ul li a, .logic-section ul.step6ul li a, .logic-section ul.step6ul2 li a, .logic-section ul.step7ul li a{
     color:#323232;
 }
 .logic-section ul.step1ul li a:hover{
@@ -125,14 +139,14 @@ h3.modal-title{font-size: 1.2rem;}
     background: rgba(64, 31, 32, 0.85);
     color: #fff;
 }
-.logic-section ul.step2ul li:hover, .logic-section ul.step3ul li:hover, .logic-section ul.step4ul li:hover, .logic-section ul.step5ul li:hover, .logic-section ul.step6ul li:hover, .logic-section ul.step7ul li:hover{
+.logic-section ul.step2ul li:hover, .logic-section ul.step3ul li:hover, .logic-section ul.step4ul li:hover, .logic-section ul.step5ul li:hover, .logic-section ul.step6ul li:hover, .logic-section ul.step6ul2 li:hover, .logic-section ul.step7ul li:hover{
     background: #dedede;
 }
-.logic-section ul.step2ul li.active, .logic-section ul.step3ul li.active, .logic-section ul.step4ul li.active, .logic-section ul.step5ul li.active, .logic-section ul.step6ul li.active, .logic-section ul.step7ul li.active{
+.logic-section ul.step2ul li.active, .logic-section ul.step3ul li.active, .logic-section ul.step4ul li.active, .logic-section ul.step5ul li.active, .logic-section ul.step6ul li.active, .logic-section ul.step6ul2 li.active, .logic-section ul.step7ul li.active{
     background: rgba(64, 31, 32, 0.85);
     color: #fff;
 }
-.logic-section ul.step2ul li.active a, .logic-section ul.step3ul li.active a, .logic-section ul.step4ul li.active a, .logic-section ul.step5ul li.active a, .logic-section ul.step6ul li.active a, .logic-section ul.step7ul li.active a{
+.logic-section ul.step2ul li.active a, .logic-section ul.step3ul li.active a, .logic-section ul.step4ul li.active a, .logic-section ul.step5ul li.active a, .logic-section ul.step6ul li.active a, .logic-section ul.step6ul2 li.active a, .logic-section ul.step7ul li.active a{
     color: #fff;
 }
 .sidecheckbox{
@@ -142,6 +156,16 @@ h3.modal-title{font-size: 1.2rem;}
     top: 3px;
     float: right;
     right: 3px;
+    cursor: pointer;
+    /* color: #800; */
+    /* fill: rgba(255,0,0,1); */
+}
+.bulk_checkbox_all, .bulk_checkbox{
+    position: relative;
+    width: 17px;
+    height: 17px;
+    top: 4px;
+    left: 3px;
     cursor: pointer;
 }
 .top-6{
@@ -159,8 +183,44 @@ h3.modal-title{font-size: 1.2rem;}
 }
 .showing{
     margin: 0;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 12px;
     line-height: 59px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.select-counter h6{
+    margin-bottom: 0;
+    margin-top: 11px;
+    text-transform: uppercase;
+}
+.select-counter span{
+    margin-bottom: 0;
+    position: relative;
+    top: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000;
+}
+.bulk-action-form{
+    padding: 11px 0;
+}
+.bulk-action-form .form-group{
+    margin: 0;
+    min-width: 155px;
+    display: inline-flex;
+    padding: 0 13px 0 0;
+}
+.bulk-action-form .form-control{
+    padding-left:12px;
+    color: #323232;
+    font-weight: 500;
+}
+#custom_fonts_1 .form-control{
+    background: #fff;
+    padding: 0 8px;
+    font-weight: 500;
     color: #323232;
 }

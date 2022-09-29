@@ -10,7 +10,12 @@ use App\Models\Cuts;
 use App\Models\SpeciesCuts;
 use App\Models\CutsQualities;
 use App\Models\Matchings;
+use App\Models\PanelSubstrates;
+use App\Models\PanelThickness;
 use App\Models\Qualities;
+use App\Models\SheetTypes;
+use App\Models\Sizes;
+use App\Models\SizesBackers;
 
 class LogicController extends Controller
 {
@@ -57,27 +62,35 @@ class LogicController extends Controller
     }
 
     // By Step 4 For Step 5 ... CategorySizes
-    public function getCategorySizes($cid = null)
+    public function getCategorySizes()
     {
-        $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
-        $qualities = Qualities::where('status_id', 1)->get();
-        return view('admin.logicbox.qualities')->with(compact('qualities', 'squalities', 'cid'));
+        $categorysizes = SheetTypes::with('sizes')->where('status_id', 1)->get();
+        return view('admin.logicbox.categories')->with(compact('categorysizes'));
     }
 
     // By Step 5 For Step 6 ... PanelOptions
-    public function getPanelOptions($cid = null)
+    public function getPanelOptions()
     {
-        $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
-        $qualities = []; //PanelOptions::where('status_id', 1)->get();
-        return view('admin.logicbox.qualities')->with(compact('qualities', 'squalities', 'cid'));
+        $substrates = PanelSubstrates::where('status_id', 1)->get();
+        return view('admin.logicbox.panel_options')->with(compact('substrates'));
+    }
+
+    // By Step 6 For Step 6 part 2 ... PanelOptions - Core Thickness
+    public function getPanelThickness($sid = null)
+    {
+        $substrates = PanelSubstrates::where('id', $sid)->first();
+        $sthickness = explode(',',$substrates->thickness_ids);
+        $thickness = PanelThickness::where('status_id', 1)->get();
+        return view('admin.logicbox.panel_thickness')->with(compact('thickness', 'sthickness', 'sid', 'substrates'));
     }
 
     // By Step 6 For Step 7 ... Backers
     public function getBackers($cid = null)
     {
-        $squalities = CutsQualities::where('cut_id', $cid)->get()->pluck('qualities_id')->toArray();
-        $backers = Backers::where('status_id', 1)->get();
-        return view('admin.logicbox.qualities')->with(compact('backers', 'squalities', 'cid'));
+        $sbackers = SizesBackers::where('size_id', $cid)->get()->pluck('backer_id')->toArray();
+        $category = Sizes::whereId($cid)->first();
+        $backers = Backers::where('status_id', 1)->where('sheet_type_id', $category->sheet_type_id)->get();
+        return view('admin.logicbox.backers')->with(compact('backers', 'sbackers', 'cid', 'category'));
     }
 
 
@@ -94,5 +107,29 @@ class LogicController extends Controller
     {
         Species::where('id', $request->species_id)->update(['qualities' => $request->quality_ids]);
         return ['success'];
-    }   
+    }  
+
+    public function updateCutMatchings(Request $request)
+    {
+        Cuts::where('id', $request->cut_id)->update(['matchings' => $request->matching_ids]);
+        return ['success'];
+    }
+
+    public function updatePanelThickness(Request $request)
+    {
+        PanelSubstrates::where('id', $request->substrate_id)->update(['thickness_ids' => $request->thickness_ids]);
+        return ['success'];
+    }
+    
+    public function updateSizeBackers(Request $request)
+    {
+        $backers_ids = explode(',', $request->backer_ids);
+        SizesBackers::where('size_id', $request->size_id)->whereNotIn('backer_id', $backers_ids)->delete();
+        foreach ($backers_ids as $key => $value) {
+            if(SizesBackers::where('size_id', $request->size_id)->where('backer_id', $value)->count() == 0) {
+                SizesBackers::create(['size_id' => $request->size_id, 'backer_id' => $value]);
+            }
+        }
+        return ['success'];
+    }  
 }
