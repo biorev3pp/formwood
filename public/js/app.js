@@ -6111,6 +6111,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6135,7 +6136,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       logopath: "/media/FormwoodLogo.png",
       imgpath: "/media/components",
-      active_step: 1
+      active_step: 1,
+      sidemenu: false,
+      bottommenu: false
     };
   },
   methods: {
@@ -6658,6 +6661,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Download",
   data: function data() {
@@ -6719,6 +6724,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Matching",
   data: function data() {
@@ -6741,6 +6747,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6936,6 +6958,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Quality",
   data: function data() {
@@ -6958,6 +6983,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7223,6 +7254,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Species",
   data: function data() {
@@ -7254,7 +7292,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faUserSecret);
+
+
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__.library.add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faUserSecret, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faCheck, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faPaperclip);
 vue__WEBPACK_IMPORTED_MODULE_4__["default"].component('fa-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon);
 new vue__WEBPACK_IMPORTED_MODULE_4__["default"]({
   render: function render(h) {
@@ -30717,7 +30758,31 @@ var render = function () {
       _c("div", [
         _c("header", [
           _c("div", { staticClass: "logo" }, [
-            _vm._m(0),
+            _c(
+              "div",
+              {
+                class: [_vm.sidemenu ? "open" : ""],
+                attrs: { id: "nav-icon" },
+                on: {
+                  click: function ($event) {
+                    _vm.sidemenu = !_vm.sidemenu
+                  },
+                },
+              },
+              [
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "a",
@@ -30914,7 +30979,7 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", [
         _c("div", { staticClass: "main-wrapper" }, [
@@ -30946,62 +31011,122 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("span", [
-            _vm._m(2),
+            _c(
+              "div",
+              {
+                staticClass: "sidemenu",
+                class: [_vm.sidemenu ? "sidebar-show" : ""],
+                staticStyle: { "z-index": "1000" },
+              },
+              [_vm._m(1)]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "footer" }, [
-              _c("div", { staticClass: "row h-100 align-items-center" }, [
-                _c("div", { staticClass: "footer-btns pbtns" }, [
-                  _vm.active_step >= 3
-                    ? _c(
+            _c(
+              "div",
+              {
+                staticClass: "footer",
+                class: [
+                  _vm.active_step >= 3 && _vm.active_step <= 7
+                    ? "mob-footer"
+                    : "",
+                  _vm.bottommenu ? "" : "close-footer",
+                ],
+              },
+              [
+                _c("div", { staticClass: "row h-100 align-items-center" }, [
+                  _c("div", { staticClass: "footer-btns pbtns" }, [
+                    _vm.active_step >= 3 && _vm.active_step <= 7
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "skp-btn",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.goNext(8)
+                              },
+                            },
+                          },
+                          [_vm._v("skip to download")]
+                        )
+                      : _vm._e(),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "footer-btns pbtns",
+                      class: [_vm.bottommenu ? "" : "hide-footer-btns"],
+                    },
+                    [
+                      _c(
                         "button",
                         {
-                          staticClass: "skp-btn",
+                          staticClass: "pbs-btn",
                           attrs: { type: "button" },
                           on: {
                             click: function ($event) {
-                              return _vm.goNext(8)
+                              return _vm.goBack()
                             },
                           },
                         },
-                        [_vm._v("skip to download")]
-                      )
-                    : _vm._e(),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "footer-btns pbtns" }, [
+                        [_vm._v("previous")]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "button",
+                    "div",
                     {
-                      staticClass: "pbs-btn",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.goBack()
-                        },
-                      },
+                      staticClass: "footer-btns fns-btn",
+                      class: [_vm.bottommenu ? "" : "hide-footer-btns"],
                     },
-                    [_vm._v("previous")]
+                    [
+                      _vm.active_step <= 7
+                        ? _c(
+                            "button",
+                            {
+                              attrs: { type: "button" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.goNext()
+                                },
+                              },
+                            },
+                            [_vm._v("next")]
+                          )
+                        : _vm._e(),
+                    ]
                   ),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "footer-btns fns-btn" }, [
-                  _c(
-                    "button",
-                    {
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.goNext()
-                        },
+                _c(
+                  "div",
+                  {
+                    staticClass: "close-arrow",
+                    on: {
+                      click: function ($event) {
+                        _vm.bottommenu = !_vm.bottommenu
                       },
                     },
-                    [_vm._v("next")]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _vm._m(3),
-            ]),
+                  },
+                  [
+                    _c(
+                      "span",
+                      [
+                        _c("fa-icon", {
+                          attrs: {
+                            icon: "fa-solid fa-angle-down",
+                            rotation: _vm.bottommenu ? 0 : 180,
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                  ]
+                ),
+              ]
+            ),
           ]),
           _vm._v(" "),
           _c(
@@ -31143,24 +31268,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "open", attrs: { id: "nav-icon" } }, [
-      _c("span"),
-      _vm._v(" "),
-      _c("span"),
-      _vm._v(" "),
-      _c("span"),
-      _vm._v(" "),
-      _c("span"),
-      _vm._v(" "),
-      _c("span"),
-      _vm._v(" "),
-      _c("span"),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("footer", {}, [
       _c("p", [_vm._v("© 2022 FormWood, All Rights Reserved.")]),
       _vm._v(" "),
@@ -31178,46 +31285,29 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "sidemenu sidebar-show",
-        staticStyle: { "z-index": "1000" },
-      },
+      { staticClass: "sidemenu-content", attrs: { id: "sideMenuTab" } },
       [
-        _c(
-          "div",
-          { staticClass: "sidemenu-content", attrs: { id: "sideMenuTab" } },
-          [
-            _c("div", { staticClass: "header-bg" }, [
-              _c("div", { staticClass: "header" }, [
-                _c("h2", [_vm._v("Product Builder")]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "content-scroll" }, [
-                _c("h3", [_vm._v("Species and attribute")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                                        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n                                        consequat.\n                                    "
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "get-in-touch" }, [
-                _c("button", [_vm._v("Get In Touch")]),
-              ]),
+        _c("div", { staticClass: "header-bg" }, [
+          _c("div", { staticClass: "header" }, [
+            _c("h2", [_vm._v("Product Builder")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "content-scroll" }, [
+            _c("h3", [_vm._v("Species and attribute")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n                                        consequat.\n                                    "
+              ),
             ]),
-          ]
-        ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "get-in-touch" }, [
+            _c("button", [_vm._v("Get In Touch")]),
+          ]),
+        ]),
       ]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "close-arrow" }, [
-      _c("span", { staticClass: "material-icons" }, [_vm._v("expand_more")]),
-    ])
   },
 ]
 render._withStripped = true
@@ -31251,7 +31341,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-6 mb-1 mb-sm-4" }, [
+        _c("div", { staticClass: "col-md-7 mb-1 mb-sm-4" }, [
           _c("div", { staticClass: "fw-backer p-block mb-2" }, [
             _c("h4", { staticClass: "mb-3 fwp-size-h" }, [_vm._v("Backer")]),
             _vm._v(" "),
@@ -31361,7 +31451,7 @@ var staticRenderFns = [
         "div",
         { staticClass: "row row-wpanels justify-content-center gx-md-5" },
         [
-          _c("div", { staticClass: "col-md-6 mb-1 mb-sm-4" }, [
+          _c("div", { staticClass: "col-md-6 mb-3 mb-sm-4" }, [
             _c("div", { staticClass: "fw-substrate p-block mb-2" }, [
               _c("h4", { staticClass: "mb-3 fwp-size-h" }, [
                 _vm._v("Substrate"),
@@ -31633,7 +31723,7 @@ var staticRenderFns = [
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 mb-1 mb-sm-4" }, [
+          _c("div", { staticClass: "col-md-6 mb-3 mb-sm-4" }, [
             _c("div", { staticClass: "fw-thickness p-block mb-2" }, [
               _c("h4", { staticClass: "mb-3 fwp-size-h" }, [
                 _vm._v("Thickness"),
@@ -31781,1480 +31871,1213 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "row mb-6 justify-content-center",
+        attrs: { id: "visitor-info", "data-layout": "1" },
+      },
+      [
+        _c("div", { staticClass: "col-12 text-wrapper" }, [
+          _c(
+            "form",
+            {
+              attrs: {
+                action: "",
+                method: "post",
+                enctype: "multipart/form-data",
+                novalidate: "novalidate",
+              },
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "row g-xs-2" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _vm._m(8),
+                _vm._v(" "),
+                _vm._m(9),
+                _vm._v(" "),
+                _vm._m(10),
+                _vm._v(" "),
+                _vm._m(11),
+                _vm._v(" "),
+                _vm._m(12),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 col-sm-12 file-att" }, [
+                  _c("form", { attrs: { action: "/action_page.php" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "upload-button",
+                        staticStyle: {
+                          position: "relative",
+                          overflow: "hidden",
+                          direction: "ltr",
+                        },
+                        attrs: { "aria-hidden": "true" },
+                      },
+                      [
+                        _c("fa-icon", {
+                          staticClass: "pclip",
+                          attrs: { icon: "fa-solid fa-paperclip" },
+                        }),
+                        _vm._v(" Attach file here"),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "fileupload-input",
+                      attrs: { type: "file", id: "myfile", name: "file" },
+                    }),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("br"),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _vm._m(13),
+                _vm._v(" "),
+                _vm._m(14),
+              ]),
+            ]
+          ),
+        ]),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        {
-          staticClass: "row mb-6 justify-content-center",
-          attrs: { id: "visitor-info", "data-layout": "1" },
-        },
-        [
-          _c("div", { staticClass: "col-12 text-wrapper" }, [
-            _c(
-              "form",
-              {
-                attrs: {
-                  action: "",
-                  method: "post",
-                  enctype: "multipart/form-data",
-                  novalidate: "novalidate",
-                },
-              },
-              [
-                _c("div", { staticClass: "d-none" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", value: "", name: "formID" },
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: {
-                      type: "email",
-                      name: "email",
-                      autocomplete: "no",
-                      value: "",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "", value: "" },
-                  }),
+    return _c("div", { staticClass: "d-none" }, [
+      _c("input", { attrs: { type: "hidden", value: "", name: "formID" } }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "email", name: "email", autocomplete: "no", value: "" },
+      }),
+      _vm._v(" "),
+      _c("input", { attrs: { type: "hidden", name: "", value: "" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control required",
+            attrs: {
+              id: "field_1",
+              required: "",
+              value: "",
+              type: "text",
+              autocomplete: "family-name",
+              name: "1",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Name *")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_2",
+              required: "",
+              value: "",
+              type: "email",
+              autocomplete: "email",
+              name: "2",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("E-mail *")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_3",
+              value: "",
+              type: "tel",
+              autocomplete: "tel",
+              name: "3",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Phone")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_4",
+              value: "",
+              type: "text",
+              autocomplete: "company name",
+              name: "4",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Company Name")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_5",
+              value: "",
+              type: "text",
+              autocomplete: "address line 1",
+              name: "5",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Address Line 1")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_6",
+              value: "",
+              type: "text",
+              autocomplete: "address line 2",
+              name: "6",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Address Line 1")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_7",
+              value: "",
+              type: "text",
+              autocomplete: "address line 2",
+              name: "7",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("City")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control email required",
+            attrs: {
+              id: "field_8",
+              value: "",
+              type: "text",
+              autocomplete: "address line 2",
+              name: "8",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("State")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("input", {
+            staticClass: "form-control required",
+            attrs: {
+              id: "field_9",
+              value: "",
+              type: "text",
+              autocomplete: "postal-code",
+              name: "9",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Postal code")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-6" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con select-con" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "field_10", name: "3" },
+            },
+            [
+              _c("option"),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "Europe" } }, [
+                _c("option", { attrs: { value: "Albania" } }, [
+                  _vm._v("Albania"),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row g-xs-2" }, [
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control required",
-                          attrs: {
-                            id: "field_1",
-                            required: "",
-                            value: "",
-                            type: "text",
-                            autocomplete: "family-name",
-                            name: "1",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Name *")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_2",
-                            required: "",
-                            value: "",
-                            type: "email",
-                            autocomplete: "email",
-                            name: "2",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("E-mail *")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_3",
-                            value: "",
-                            type: "tel",
-                            autocomplete: "tel",
-                            name: "3",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Phone")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_4",
-                            value: "",
-                            type: "text",
-                            autocomplete: "company name",
-                            name: "4",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Company Name")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_5",
-                            value: "",
-                            type: "text",
-                            autocomplete: "address line 1",
-                            name: "5",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Address Line 1")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_6",
-                            value: "",
-                            type: "text",
-                            autocomplete: "address line 2",
-                            name: "6",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Address Line 1")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_7",
-                            value: "",
-                            type: "text",
-                            autocomplete: "address line 2",
-                            name: "7",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("City")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control email required",
-                          attrs: {
-                            id: "field_8",
-                            value: "",
-                            type: "text",
-                            autocomplete: "address line 2",
-                            name: "8",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("State")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("input", {
-                          staticClass: "form-control required",
-                          attrs: {
-                            id: "field_9",
-                            value: "",
-                            type: "text",
-                            autocomplete: "postal-code",
-                            name: "9",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Postal code")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-6" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c(
-                        "span",
-                        { staticClass: "form-control-con select-con" },
-                        [
-                          _c(
-                            "select",
-                            {
-                              staticClass: "form-control",
-                              attrs: { id: "field_10", name: "3" },
-                            },
-                            [
-                              _c("option"),
-                              _vm._v(" "),
-                              _c("optgroup", { attrs: { label: "Europe" } }, [
-                                _c("option", { attrs: { value: "Albania" } }, [
-                                  _vm._v("Albania"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Andorra" } }, [
-                                  _vm._v("Andorra"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Austria" } }, [
-                                  _vm._v("Austria"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Belarus" } }, [
-                                  _vm._v("Belarus"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Belgium" } }, [
-                                  _vm._v("Belgium"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "Bosnia and Herzegovina" },
-                                  },
-                                  [_vm._v("Bosnia and Herzegovina")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Bulgaria" } }, [
-                                  _vm._v("Bulgaria"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Croatia" } }, [
-                                  _vm._v("Croatia"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Czech Republic" } },
-                                  [_vm._v("Czech Republic")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Denmark" } }, [
-                                  _vm._v("Denmark"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Estonia" } }, [
-                                  _vm._v("Estonia"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Faroe Islands" } },
-                                  [_vm._v("Faroe Islands")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Finland" } }, [
-                                  _vm._v("Finland"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "France" } }, [
-                                  _vm._v("France"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Germany" } }, [
-                                  _vm._v("Germany"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Gibraltar" } },
-                                  [_vm._v("Gibraltar")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Greece" } }, [
-                                  _vm._v("Greece"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Hungary" } }, [
-                                  _vm._v("Hungary"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Iceland" } }, [
-                                  _vm._v("Iceland"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Ireland" } }, [
-                                  _vm._v("Ireland"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Italy" } }, [
-                                  _vm._v("Italy"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Kosovo" } }, [
-                                  _vm._v("Kosovo"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Latvia" } }, [
-                                  _vm._v("Latvia"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Liechtenstein" } },
-                                  [_vm._v("Liechtenstein")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Lithuania" } },
-                                  [_vm._v("Lithuania")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Luxembourg" } },
-                                  [_vm._v("Luxembourg")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Macedonia" } },
-                                  [_vm._v("Macedonia")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Malta" } }, [
-                                  _vm._v("Malta"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Moldova" } }, [
-                                  _vm._v("Moldova"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Monaco" } }, [
-                                  _vm._v("Monaco"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Montenegro" } },
-                                  [_vm._v("Montenegro")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Netherlands" } },
-                                  [_vm._v("Netherlands")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Norway" } }, [
-                                  _vm._v("Norway"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Poland" } }, [
-                                  _vm._v("Poland"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Portugal" } }, [
-                                  _vm._v("Portugal"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Republic of Serbia" } },
-                                  [_vm._v("Republic of Serbia")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Romania" } }, [
-                                  _vm._v("Romania"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Russian Federation" } },
-                                  [_vm._v("Russian Federation")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "San Marino" } },
-                                  [_vm._v("San Marino")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Slovakia" } }, [
-                                  _vm._v("Slovakia"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Slovenia" } }, [
-                                  _vm._v("Slovenia"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Spain" } }, [
-                                  _vm._v("Spain"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "Svalbard and Jan Mayen" },
-                                  },
-                                  [_vm._v("Svalbard and Jan Mayen")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Sweden" } }, [
-                                  _vm._v("Sweden"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Switzerland" } },
-                                  [_vm._v("Switzerland")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Ukraine" } }, [
-                                  _vm._v("Ukraine"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "United Kingdom" } },
-                                  [_vm._v("United Kingdom")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Yugoslavia" } },
-                                  [_vm._v("Yugoslavia")]
-                                ),
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "optgroup",
-                                { attrs: { label: "North America" } },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Anguilla" } },
-                                    [_vm._v("Anguilla")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Antigua and Barbuda" } },
-                                    [_vm._v("Antigua and Barbuda")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Aruba" } }, [
-                                    _vm._v("Aruba"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Bahamas" } },
-                                    [_vm._v("Bahamas")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Barbados" } },
-                                    [_vm._v("Barbados")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Belize" } }, [
-                                    _vm._v("Belize"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Bermuda" } },
-                                    [_vm._v("Bermuda")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Canada" } }, [
-                                    _vm._v("Canada"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Cayman Islands" } },
-                                    [_vm._v("Cayman Islands")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Costa Rica" } },
-                                    [_vm._v("Costa Rica")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Cuba" } }, [
-                                    _vm._v("Cuba"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Dominica" } },
-                                    [_vm._v("Dominica")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Dominican Republic" } },
-                                    [_vm._v("Dominican Republic")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "El Salvador" } },
-                                    [_vm._v("El Salvador")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Greenland" } },
-                                    [_vm._v("Greenland")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Grenada" } },
-                                    [_vm._v("Grenada")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Guadeloupe" } },
-                                    [_vm._v("Guadeloupe")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Guatemala" } },
-                                    [_vm._v("Guatemala")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Haiti" } }, [
-                                    _vm._v("Haiti"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Honduras" } },
-                                    [_vm._v("Honduras")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Jamaica" } },
-                                    [_vm._v("Jamaica")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Martinique" } },
-                                    [_vm._v("Martinique")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Mexico" } }, [
-                                    _vm._v("Mexico"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Montserrat" } },
-                                    [_vm._v("Montserrat")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: { value: "Netherlands Antilles" },
-                                    },
-                                    [_vm._v("Netherlands Antilles")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Nicaragua" } },
-                                    [_vm._v("Nicaragua")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Panama" } }, [
-                                    _vm._v("Panama"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Puerto Rico" } },
-                                    [_vm._v("Puerto Rico")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: { value: "Saint Kitts and Nevis" },
-                                    },
-                                    [_vm._v("Saint Kitts and Nevis")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Saint Lucia" } },
-                                    [_vm._v("Saint Lucia")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "Saint Pierre and Miquelon",
-                                      },
-                                    },
-                                    [_vm._v("Saint Pierre and Miquelon")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Trinidad and Tobago" } },
-                                    [_vm._v("Trinidad and Tobago")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "Turks and Caicos Islands",
-                                      },
-                                    },
-                                    [_vm._v("Turks and Caicos Islands")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "United States" } },
-                                    [_vm._v("United States")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "Virgin Islands, British",
-                                      },
-                                    },
-                                    [_vm._v("Virgin Islands, British")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: { value: "Virgin Islands, U.S." },
-                                    },
-                                    [_vm._v("Virgin Islands, U.S.")]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("optgroup", { attrs: { label: "Asia" } }, [
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Afghanistan" } },
-                                  [_vm._v("Afghanistan")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Armenia" } }, [
-                                  _vm._v("Armenia"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Azerbaijan" } },
-                                  [_vm._v("Azerbaijan")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Bahrain" } }, [
-                                  _vm._v("Bahrain"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Bangladesh" } },
-                                  [_vm._v("Bangladesh")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Bhutan" } }, [
-                                  _vm._v("Bhutan"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Brunei" } }, [
-                                  _vm._v("Brunei"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Cambodia" } }, [
-                                  _vm._v("Cambodia"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "China" } }, [
-                                  _vm._v("China"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Cyprus" } }, [
-                                  _vm._v("Cyprus"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "East Timor" } },
-                                  [_vm._v("East Timor")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Georgia" } }, [
-                                  _vm._v("Georgia"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Hong Kong" } },
-                                  [_vm._v("Hong Kong")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "India" } }, [
-                                  _vm._v("India"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Indonesia" } },
-                                  [_vm._v("Indonesia")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Iran" } }, [
-                                  _vm._v("Iran"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Iraq" } }, [
-                                  _vm._v("Iraq"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Israel" } }, [
-                                  _vm._v("Israel"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Japan" } }, [
-                                  _vm._v("Japan"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Jordan" } }, [
-                                  _vm._v("Jordan"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Kazakstan" } },
-                                  [_vm._v("Kazakstan")]
-                                ),
-                                _c("option", { attrs: { value: "Kuwait" } }, [
-                                  _vm._v("Kuwait"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Kyrgyzstan" } },
-                                  [_vm._v("Kyrgyzstan")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Laos" } }, [
-                                  _vm._v("Laos"),
-                                ]),
-                                _c("option", { attrs: { value: "Lebanon" } }, [
-                                  _vm._v("Lebanon"),
-                                ]),
-                                _c("option", { attrs: { value: "Macao" } }, [
-                                  _vm._v("Macao"),
-                                ]),
-                                _c("option", { attrs: { value: "Malaysia" } }, [
-                                  _vm._v("Malaysia"),
-                                ]),
-                                _c("option", { attrs: { value: "Maldives" } }, [
-                                  _vm._v("Maldives"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Mongolia" } }, [
-                                  _vm._v("Mongolia"),
-                                ]),
-                                _c("option", { attrs: { value: "Myanmar" } }, [
-                                  _vm._v("Myanmar"),
-                                ]),
-                                _c("option", { attrs: { value: "Nepal" } }, [
-                                  _vm._v("Nepal"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "North Korea" } },
-                                  [_vm._v("North Korea")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Oman" } }, [
-                                  _vm._v("Oman"),
-                                ]),
-                                _c("option", { attrs: { value: "Pakistan" } }, [
-                                  _vm._v("Pakistan"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Palestine" } },
-                                  [_vm._v("Palestine")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Philippines" } },
-                                  [_vm._v("Philippines")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Qatar" } }, [
-                                  _vm._v("Qatar"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Saudi Arabia" } },
-                                  [_vm._v("Saudi Arabia")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Singapore" } },
-                                  [_vm._v("Singapore")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "South Korea" } },
-                                  [_vm._v("South Korea")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Sri Lanka" } },
-                                  [_vm._v("Sri Lanka")]
-                                ),
-                                _c("option", { attrs: { value: "Syria" } }, [
-                                  _vm._v("Syria"),
-                                ]),
-                                _c("option", { attrs: { value: "Taiwan" } }, [
-                                  _vm._v("Taiwan"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Tajikistan" } },
-                                  [_vm._v("Tajikistan")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Thailand" } }, [
-                                  _vm._v("Thailand"),
-                                ]),
-                                _c("option", { attrs: { value: "Turkey" } }, [
-                                  _vm._v("Turkey"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Turkmenistan" } },
-                                  [_vm._v("Turkmenistan")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "United Arab Emirates" } },
-                                  [_vm._v("United Arab Emirates")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Uzbekistan" } },
-                                  [_vm._v("Uzbekistan")]
-                                ),
-                                _c("option", { attrs: { value: "Vietnam" } }, [
-                                  _vm._v("Vietnam"),
-                                ]),
-                                _c("option", { attrs: { value: "Yemen" } }, [
-                                  _vm._v("Yemen"),
-                                ]),
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "optgroup",
-                                { attrs: { label: "South America" } },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Argentina" } },
-                                    [_vm._v("Argentina")]
-                                  ),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Bolivia" } },
-                                    [_vm._v("Bolivia")]
-                                  ),
-                                  _c("option", { attrs: { value: "Brazil" } }, [
-                                    _vm._v("Brazil"),
-                                  ]),
-                                  _c("option", { attrs: { value: "Chile" } }, [
-                                    _vm._v("Chile"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Colombia" } },
-                                    [_vm._v("Colombia")]
-                                  ),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Ecuador" } },
-                                    [_vm._v("Ecuador")]
-                                  ),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Falkland Islands" } },
-                                    [_vm._v("Falkland Islands")]
-                                  ),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "French Guiana" } },
-                                    [_vm._v("French Guiana")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Guyana" } }, [
-                                    _vm._v("Guyana"),
-                                  ]),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Paraguay" } },
-                                    [_vm._v("Paraguay")]
-                                  ),
-                                  _c("option", { attrs: { value: "Peru" } }, [
-                                    _vm._v("Peru"),
-                                  ]),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Suriname" } },
-                                    [_vm._v("Suriname")]
-                                  ),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Uruguay" } },
-                                    [_vm._v("Uruguay")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Venezuela" } },
-                                    [_vm._v("Venezuela")]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("optgroup", { attrs: { label: "Africa" } }, [
-                                _c("option", { attrs: { value: "Algeria" } }, [
-                                  _vm._v("Algeria"),
-                                ]),
-                                _c("option", { attrs: { value: "Angola" } }, [
-                                  _vm._v("Angola"),
-                                ]),
-                                _c("option", { attrs: { value: "Benin" } }, [
-                                  _vm._v("Benin"),
-                                ]),
-                                _c("option", { attrs: { value: "Botswana" } }, [
-                                  _vm._v("Botswana"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Burkina Faso" } },
-                                  [_vm._v("Burkina Faso")]
-                                ),
-                                _c("option", { attrs: { value: "Burundi" } }, [
-                                  _vm._v("Burundi"),
-                                ]),
-                                _c("option", { attrs: { value: "Cameroon" } }, [
-                                  _vm._v("Cameroon"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Cape Verde" } },
-                                  [_vm._v("Cape Verde")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: {
-                                      value: "Central African Republic",
-                                    },
-                                  },
-                                  [_vm._v("Central African Republic")]
-                                ),
-                                _c("option", { attrs: { value: "Chad" } }, [
-                                  _vm._v("Chad"),
-                                ]),
-                                _c("option", { attrs: { value: "Comoros" } }, [
-                                  _vm._v("Comoros"),
-                                ]),
-                                _c("option", { attrs: { value: "Congo" } }, [
-                                  _vm._v("Congo"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Côte d’Ivoire" } },
-                                  [_vm._v("Côte d’Ivoire")]
-                                ),
-                                _c("option", { attrs: { value: "Djibouti" } }, [
-                                  _vm._v("Djibouti"),
-                                ]),
-                                _c("option", { attrs: { value: "Egypt" } }, [
-                                  _vm._v("Egypt"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Equatorial Guinea" } },
-                                  [_vm._v("Equatorial Guinea")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Eritrea" } }, [
-                                  _vm._v("Eritrea"),
-                                ]),
-                                _c("option", { attrs: { value: "Ethiopia" } }, [
-                                  _vm._v("Ethiopia"),
-                                ]),
-                                _c("option", { attrs: { value: "Gabon" } }, [
-                                  _vm._v("Gabon"),
-                                ]),
-                                _c("option", { attrs: { value: "Gambia" } }, [
-                                  _vm._v("Gambia"),
-                                ]),
-                                _c("option", { attrs: { value: "Ghana" } }, [
-                                  _vm._v("Ghana"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Guinea" } }, [
-                                  _vm._v("Guinea"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Guinea-Bissau" } },
-                                  [_vm._v("Guinea-Bissau")]
-                                ),
-                                _c("option", { attrs: { value: "Kenya" } }, [
-                                  _vm._v("Kenya"),
-                                ]),
-                                _c("option", { attrs: { value: "Lesotho" } }, [
-                                  _vm._v("Lesotho"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Liberia" } }, [
-                                  _vm._v("Liberia"),
-                                ]),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "Libyan Arab Jamahiriya" },
-                                  },
-                                  [_vm._v("Libyan Arab Jamahiriya")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Madagascar" } },
-                                  [_vm._v("Madagascar")]
-                                ),
-                                _c("option", { attrs: { value: "Malawi" } }, [
-                                  _vm._v("Malawi"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Mali" } }, [
-                                  _vm._v("Mali"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Mauritania" } },
-                                  [_vm._v("Mauritania")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Mauritius" } },
-                                  [_vm._v("Mauritius")]
-                                ),
-                                _c("option", { attrs: { value: "Mayotte" } }, [
-                                  _vm._v("Mayotte"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Morocco" } }, [
-                                  _vm._v("Morocco"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Mozambique" } },
-                                  [_vm._v("Mozambique")]
-                                ),
-                                _c("option", { attrs: { value: "Namibia" } }, [
-                                  _vm._v("Namibia"),
-                                ]),
-                                _c("option", { attrs: { value: "Niger" } }, [
-                                  _vm._v("Niger"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Nigeria" } }, [
-                                  _vm._v("Nigeria"),
-                                ]),
-                                _c("option", { attrs: { value: "Réunion" } }, [
-                                  _vm._v("Réunion"),
-                                ]),
-                                _c("option", { attrs: { value: "Rwanda" } }, [
-                                  _vm._v("Rwanda"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Saint Helena" } },
-                                  [_vm._v("Saint Helena")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Sao Tome and Principe" } },
-                                  [_vm._v("Sao Tome and Principe")]
-                                ),
-                                _c("option", { attrs: { value: "Senegal" } }, [
-                                  _vm._v("Senegal"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Seychelles" } },
-                                  [_vm._v("Seychelles")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Sierra Leone" } },
-                                  [_vm._v("Sierra Leone")]
-                                ),
-                                _c("option", { attrs: { value: "Somalia" } }, [
-                                  _vm._v("Somalia"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "South Africa" } },
-                                  [_vm._v("South Africa")]
-                                ),
-                                _c("option", { attrs: { value: "Sudan" } }, [
-                                  _vm._v("Sudan"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Swaziland" } },
-                                  [_vm._v("Swaziland")]
-                                ),
-                                _c("option", { attrs: { value: "Tanzania" } }, [
-                                  _vm._v("Tanzania"),
-                                ]),
-                                _c("option", { attrs: { value: "Togo" } }, [
-                                  _vm._v("Togo"),
-                                ]),
-                                _c("option", { attrs: { value: "Tunisia" } }, [
-                                  _vm._v("Tunisia"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Uganda" } }, [
-                                  _vm._v("Uganda"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Western Sahara" } },
-                                  [_vm._v("Western Sahara")]
-                                ),
-                                _c("option", { attrs: { value: "Zambia" } }, [
-                                  _vm._v("Zambia"),
-                                ]),
-                                _c("option", { attrs: { value: "Zimbabwe" } }, [
-                                  _vm._v("Zimbabwe"),
-                                ]),
-                              ]),
-                              _vm._v(" "),
-                              _c("optgroup", { attrs: { label: "Oceania" } }, [
-                                _c(
-                                  "option",
-                                  { attrs: { value: "American Samoa" } },
-                                  [_vm._v("American Samoa")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Australia" } },
-                                  [_vm._v("Australia")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Christmas Island" } },
-                                  [_vm._v("Christmas Island")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "Cocos (Keeling) Islands" },
-                                  },
-                                  [_vm._v("Cocos (Keeling) Islands")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Cook Islands" } },
-                                  [_vm._v("Cook Islands")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Fiji Islands" } },
-                                  [_vm._v("Fiji Islands")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "French Polynesia" } },
-                                  [_vm._v("French Polynesia")]
-                                ),
-                                _c("option", { attrs: { value: "Guam" } }, [
-                                  _vm._v("Guam"),
-                                ]),
-                                _c("option", { attrs: { value: "Kiribati" } }, [
-                                  _vm._v("Kiribati"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Marshall Islands" } },
-                                  [_vm._v("Marshall Islands")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Nauru" } }, [
-                                  _vm._v("Nauru"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "New Caledonia" } },
-                                  [_vm._v("New Caledonia")]
-                                ),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "New Zealand" } },
-                                  [_vm._v("New Zealand")]
-                                ),
-                                _c("option", { attrs: { value: "Niue" } }, [
-                                  _vm._v("Niue"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Norfolk Island" } },
-                                  [_vm._v("Norfolk Island")]
-                                ),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: {
-                                      value: "Northern Mariana Islands",
-                                    },
-                                  },
-                                  [_vm._v("Northern Mariana Islands")]
-                                ),
-                                _c("option", { attrs: { value: "Palau" } }, [
-                                  _vm._v("Palau"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Papua New Guinea" } },
-                                  [_vm._v("Papua New Guinea")]
-                                ),
-                                _c("option", { attrs: { value: "Pitcairn" } }, [
-                                  _vm._v("Pitcairn"),
-                                ]),
-                                _c("option", { attrs: { value: "Samoa" } }, [
-                                  _vm._v("Samoa"),
-                                ]),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Solomon Islands" } },
-                                  [_vm._v("Solomon Islands")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Tokelau" } }, [
-                                  _vm._v("Tokelau"),
-                                ]),
-                                _c("option", { attrs: { value: "Tonga" } }, [
-                                  _vm._v("Tonga"),
-                                ]),
-                                _c("option", { attrs: { value: "Tuvalu" } }, [
-                                  _vm._v("Tuvalu"),
-                                ]),
-                                _c("option", { attrs: { value: "Vanuatu" } }, [
-                                  _vm._v("Vanuatu"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Wallis and Futuna" } },
-                                  [_vm._v("Wallis and Futuna")]
-                                ),
-                              ]),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("label", [_vm._v("Country")]),
-                        ]
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-12" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("span", { staticClass: "form-control-con" }, [
-                        _c("textarea", {
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "field_11",
-                            rows: "4",
-                            cols: "60",
-                            name: "11",
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("label", [_vm._v("Remarks")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-12 xs-dn" }, [
-                    _c("div", { staticClass: "form-group mb-4" }, [
-                      _c("input", {
-                        attrs: {
-                          type: "hidden",
-                          id: "field_12",
-                          name: "12",
-                          value: "",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-12 file-att" }, [
-                    _c("form", { attrs: { action: "/action_page.php" } }, [
-                      _c("input", {
-                        attrs: { type: "file", id: "myfile", name: "myfile" },
-                      }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: "myfile" } }, [
-                        _vm._v("Attach file here"),
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12 col-sm-12" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12 col-md-8" }, [
-                        _c("div", { staticClass: "form-group mb-4" }, [
-                          _c(
-                            "div",
-                            { staticClass: "custom-control custom-checkbox" },
-                            [
-                              _c("input", {
-                                staticClass: "form custom-control-input",
-                                attrs: {
-                                  type: "checkbox",
-                                  required: "",
-                                  name: "13",
-                                  id: "field_13",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "custom-control-label",
-                                  attrs: { for: "field_13" },
-                                },
-                                [_vm._v("I agree with the privacy policy *")]
-                              ),
-                            ]
-                          ),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-4 d-flex" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary add-prdt",
-                            attrs: { type: "" },
-                          },
-                          [_vm._v("Add another product")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary sbmt",
-                            attrs: { type: "submit" },
-                          },
-                          [_vm._v("Submit")]
-                        ),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-12 col-sm-12 mt-3 sel-prdts" },
-                      [
-                        _c("h5", [_vm._v("Selected Products")]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "selected-p" }, [
-                          _c("li", [
-                            _c("label", { staticClass: "checkbox-item" }, [
-                              _vm._v(
-                                "Maple plain sliced, Quality B, Book Matched, Panel 48 x 120, Nauf MDF 3/4” 18mm\n                                     "
-                              ),
-                              _c("input", {
-                                attrs: { type: "checkbox", checked: "checked" },
-                              }),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "checkmark" }),
-                            ]),
-                          ]),
-                        ]),
-                      ]
-                    ),
-                  ]),
+                _c("option", { attrs: { value: "Andorra" } }, [
+                  _vm._v("Andorra"),
                 ]),
-              ]
-            ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Austria" } }, [
+                  _vm._v("Austria"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Belarus" } }, [
+                  _vm._v("Belarus"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Belgium" } }, [
+                  _vm._v("Belgium"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bosnia and Herzegovina" } }, [
+                  _vm._v("Bosnia and Herzegovina"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bulgaria" } }, [
+                  _vm._v("Bulgaria"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Croatia" } }, [
+                  _vm._v("Croatia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Czech Republic" } }, [
+                  _vm._v("Czech Republic"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Denmark" } }, [
+                  _vm._v("Denmark"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Estonia" } }, [
+                  _vm._v("Estonia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Faroe Islands" } }, [
+                  _vm._v("Faroe Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Finland" } }, [
+                  _vm._v("Finland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "France" } }, [
+                  _vm._v("France"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Germany" } }, [
+                  _vm._v("Germany"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Gibraltar" } }, [
+                  _vm._v("Gibraltar"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Greece" } }, [
+                  _vm._v("Greece"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Hungary" } }, [
+                  _vm._v("Hungary"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Iceland" } }, [
+                  _vm._v("Iceland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Ireland" } }, [
+                  _vm._v("Ireland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Italy" } }, [_vm._v("Italy")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Kosovo" } }, [
+                  _vm._v("Kosovo"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Latvia" } }, [
+                  _vm._v("Latvia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Liechtenstein" } }, [
+                  _vm._v("Liechtenstein"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Lithuania" } }, [
+                  _vm._v("Lithuania"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Luxembourg" } }, [
+                  _vm._v("Luxembourg"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Macedonia" } }, [
+                  _vm._v("Macedonia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Malta" } }, [_vm._v("Malta")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Moldova" } }, [
+                  _vm._v("Moldova"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Monaco" } }, [
+                  _vm._v("Monaco"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Montenegro" } }, [
+                  _vm._v("Montenegro"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Netherlands" } }, [
+                  _vm._v("Netherlands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Norway" } }, [
+                  _vm._v("Norway"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Poland" } }, [
+                  _vm._v("Poland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Portugal" } }, [
+                  _vm._v("Portugal"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Republic of Serbia" } }, [
+                  _vm._v("Republic of Serbia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Romania" } }, [
+                  _vm._v("Romania"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Russian Federation" } }, [
+                  _vm._v("Russian Federation"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "San Marino" } }, [
+                  _vm._v("San Marino"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Slovakia" } }, [
+                  _vm._v("Slovakia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Slovenia" } }, [
+                  _vm._v("Slovenia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Spain" } }, [_vm._v("Spain")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Svalbard and Jan Mayen" } }, [
+                  _vm._v("Svalbard and Jan Mayen"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Sweden" } }, [
+                  _vm._v("Sweden"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Switzerland" } }, [
+                  _vm._v("Switzerland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Ukraine" } }, [
+                  _vm._v("Ukraine"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "United Kingdom" } }, [
+                  _vm._v("United Kingdom"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Yugoslavia" } }, [
+                  _vm._v("Yugoslavia"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "North America" } }, [
+                _c("option", { attrs: { value: "Anguilla" } }, [
+                  _vm._v("Anguilla"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Antigua and Barbuda" } }, [
+                  _vm._v("Antigua and Barbuda"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Aruba" } }, [_vm._v("Aruba")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bahamas" } }, [
+                  _vm._v("Bahamas"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Barbados" } }, [
+                  _vm._v("Barbados"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Belize" } }, [
+                  _vm._v("Belize"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bermuda" } }, [
+                  _vm._v("Bermuda"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Canada" } }, [
+                  _vm._v("Canada"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Cayman Islands" } }, [
+                  _vm._v("Cayman Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Costa Rica" } }, [
+                  _vm._v("Costa Rica"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Cuba" } }, [_vm._v("Cuba")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Dominica" } }, [
+                  _vm._v("Dominica"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Dominican Republic" } }, [
+                  _vm._v("Dominican Republic"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "El Salvador" } }, [
+                  _vm._v("El Salvador"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Greenland" } }, [
+                  _vm._v("Greenland"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Grenada" } }, [
+                  _vm._v("Grenada"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Guadeloupe" } }, [
+                  _vm._v("Guadeloupe"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Guatemala" } }, [
+                  _vm._v("Guatemala"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Haiti" } }, [_vm._v("Haiti")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Honduras" } }, [
+                  _vm._v("Honduras"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Jamaica" } }, [
+                  _vm._v("Jamaica"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Martinique" } }, [
+                  _vm._v("Martinique"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Mexico" } }, [
+                  _vm._v("Mexico"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Montserrat" } }, [
+                  _vm._v("Montserrat"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Netherlands Antilles" } }, [
+                  _vm._v("Netherlands Antilles"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Nicaragua" } }, [
+                  _vm._v("Nicaragua"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Panama" } }, [
+                  _vm._v("Panama"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Puerto Rico" } }, [
+                  _vm._v("Puerto Rico"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Saint Kitts and Nevis" } }, [
+                  _vm._v("Saint Kitts and Nevis"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Saint Lucia" } }, [
+                  _vm._v("Saint Lucia"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { value: "Saint Pierre and Miquelon" } },
+                  [_vm._v("Saint Pierre and Miquelon")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Trinidad and Tobago" } }, [
+                  _vm._v("Trinidad and Tobago"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Turks and Caicos Islands" } }, [
+                  _vm._v("Turks and Caicos Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "United States" } }, [
+                  _vm._v("United States"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Virgin Islands, British" } }, [
+                  _vm._v("Virgin Islands, British"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Virgin Islands, U.S." } }, [
+                  _vm._v("Virgin Islands, U.S."),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "Asia" } }, [
+                _c("option", { attrs: { value: "Afghanistan" } }, [
+                  _vm._v("Afghanistan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Armenia" } }, [
+                  _vm._v("Armenia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Azerbaijan" } }, [
+                  _vm._v("Azerbaijan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bahrain" } }, [
+                  _vm._v("Bahrain"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bangladesh" } }, [
+                  _vm._v("Bangladesh"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bhutan" } }, [
+                  _vm._v("Bhutan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Brunei" } }, [
+                  _vm._v("Brunei"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Cambodia" } }, [
+                  _vm._v("Cambodia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "China" } }, [_vm._v("China")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Cyprus" } }, [
+                  _vm._v("Cyprus"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "East Timor" } }, [
+                  _vm._v("East Timor"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Georgia" } }, [
+                  _vm._v("Georgia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Hong Kong" } }, [
+                  _vm._v("Hong Kong"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "India" } }, [_vm._v("India")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Indonesia" } }, [
+                  _vm._v("Indonesia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Iran" } }, [_vm._v("Iran")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Iraq" } }, [_vm._v("Iraq")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Israel" } }, [
+                  _vm._v("Israel"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Japan" } }, [_vm._v("Japan")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Jordan" } }, [
+                  _vm._v("Jordan"),
+                ]),
+                _c("option", { attrs: { value: "Kazakstan" } }, [
+                  _vm._v("Kazakstan"),
+                ]),
+                _c("option", { attrs: { value: "Kuwait" } }, [
+                  _vm._v("Kuwait"),
+                ]),
+                _c("option", { attrs: { value: "Kyrgyzstan" } }, [
+                  _vm._v("Kyrgyzstan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Laos" } }, [_vm._v("Laos")]),
+                _c("option", { attrs: { value: "Lebanon" } }, [
+                  _vm._v("Lebanon"),
+                ]),
+                _c("option", { attrs: { value: "Macao" } }, [_vm._v("Macao")]),
+                _c("option", { attrs: { value: "Malaysia" } }, [
+                  _vm._v("Malaysia"),
+                ]),
+                _c("option", { attrs: { value: "Maldives" } }, [
+                  _vm._v("Maldives"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Mongolia" } }, [
+                  _vm._v("Mongolia"),
+                ]),
+                _c("option", { attrs: { value: "Myanmar" } }, [
+                  _vm._v("Myanmar"),
+                ]),
+                _c("option", { attrs: { value: "Nepal" } }, [_vm._v("Nepal")]),
+                _c("option", { attrs: { value: "North Korea" } }, [
+                  _vm._v("North Korea"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Oman" } }, [_vm._v("Oman")]),
+                _c("option", { attrs: { value: "Pakistan" } }, [
+                  _vm._v("Pakistan"),
+                ]),
+                _c("option", { attrs: { value: "Palestine" } }, [
+                  _vm._v("Palestine"),
+                ]),
+                _c("option", { attrs: { value: "Philippines" } }, [
+                  _vm._v("Philippines"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Qatar" } }, [_vm._v("Qatar")]),
+                _c("option", { attrs: { value: "Saudi Arabia" } }, [
+                  _vm._v("Saudi Arabia"),
+                ]),
+                _c("option", { attrs: { value: "Singapore" } }, [
+                  _vm._v("Singapore"),
+                ]),
+                _c("option", { attrs: { value: "South Korea" } }, [
+                  _vm._v("South Korea"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Sri Lanka" } }, [
+                  _vm._v("Sri Lanka"),
+                ]),
+                _c("option", { attrs: { value: "Syria" } }, [_vm._v("Syria")]),
+                _c("option", { attrs: { value: "Taiwan" } }, [
+                  _vm._v("Taiwan"),
+                ]),
+                _c("option", { attrs: { value: "Tajikistan" } }, [
+                  _vm._v("Tajikistan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Thailand" } }, [
+                  _vm._v("Thailand"),
+                ]),
+                _c("option", { attrs: { value: "Turkey" } }, [
+                  _vm._v("Turkey"),
+                ]),
+                _c("option", { attrs: { value: "Turkmenistan" } }, [
+                  _vm._v("Turkmenistan"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "United Arab Emirates" } }, [
+                  _vm._v("United Arab Emirates"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Uzbekistan" } }, [
+                  _vm._v("Uzbekistan"),
+                ]),
+                _c("option", { attrs: { value: "Vietnam" } }, [
+                  _vm._v("Vietnam"),
+                ]),
+                _c("option", { attrs: { value: "Yemen" } }, [_vm._v("Yemen")]),
+              ]),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "South America" } }, [
+                _c("option", { attrs: { value: "Argentina" } }, [
+                  _vm._v("Argentina"),
+                ]),
+                _c("option", { attrs: { value: "Bolivia" } }, [
+                  _vm._v("Bolivia"),
+                ]),
+                _c("option", { attrs: { value: "Brazil" } }, [
+                  _vm._v("Brazil"),
+                ]),
+                _c("option", { attrs: { value: "Chile" } }, [_vm._v("Chile")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Colombia" } }, [
+                  _vm._v("Colombia"),
+                ]),
+                _c("option", { attrs: { value: "Ecuador" } }, [
+                  _vm._v("Ecuador"),
+                ]),
+                _c("option", { attrs: { value: "Falkland Islands" } }, [
+                  _vm._v("Falkland Islands"),
+                ]),
+                _c("option", { attrs: { value: "French Guiana" } }, [
+                  _vm._v("French Guiana"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Guyana" } }, [
+                  _vm._v("Guyana"),
+                ]),
+                _c("option", { attrs: { value: "Paraguay" } }, [
+                  _vm._v("Paraguay"),
+                ]),
+                _c("option", { attrs: { value: "Peru" } }, [_vm._v("Peru")]),
+                _c("option", { attrs: { value: "Suriname" } }, [
+                  _vm._v("Suriname"),
+                ]),
+                _c("option", { attrs: { value: "Uruguay" } }, [
+                  _vm._v("Uruguay"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Venezuela" } }, [
+                  _vm._v("Venezuela"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "Africa" } }, [
+                _c("option", { attrs: { value: "Algeria" } }, [
+                  _vm._v("Algeria"),
+                ]),
+                _c("option", { attrs: { value: "Angola" } }, [
+                  _vm._v("Angola"),
+                ]),
+                _c("option", { attrs: { value: "Benin" } }, [_vm._v("Benin")]),
+                _c("option", { attrs: { value: "Botswana" } }, [
+                  _vm._v("Botswana"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Burkina Faso" } }, [
+                  _vm._v("Burkina Faso"),
+                ]),
+                _c("option", { attrs: { value: "Burundi" } }, [
+                  _vm._v("Burundi"),
+                ]),
+                _c("option", { attrs: { value: "Cameroon" } }, [
+                  _vm._v("Cameroon"),
+                ]),
+                _c("option", { attrs: { value: "Cape Verde" } }, [
+                  _vm._v("Cape Verde"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Central African Republic" } }, [
+                  _vm._v("Central African Republic"),
+                ]),
+                _c("option", { attrs: { value: "Chad" } }, [_vm._v("Chad")]),
+                _c("option", { attrs: { value: "Comoros" } }, [
+                  _vm._v("Comoros"),
+                ]),
+                _c("option", { attrs: { value: "Congo" } }, [_vm._v("Congo")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Côte d’Ivoire" } }, [
+                  _vm._v("Côte d’Ivoire"),
+                ]),
+                _c("option", { attrs: { value: "Djibouti" } }, [
+                  _vm._v("Djibouti"),
+                ]),
+                _c("option", { attrs: { value: "Egypt" } }, [_vm._v("Egypt")]),
+                _c("option", { attrs: { value: "Equatorial Guinea" } }, [
+                  _vm._v("Equatorial Guinea"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Eritrea" } }, [
+                  _vm._v("Eritrea"),
+                ]),
+                _c("option", { attrs: { value: "Ethiopia" } }, [
+                  _vm._v("Ethiopia"),
+                ]),
+                _c("option", { attrs: { value: "Gabon" } }, [_vm._v("Gabon")]),
+                _c("option", { attrs: { value: "Gambia" } }, [
+                  _vm._v("Gambia"),
+                ]),
+                _c("option", { attrs: { value: "Ghana" } }, [_vm._v("Ghana")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Guinea" } }, [
+                  _vm._v("Guinea"),
+                ]),
+                _c("option", { attrs: { value: "Guinea-Bissau" } }, [
+                  _vm._v("Guinea-Bissau"),
+                ]),
+                _c("option", { attrs: { value: "Kenya" } }, [_vm._v("Kenya")]),
+                _c("option", { attrs: { value: "Lesotho" } }, [
+                  _vm._v("Lesotho"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Liberia" } }, [
+                  _vm._v("Liberia"),
+                ]),
+                _c("option", { attrs: { value: "Libyan Arab Jamahiriya" } }, [
+                  _vm._v("Libyan Arab Jamahiriya"),
+                ]),
+                _c("option", { attrs: { value: "Madagascar" } }, [
+                  _vm._v("Madagascar"),
+                ]),
+                _c("option", { attrs: { value: "Malawi" } }, [
+                  _vm._v("Malawi"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Mali" } }, [_vm._v("Mali")]),
+                _c("option", { attrs: { value: "Mauritania" } }, [
+                  _vm._v("Mauritania"),
+                ]),
+                _c("option", { attrs: { value: "Mauritius" } }, [
+                  _vm._v("Mauritius"),
+                ]),
+                _c("option", { attrs: { value: "Mayotte" } }, [
+                  _vm._v("Mayotte"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Morocco" } }, [
+                  _vm._v("Morocco"),
+                ]),
+                _c("option", { attrs: { value: "Mozambique" } }, [
+                  _vm._v("Mozambique"),
+                ]),
+                _c("option", { attrs: { value: "Namibia" } }, [
+                  _vm._v("Namibia"),
+                ]),
+                _c("option", { attrs: { value: "Niger" } }, [_vm._v("Niger")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Nigeria" } }, [
+                  _vm._v("Nigeria"),
+                ]),
+                _c("option", { attrs: { value: "Réunion" } }, [
+                  _vm._v("Réunion"),
+                ]),
+                _c("option", { attrs: { value: "Rwanda" } }, [
+                  _vm._v("Rwanda"),
+                ]),
+                _c("option", { attrs: { value: "Saint Helena" } }, [
+                  _vm._v("Saint Helena"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Sao Tome and Principe" } }, [
+                  _vm._v("Sao Tome and Principe"),
+                ]),
+                _c("option", { attrs: { value: "Senegal" } }, [
+                  _vm._v("Senegal"),
+                ]),
+                _c("option", { attrs: { value: "Seychelles" } }, [
+                  _vm._v("Seychelles"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Sierra Leone" } }, [
+                  _vm._v("Sierra Leone"),
+                ]),
+                _c("option", { attrs: { value: "Somalia" } }, [
+                  _vm._v("Somalia"),
+                ]),
+                _c("option", { attrs: { value: "South Africa" } }, [
+                  _vm._v("South Africa"),
+                ]),
+                _c("option", { attrs: { value: "Sudan" } }, [_vm._v("Sudan")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Swaziland" } }, [
+                  _vm._v("Swaziland"),
+                ]),
+                _c("option", { attrs: { value: "Tanzania" } }, [
+                  _vm._v("Tanzania"),
+                ]),
+                _c("option", { attrs: { value: "Togo" } }, [_vm._v("Togo")]),
+                _c("option", { attrs: { value: "Tunisia" } }, [
+                  _vm._v("Tunisia"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Uganda" } }, [
+                  _vm._v("Uganda"),
+                ]),
+                _c("option", { attrs: { value: "Western Sahara" } }, [
+                  _vm._v("Western Sahara"),
+                ]),
+                _c("option", { attrs: { value: "Zambia" } }, [
+                  _vm._v("Zambia"),
+                ]),
+                _c("option", { attrs: { value: "Zimbabwe" } }, [
+                  _vm._v("Zimbabwe"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("optgroup", { attrs: { label: "Oceania" } }, [
+                _c("option", { attrs: { value: "American Samoa" } }, [
+                  _vm._v("American Samoa"),
+                ]),
+                _c("option", { attrs: { value: "Australia" } }, [
+                  _vm._v("Australia"),
+                ]),
+                _c("option", { attrs: { value: "Christmas Island" } }, [
+                  _vm._v("Christmas Island"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Cocos (Keeling) Islands" } }, [
+                  _vm._v("Cocos (Keeling) Islands"),
+                ]),
+                _c("option", { attrs: { value: "Cook Islands" } }, [
+                  _vm._v("Cook Islands"),
+                ]),
+                _c("option", { attrs: { value: "Fiji Islands" } }, [
+                  _vm._v("Fiji Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "French Polynesia" } }, [
+                  _vm._v("French Polynesia"),
+                ]),
+                _c("option", { attrs: { value: "Guam" } }, [_vm._v("Guam")]),
+                _c("option", { attrs: { value: "Kiribati" } }, [
+                  _vm._v("Kiribati"),
+                ]),
+                _c("option", { attrs: { value: "Marshall Islands" } }, [
+                  _vm._v("Marshall Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Nauru" } }, [_vm._v("Nauru")]),
+                _c("option", { attrs: { value: "New Caledonia" } }, [
+                  _vm._v("New Caledonia"),
+                ]),
+                _c("option", { attrs: { value: "New Zealand" } }, [
+                  _vm._v("New Zealand"),
+                ]),
+                _c("option", { attrs: { value: "Niue" } }, [_vm._v("Niue")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Norfolk Island" } }, [
+                  _vm._v("Norfolk Island"),
+                ]),
+                _c("option", { attrs: { value: "Northern Mariana Islands" } }, [
+                  _vm._v("Northern Mariana Islands"),
+                ]),
+                _c("option", { attrs: { value: "Palau" } }, [_vm._v("Palau")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Papua New Guinea" } }, [
+                  _vm._v("Papua New Guinea"),
+                ]),
+                _c("option", { attrs: { value: "Pitcairn" } }, [
+                  _vm._v("Pitcairn"),
+                ]),
+                _c("option", { attrs: { value: "Samoa" } }, [_vm._v("Samoa")]),
+                _c("option", { attrs: { value: "Solomon Islands" } }, [
+                  _vm._v("Solomon Islands"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Tokelau" } }, [
+                  _vm._v("Tokelau"),
+                ]),
+                _c("option", { attrs: { value: "Tonga" } }, [_vm._v("Tonga")]),
+                _c("option", { attrs: { value: "Tuvalu" } }, [
+                  _vm._v("Tuvalu"),
+                ]),
+                _c("option", { attrs: { value: "Vanuatu" } }, [
+                  _vm._v("Vanuatu"),
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Wallis and Futuna" } }, [
+                  _vm._v("Wallis and Futuna"),
+                ]),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c("label", [_vm._v("Country")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-12" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("span", { staticClass: "form-control-con" }, [
+          _c("textarea", {
+            staticClass: "form-control",
+            attrs: { id: "field_11", rows: "4", cols: "60", name: "11" },
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Remarks")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-12 xs-dn" }, [
+      _c("div", { staticClass: "form-group mb-4" }, [
+        _c("input", {
+          attrs: { type: "hidden", id: "field_12", name: "12", value: "" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-sm-12" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 col-sm-12 col-md-8" }, [
+          _c("div", { staticClass: "form-group mb-4" }, [
+            _c("div", { staticClass: "custom-control custom-checkbox" }, [
+              _c("input", {
+                staticClass: "form custom-control-input",
+                attrs: {
+                  type: "checkbox",
+                  required: "",
+                  name: "13",
+                  id: "field_13",
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "custom-control-label",
+                  attrs: { for: "field_13" },
+                },
+                [_vm._v("I agree with the privacy policy *")]
+              ),
+            ]),
           ]),
-        ]
-      ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-sm-12 col-md-4 d-flex add-pr" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary add-prdt", attrs: { type: "" } },
+            [_vm._v("Add another product")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary sbmt", attrs: { type: "submit" } },
+            [_vm._v("Submit")]
+          ),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 col-sm-12 mt-3 sel-prdts" }, [
+        _c("h5", [_vm._v("Selected Products")]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "selected-p" }, [
+          _c("li", [
+            _c("label", { staticClass: "checkbox-item" }, [
+              _vm._v(
+                "Maple plain sliced, Quality B, Book Matched, Panel 48 x 120, Nauf MDF 3/4” 18mm\n                                     "
+              ),
+              _c("input", { attrs: { type: "checkbox", checked: "checked" } }),
+              _vm._v(" "),
+              _c("span", { staticClass: "checkmark" }),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]
@@ -33280,92 +33103,108 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row row-wmatching justify-content-center" }, [
+      _c("div", { staticClass: "col-quality col-12 col-md-6 mb-1 mb-sm-4" }, [
+        _c("input", {
+          staticClass: "fw-product-builder-radio",
+          attrs: {
+            type: "radio",
+            id: "fw-wmatching-1",
+            name: "wmatching",
+            "data-delete": "Book match",
+            value: "1",
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "fw-wmatching-1" } }, [
+          _c(
+            "div",
+            { staticClass: "radio-img" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("fa-icon", {
+                staticClass: "sel-check",
+                attrs: { icon: "fa-solid fa-check" },
+              }),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid w-100",
+                attrs: { src: "/media/components/book-match.jpg", alt: "B" },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "radio-txt match-height",
+              staticStyle: { height: "78px" },
+            },
+            [_vm._v("Book match")]
+          ),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("form", { staticClass: "mb-5 sel-1" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("span", { staticClass: "form-control-spe select-slicing" }, [
-                _c(
-                  "select",
-                  {
-                    staticClass: "form-control valid",
-                    attrs: { name: "slicing", "aria-invalid": "false" },
-                  },
-                  [
-                    _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
-                      _vm._v("Book match"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
-                      _vm._v("Slip match"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
-                      _vm._v("Reverse slip match"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
-                      _vm._v("Mix match"),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("label", [_vm._v("Select matching")]),
-              ]),
+    return _c("form", { staticClass: "mb-5 sel-1" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("span", { staticClass: "form-control-spe select-slicing" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control valid",
+                  attrs: { name: "slicing", "aria-invalid": "false" },
+                },
+                [
+                  _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
+                    _vm._v("Book match"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
+                    _vm._v("Slip match"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
+                    _vm._v("Reverse slip match"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
+                    _vm._v("Mix match"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Select matching")]),
             ]),
           ]),
         ]),
       ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-wmatching justify-content-center" }, [
-        _c("div", { staticClass: "col-quality col-12 col-md-6 mb-1 mb-sm-4" }, [
-          _c("input", {
-            staticClass: "fw-product-builder-radio",
-            attrs: {
-              type: "radio",
-              id: "fw-wmatching-1",
-              name: "wmatching",
-              "data-delete": "Book match",
-              value: "1",
-            },
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "fw-wmatching-1" } }, [
-            _c("div", { staticClass: "radio-img" }, [
-              _c("div", { staticClass: "wmatching-card-hover" }, [
-                _c("span", [
-                  _vm._v("\n                            Choose this"),
-                  _c("br"),
-                  _vm._v(
-                    "\n                            matching\n                        "
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "img-fluid w-100",
-                attrs: { src: "/media/components/book-match.jpg", alt: "B" },
-              }),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "radio-txt match-height",
-                staticStyle: { height: "78px" },
-              },
-              [_vm._v("Book match")]
-            ),
-          ]),
-        ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wmatching-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            matching\n                        "
+        ),
       ]),
     ])
   },
@@ -33392,35 +33231,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        { staticClass: "row row-wpanels justify-content-center gx-md-5" },
-        [
-          _c(
-            "div",
-            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "p-cat-1",
-                  name: "category",
-                  "data-delete": "fw-panel",
-                  value: "1",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "p-cat-1" } }, [
-                _c("div", { staticClass: "radio-img" }, [
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "row row-wpanels justify-content-center gx-md-5" },
+      [
+        _c(
+          "div",
+          { staticClass: "col-wpanels col-12 col-sm-6 col-xxl-4 mb-3 mb-sm-4" },
+          [
+            _c("input", {
+              staticClass: "fw-product-builder-radio",
+              attrs: {
+                type: "radio",
+                id: "p-cat-1",
+                name: "category",
+                "data-delete": "fw-panel",
+                value: "1",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "p-cat-1" } }, [
+              _c(
+                "div",
+                { staticClass: "radio-img" },
+                [
+                  _c("fa-icon", {
+                    staticClass: "sel-check",
+                    attrs: { icon: "fa-solid fa-check" },
+                  }),
+                  _vm._v(" "),
                   _c("img", {
                     staticClass: "img-fluid w-100",
                     attrs: {
@@ -33428,32 +33268,42 @@ var staticRenderFns = [
                       alt: "Decopanel",
                     },
                   }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "radio-txt" }, [
-                  _vm._v("Formwood panel"),
-                ]),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "p-cat-2",
-                  name: "category",
-                  "data-delete": "fw-sheet",
-                  value: "2",
-                },
-              }),
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("label", { attrs: { for: "p-cat-2" } }, [
-                _c("div", { staticClass: "radio-img" }, [
+              _c("div", { staticClass: "radio-txt" }, [
+                _vm._v("Formwood panel"),
+              ]),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-wpanels col-12 col-sm-6 col-xxl-4 mb-3 mb-sm-4" },
+          [
+            _c("input", {
+              staticClass: "fw-product-builder-radio",
+              attrs: {
+                type: "radio",
+                id: "p-cat-2",
+                name: "category",
+                "data-delete": "fw-sheet",
+                value: "2",
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "p-cat-2" } }, [
+              _c(
+                "div",
+                { staticClass: "radio-img" },
+                [
+                  _c("fa-icon", {
+                    staticClass: "sel-check",
+                    attrs: { icon: "fa-solid fa-check" },
+                  }),
+                  _vm._v(" "),
                   _c("img", {
                     staticClass: "img-fluid w-100",
                     attrs: {
@@ -33461,288 +33311,326 @@ var staticRenderFns = [
                       alt: "Formwood Sheet",
                     },
                   }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "radio-txt" }, [
-                  _vm._v("Formwood Sheet"),
-                ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "radio-txt" }, [
+                _vm._v("Formwood Sheet"),
               ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-wpanels col-12 col-xxl-4 mb-1 mb-sm-4" },
-            [
-              _c("form", { staticClass: "mb-5" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-12 col-lg-5 mb-2 mb-lg-0" },
-                    [
-                      _c("div", { staticClass: "fw-drager p-block mb-2" }, [
-                        _c("h4", { staticClass: "mb-3 fwp-size-h" }, [
-                          _vm._v("Size"),
-                        ]),
-                        _vm._v(" "),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-wpanels col-12 col-sm-12 col-xxl-4 mb-3 mb-sm-4" },
+      [
+        _c("form", { staticClass: "mb-5" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6 col-lg-5 mb-2 mb-lg-0" }, [
+              _c("div", { staticClass: "fw-drager p-block mb-2" }, [
+                _c("h4", { staticClass: "mb-3 fwp-size-h" }, [_vm._v("Size")]),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    attrs: {
+                      action: "/",
+                      method: "post",
+                      id: "panel_drager_form",
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager0",
+                          name: "panel_drager",
+                          value: "1",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager0" } }, [
+                        _vm._v("48 x 96"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager1",
+                          name: "panel_drager",
+                          value: "2",
+                          checked: "checked",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager1" } }, [
+                        _vm._v("48 x 120"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager2",
+                          name: "panel_drager",
+                          value: "3",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager2" } }, [
+                        _vm._v("48 x 144"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager3",
+                          name: "panel_drager",
+                          value: "4",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager3" } }, [
+                        _vm._v("60 x 96"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager4",
+                          name: "panel_drager",
+                          value: "5",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager4" } }, [
+                        _vm._v("60 x 120"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager5",
+                          name: "panel_drager",
+                          value: "6",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager5" } }, [
+                        _vm._v("60 x 144"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager6",
+                          name: "panel_drager",
+                          value: "7",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager6" } }, [
+                        _vm._v("96 x 48"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager7",
+                          name: "panel_drager",
+                          value: "8",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager7" } }, [
+                        _vm._v("120 x 48"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager8",
+                          name: "panel_drager",
+                          value: "9",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager8" } }, [
+                        _vm._v("144x48"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager9",
+                          name: "panel_drager",
+                          value: "10",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager9" } }, [
+                        _vm._v("96 x 60"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager10",
+                          name: "panel_drager",
+                          value: "11",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager10" } }, [
+                        _vm._v("120 x 60"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager11",
+                          name: "panel_drager",
+                          value: "12",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager11" } }, [
+                        _vm._v("144x60"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "custom-radiobtn" }, [
+                      _c("input", {
+                        staticClass: "c-checked",
+                        attrs: {
+                          type: "radio",
+                          id: "panel_drager12",
+                          name: "panel_drager",
+                          value: "13",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "panel_drager12" } }, [
+                        _vm._v("Custom Size"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group cst-sz" }, [
                         _c(
-                          "form",
-                          {
-                            attrs: {
-                              action: "/",
-                              method: "post",
-                              id: "panel_drager_form",
-                            },
-                          },
+                          "span",
+                          { staticClass: "form-control-cus d-flex mb-3" },
                           [
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager0",
-                                  name: "panel_drager",
-                                  value: "1",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager0" } }, [
-                                _vm._v("48 x 96"),
-                              ]),
+                            _c("input", {
+                              staticClass: "form-control custom-size1",
+                              attrs: {
+                                id: "field_c1",
+                                value: "",
+                                type: "text",
+                                autocomplete: "custom-size",
+                                name: "c1",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "mult-sign" }, [
+                              _vm._v("X"),
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager1",
-                                  name: "panel_drager",
-                                  value: "2",
-                                  checked: "checked",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager1" } }, [
-                                _vm._v("48 x 120"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager2",
-                                  name: "panel_drager",
-                                  value: "3",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager2" } }, [
-                                _vm._v("48 x 144"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager3",
-                                  name: "panel_drager",
-                                  value: "4",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager3" } }, [
-                                _vm._v("60 x 96"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager4",
-                                  name: "panel_drager",
-                                  value: "5",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager4" } }, [
-                                _vm._v("60 x 120"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager5",
-                                  name: "panel_drager",
-                                  value: "6",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager5" } }, [
-                                _vm._v("60 x 144"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager6",
-                                  name: "panel_drager",
-                                  value: "7",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager6" } }, [
-                                _vm._v("96 x 48"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager7",
-                                  name: "panel_drager",
-                                  value: "8",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager7" } }, [
-                                _vm._v("120 x 48"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager8",
-                                  name: "panel_drager",
-                                  value: "9",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager8" } }, [
-                                _vm._v("144x48"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager9",
-                                  name: "panel_drager",
-                                  value: "10",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", { attrs: { for: "panel_drager9" } }, [
-                                _vm._v("96 x 60"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager10",
-                                  name: "panel_drager",
-                                  value: "11",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "panel_drager10" } },
-                                [_vm._v("120 x 60")]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "custom-radiobtn" }, [
-                              _c("input", {
-                                attrs: {
-                                  type: "radio",
-                                  id: "panel_drager11",
-                                  name: "panel_drager",
-                                  value: "12",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "label",
-                                { attrs: { for: "panel_drager11" } },
-                                [_vm._v("144x60")]
-                              ),
-                            ]),
+                            _c("input", {
+                              staticClass: "form-control custom-size2",
+                              attrs: {
+                                id: "field_c2",
+                                value: "",
+                                type: "text",
+                                autocomplete: "custom-size",
+                                name: "c2",
+                              },
+                            }),
                           ]
                         ),
                       ]),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 col-lg-7 mb-3 mb-lg-0" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("span", { staticClass: "form-control-spe select-slicing" }, [
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control valid",
+                      attrs: { name: "slicing", "aria-invalid": "false" },
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: ".s-1", "data-id": "1" } },
+                        [_vm._v("100")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: ".s-2", "data-id": "2" } },
+                        [_vm._v("200")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: ".s-3", "data-id": "3" } },
+                        [_vm._v("400")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: ".s-4", "data-id": "4" } },
+                        [_vm._v("500")]
+                      ),
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-12 col-lg-7 mb-2 mb-lg-0" },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "span",
-                          { staticClass: "form-control-spe select-slicing" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                staticClass: "form-control valid",
-                                attrs: {
-                                  name: "slicing",
-                                  "aria-invalid": "false",
-                                },
-                              },
-                              [
-                                _c(
-                                  "option",
-                                  { attrs: { value: ".s-1", "data-id": "1" } },
-                                  [_vm._v("100")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: ".s-2", "data-id": "2" } },
-                                  [_vm._v("200")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: ".s-3", "data-id": "3" } },
-                                  [_vm._v("400")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: ".s-4", "data-id": "4" } },
-                                  [_vm._v("500")]
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("label", [_vm._v("Select quantity")]),
-                          ]
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _c("label", [_vm._v("Select quantity")]),
                 ]),
               ]),
-            ]
-          ),
-        ]
-      ),
-    ])
+            ]),
+          ]),
+        ]),
+      ]
+    )
   },
 ]
 render._withStripped = true
@@ -33767,194 +33655,223 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row row-wquality justify-content-center gx-5" }, [
+      _c("div", { staticClass: "col-quality col-12 col-md-4 mb-3 mb-sm-4" }, [
+        _c("input", {
+          staticClass: "fw-product-builder-radio",
+          attrs: {
+            type: "radio",
+            id: "fw-wquality-1",
+            name: "wquality",
+            "data-delete": "B",
+            value: "1",
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "fw-wquality-1" } }, [
+          _c(
+            "div",
+            { staticClass: "radio-img" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("fa-icon", {
+                staticClass: "sel-check",
+                attrs: { icon: "fa-solid fa-check" },
+              }),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid w-100",
+                attrs: { src: "/media/components/quality-b.jpg", alt: "B" },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "radio-txt match-height",
+              staticStyle: { height: "78px" },
+            },
+            [_vm._v("B")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-wquality col-12 col-md-4 mb-3 mb-sm-4" }, [
+        _c("input", {
+          staticClass: "fw-product-builder-radio",
+          attrs: {
+            type: "radio",
+            id: "fw-wquality-2",
+            name: "wquality",
+            "data-delete": "A",
+            value: "2",
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "fw-wquality-2" } }, [
+          _c(
+            "div",
+            { staticClass: "radio-img" },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("fa-icon", {
+                staticClass: "sel-check",
+                attrs: { icon: "fa-solid fa-check" },
+              }),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid w-100",
+                attrs: { src: "/media/components/quality-a.jpg", alt: "A" },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "radio-txt match-height",
+              staticStyle: { height: "78px" },
+            },
+            [_vm._v("A")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-wquality col-12 col-md-4 mb-3 mb-sm-4" }, [
+        _c("input", {
+          staticClass: "fw-product-builder-radio",
+          attrs: {
+            type: "radio",
+            id: "fw-wquality-3",
+            name: "wquality",
+            "data-delete": "AA",
+            value: "3",
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "fw-wquality-3" } }, [
+          _c(
+            "div",
+            { staticClass: "radio-img" },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("fa-icon", {
+                staticClass: "sel-check",
+                attrs: { icon: "fa-solid fa-check" },
+              }),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid w-100",
+                attrs: { src: "/media/components/quality-aa.jpg", alt: "AA" },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "radio-txt match-height",
+              staticStyle: { height: "78px" },
+            },
+            [_vm._v("AA")]
+          ),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("form", { staticClass: "mb-5 sel-1" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("span", { staticClass: "form-control-spe select-slicing" }, [
-                _c(
-                  "select",
-                  {
-                    staticClass: "form-control valid",
-                    attrs: { name: "slicing", "aria-invalid": "false" },
-                  },
-                  [
-                    _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
-                      _vm._v("B"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
-                      _vm._v("A"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
-                      _vm._v("AA"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
-                      _vm._v("BA"),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("label", [_vm._v("Select wood quality")]),
-              ]),
+    return _c("form", { staticClass: "mb-5 sel-1" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("span", { staticClass: "form-control-spe select-slicing" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control valid",
+                  attrs: { name: "slicing", "aria-invalid": "false" },
+                },
+                [
+                  _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
+                    _vm._v("B"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
+                    _vm._v("A"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
+                    _vm._v("AA"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
+                    _vm._v("BA"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Select wood quality")]),
             ]),
           ]),
         ]),
       ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row row-wquality justify-content-center gx-5" },
-        [
-          _c(
-            "div",
-            { staticClass: "col-quality col-12 col-md-4 mb-1 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-wquality-1",
-                  name: "wquality",
-                  "data-delete": "B",
-                  value: "1",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-wquality-1" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "wquality-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            wood quality\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: { src: "/media/components/quality-b.jpg", alt: "B" },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("B")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-wquality col-12 col-md-4 mb-1 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-wquality-2",
-                  name: "wquality",
-                  "data-delete": "A",
-                  value: "2",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-wquality-2" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "wquality-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            wood quality\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: { src: "/media/components/quality-a.jpg", alt: "A" },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("A")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-wquality col-12 col-md-4 mb-1 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-wquality-3",
-                  name: "wquality",
-                  "data-delete": "AA",
-                  value: "3",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-wquality-3" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "wquality-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            wood quality\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/quality-aa.jpg",
-                      alt: "AA",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("AA")]
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wquality-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood quality\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wquality-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood quality\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wquality-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood quality\n                        "
+        ),
+      ]),
     ])
   },
 ]
@@ -33980,351 +33897,421 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row row-slicing justify-content-center gx-md-5 gy-md-4" },
+      [
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-1",
+              name: "slicing",
+              "data-delete": "Maple",
+              value: "1",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-1" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: { src: "/media/components/maple.jpg", alt: "Maple" },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Plain sliced")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-2",
+              name: "slicing",
+              "data-delete": "Plain slide light",
+              value: "2",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-2" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/plan-slc-lgt.jpg",
+                    alt: "Plain slide light",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Plain sliced light")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-3",
+              name: "slicing",
+              "data-delete": "Rift dark",
+              value: "3",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-3" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-dark.jpg",
+                    alt: "Rift dark",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift dark")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-4",
+              name: "slicing",
+              "data-delete": "Rift light",
+              value: "4",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-4" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-light.jpg",
+                    alt: "Rift light",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift light")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-5",
+              name: "slicing",
+              "data-delete": "Plain slice dark",
+              value: "5",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-5" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/plan-slc-dark.jpg",
+                    alt: "Plain slice dark",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Plain sliced dark")]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-slicing col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-slicing-6",
+              name: "slicing",
+              "data-delete": "Rift red oak",
+              value: "6",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-slicing-6" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-red-oak.jpg",
+                    alt: "Rift red oak",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift red oak")]
+            ),
+          ]),
+        ]),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("form", { staticClass: "mb-5 sel-1" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("span", { staticClass: "form-control-spe select-slicing" }, [
-                _c(
-                  "select",
-                  {
-                    staticClass: "form-control valid",
-                    attrs: { name: "slicing", "aria-invalid": "false" },
-                  },
-                  [
-                    _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
-                      _vm._v("Plain sliced"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
-                      _vm._v("Plain sliced light"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
-                      _vm._v("Rift dark"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
-                      _vm._v("Rift light"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-5", "data-id": "5" } }, [
-                      _vm._v("Plain sliced dark"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: ".s-6", "data-id": "6" } }, [
-                      _vm._v("Rift red oak"),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("label", [_vm._v("Select cutting Technique")]),
-              ]),
+    return _c("form", { staticClass: "mb-5 sel-1" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-lg-12 mb-2 mb-lg-0" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("span", { staticClass: "form-control-spe select-slicing" }, [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control valid",
+                  attrs: { name: "slicing", "aria-invalid": "false" },
+                },
+                [
+                  _c("option", { attrs: { value: ".s-1", "data-id": "1" } }, [
+                    _vm._v("Plain sliced"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-2", "data-id": "2" } }, [
+                    _vm._v("Plain sliced light"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-3", "data-id": "3" } }, [
+                    _vm._v("Rift dark"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-4", "data-id": "4" } }, [
+                    _vm._v("Rift light"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-5", "data-id": "5" } }, [
+                    _vm._v("Plain sliced dark"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: ".s-6", "data-id": "6" } }, [
+                    _vm._v("Rift red oak"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Select cutting Technique")]),
             ]),
           ]),
         ]),
       ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "row row-slicing justify-content-center gx-md-5 gy-md-4",
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-1",
-                  name: "slicing",
-                  "data-delete": "Maple",
-                  value: "1",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-1" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: { src: "/media/components/maple.jpg", alt: "Maple" },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Plain sliced")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-2",
-                  name: "slicing",
-                  "data-delete": "Plain slide light",
-                  value: "2",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-2" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/plan-slc-lgt.jpg",
-                      alt: "Plain slide light",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Plain sliced light")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-3",
-                  name: "slicing",
-                  "data-delete": "Rift dark",
-                  value: "3",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-3" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/rift-dark.jpg",
-                      alt: "Rift dark",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Rift dark")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-4",
-                  name: "slicing",
-                  "data-delete": "Rift light",
-                  value: "4",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-4" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/rift-light.jpg",
-                      alt: "Rift light",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Rift light")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-5",
-                  name: "slicing",
-                  "data-delete": "Plain slice dark",
-                  value: "5",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-5" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/plan-slc-dark.jpg",
-                      alt: "Plain slice dark",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Plain sliced dark")]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-slicing col-6 col-md-3 mb-3 mb-sm-4" },
-            [
-              _c("input", {
-                staticClass: "fw-product-builder-radio",
-                attrs: {
-                  type: "radio",
-                  id: "fw-slicing-6",
-                  name: "slicing",
-                  "data-delete": "Rift red oak",
-                  value: "6",
-                },
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "fw-slicing-6" } }, [
-                _c("div", { staticClass: "radio-img" }, [
-                  _c("div", { staticClass: "slicing-card-hover" }, [
-                    _c("span", [
-                      _vm._v("\n                            Choose this"),
-                      _c("br"),
-                      _vm._v(
-                        "\n                            slicing technique\n                        "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "/media/components/rift-red-oak.jpg",
-                      alt: "Rift red oak",
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "radio-txt match-height",
-                    staticStyle: { height: "78px" },
-                  },
-                  [_vm._v("Rift red oak")]
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slicing-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            slicing technique\n                        "
+        ),
+      ]),
     ])
   },
 ]
@@ -34357,7 +34344,7 @@ var render = function () {
       "div",
       { staticClass: "row row-species justify-content-center gx-md-5 gy-md-4" },
       [
-        _c("div", { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" }, [
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
           _c("input", {
             staticClass: "fw-product-builder-radio",
             attrs: {
@@ -34369,36 +34356,266 @@ var render = function () {
             },
           }),
           _vm._v(" "),
-          _c(
-            "label",
-            { attrs: { for: "fw-wspecies-1" } },
-            [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "radio-txt match-height",
-                  staticStyle: { height: "78px" },
-                },
-                [_vm._v("Maple")]
-              ),
-              _vm._v(" "),
-              _c("fa-icon", { attrs: { icon: "fa-solid fa-user-secret" } }),
-            ],
-            1
-          ),
+          _c("label", { attrs: { for: "fw-wspecies-1" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: { src: "/media/components/maple.jpg", alt: "Maple" },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Maple")]
+            ),
+          ]),
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-wspecies-2",
+              name: "wspecies",
+              "data-delete": "Plain slide light",
+              value: "2",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-wspecies-2" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/plan-slc-lgt.jpg",
+                    alt: "Plain slide light",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Plain slice light ")]
+            ),
+          ]),
+        ]),
         _vm._v(" "),
-        _vm._m(3),
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-wspecies-3",
+              name: "wspecies",
+              "data-delete": "Rift dark",
+              value: "3",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-wspecies-3" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-dark.jpg",
+                    alt: "Rift dark",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift dark")]
+            ),
+          ]),
+        ]),
         _vm._v(" "),
-        _vm._m(4),
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-wspecies-4",
+              name: "wspecies",
+              "data-delete": "Rift light",
+              value: "4",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-wspecies-4" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-light.jpg",
+                    alt: "Rift light",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift light")]
+            ),
+          ]),
+        ]),
         _vm._v(" "),
-        _vm._m(5),
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-wspecies-5",
+              name: "wspecies",
+              "data-delete": "Plain slice dark",
+              value: "5",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-wspecies-5" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/plan-slc-dark.jpg",
+                    alt: "Plain slice dark",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Plain slice dark")]
+            ),
+          ]),
+        ]),
         _vm._v(" "),
-        _vm._m(6),
+        _c("div", { staticClass: "col-species col-6 col-md-4 mb-3 mb-sm-4" }, [
+          _c("input", {
+            staticClass: "fw-product-builder-radio",
+            attrs: {
+              type: "radio",
+              id: "fw-wspecies-6",
+              name: "wspecies",
+              "data-delete": "Rift red oak",
+              value: "6",
+            },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "fw-wspecies-6" } }, [
+            _c(
+              "div",
+              { staticClass: "radio-img" },
+              [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("fa-icon", {
+                  staticClass: "sel-check",
+                  attrs: { icon: "fa-solid fa-check" },
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src: "/media/components/rift-red-oak.jpg",
+                    alt: "Rift red oak",
+                  },
+                }),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "radio-txt match-height",
+                staticStyle: { height: "78px" },
+              },
+              [_vm._v("Rift red oak")]
+            ),
+          ]),
+        ]),
       ]
     ),
   ])
@@ -34457,282 +34674,85 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "radio-img" }, [
-      _c("div", { staticClass: "species-card-hover" }, [
-        _c("span", [
-          _vm._v("\n                            Choose this"),
-          _c("br"),
-          _vm._v(
-            "\n                            wood species\n                        "
-          ),
-        ]),
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
       ]),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "img-fluid w-100",
-        attrs: { src: "/media/components/maple.jpg", alt: "Maple" },
-      }),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
-      [
-        _c("input", {
-          staticClass: "fw-product-builder-radio",
-          attrs: {
-            type: "radio",
-            id: "fw-wspecies-2",
-            name: "wspecies",
-            "data-delete": "Plain slide light",
-            value: "2",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "fw-wspecies-2" } }, [
-          _c("div", { staticClass: "radio-img" }, [
-            _c("div", { staticClass: "species-card-hover" }, [
-              _c("span", [
-                _vm._v("\n                            Choose this"),
-                _c("br"),
-                _vm._v(
-                  "\n                            wood species\n                        "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid w-100",
-              attrs: {
-                src: "/media/components/plan-slc-lgt.jpg",
-                alt: "Plain slide light",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "radio-txt match-height",
-              staticStyle: { height: "78px" },
-            },
-            [_vm._v("Plain slice light")]
-          ),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
+      ]),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
-      [
-        _c("input", {
-          staticClass: "fw-product-builder-radio",
-          attrs: {
-            type: "radio",
-            id: "fw-wspecies-3",
-            name: "wspecies",
-            "data-delete": "Rift dark",
-            value: "3",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "fw-wspecies-3" } }, [
-          _c("div", { staticClass: "radio-img" }, [
-            _c("div", { staticClass: "species-card-hover" }, [
-              _c("span", [
-                _vm._v("\n                            Choose this"),
-                _c("br"),
-                _vm._v(
-                  "\n                            wood species\n                        "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid w-100",
-              attrs: {
-                src: "/media/components/rift-dark.jpg",
-                alt: "Rift dark",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "radio-txt match-height",
-              staticStyle: { height: "78px" },
-            },
-            [_vm._v("Rift dark")]
-          ),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
+      ]),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
-      [
-        _c("input", {
-          staticClass: "fw-product-builder-radio",
-          attrs: {
-            type: "radio",
-            id: "fw-wspecies-4",
-            name: "wspecies",
-            "data-delete": "Rift light",
-            value: "4",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "fw-wspecies-4" } }, [
-          _c("div", { staticClass: "radio-img" }, [
-            _c("div", { staticClass: "species-card-hover" }, [
-              _c("span", [
-                _vm._v("\n                            Choose this"),
-                _c("br"),
-                _vm._v(
-                  "\n                            wood species\n                        "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid w-100",
-              attrs: {
-                src: "/media/components/rift-light.jpg",
-                alt: "Rift light",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "radio-txt match-height",
-              staticStyle: { height: "78px" },
-            },
-            [_vm._v("Rift light")]
-          ),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
+      ]),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
-      [
-        _c("input", {
-          staticClass: "fw-product-builder-radio",
-          attrs: {
-            type: "radio",
-            id: "fw-wspecies-5",
-            name: "wspecies",
-            "data-delete": "Plain slice dark",
-            value: "5",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "fw-wspecies-5" } }, [
-          _c("div", { staticClass: "radio-img" }, [
-            _c("div", { staticClass: "species-card-hover" }, [
-              _c("span", [
-                _vm._v("\n                            Choose this"),
-                _c("br"),
-                _vm._v(
-                  "\n                            wood species\n                        "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid w-100",
-              attrs: {
-                src: "/media/components/plan-slc-dark.jpg",
-                alt: "Plain slice dark",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "radio-txt match-height",
-              staticStyle: { height: "78px" },
-            },
-            [_vm._v("Plain slice dark")]
-          ),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
+      ]),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-species col-6 col-md-3 mb-3 mb-sm-4" },
-      [
-        _c("input", {
-          staticClass: "fw-product-builder-radio",
-          attrs: {
-            type: "radio",
-            id: "fw-wspecies-6",
-            name: "wspecies",
-            "data-delete": "Rift red oak",
-            value: "6",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "fw-wspecies-6" } }, [
-          _c("div", { staticClass: "radio-img" }, [
-            _c("div", { staticClass: "species-card-hover" }, [
-              _c("span", [
-                _vm._v("\n                            Choose this"),
-                _c("br"),
-                _vm._v(
-                  "\n                            wood species\n                        "
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-fluid w-100",
-              attrs: {
-                src: "/media/components/rift-red-oak.jpg",
-                alt: "Rift red oak",
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "radio-txt match-height",
-              staticStyle: { height: "78px" },
-            },
-            [_vm._v("Rift red oak")]
-          ),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "species-card-hover" }, [
+      _c("span", [
+        _vm._v("\n                            Choose this"),
+        _c("br"),
+        _vm._v(
+          "\n                            wood species\n                        "
+        ),
+      ]),
+    ])
   },
 ]
 render._withStripped = true

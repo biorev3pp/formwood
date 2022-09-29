@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row justify-content-center">
-            <div class="col-md-6 mb-1 mb-sm-4">
+            <div class="col-md-7 mb-1 mb-sm-4">
                 <div class="fw-backer p-block mb-2">
                     <h4 class="mb-3 fwp-size-h">Backer</h4>
                     <form action="/" method="post" id="backer_form">

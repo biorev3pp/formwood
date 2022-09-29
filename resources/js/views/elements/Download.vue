@@ -253,8 +253,10 @@
                         </div>
                         <div class="col-12 col-sm-12 file-att">
                             <form action="/action_page.php">
-                                <input type="file" id="myfile" name="myfile" />
-                                <label for="myfile">Attach file here</label>
+                                <div class="upload-button" aria-hidden="true" style="position: relative;overflow: hidden;direction: ltr;">
+                                    <fa-icon icon="fa-solid fa-paperclip" class="pclip" /> Attach file here</div>
+                                <input type="file" class="fileupload-input" id="myfile" name="file" />
+                                
                                 <br />
                                 <br />
                                 
@@ -263,7 +265,7 @@
 
                         <div class="col-12 col-sm-12">
                             <div class="row">
-                                <div class="col-12 col-md-8">
+                                <div class="col-12 col-sm-12 col-md-8">
                                     <div class="form-group mb-4">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" required="" class="form custom-control-input" name="13" id="field_13" />
@@ -272,7 +274,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-12 col-md-4 d-flex">
+                                <div class="col-12 col-sm-12 col-md-4 d-flex add-pr">
                                     <button type="" class="btn btn-primary add-prdt">Add another product</button>
                                     <button type="submit" class="btn btn-primary sbmt">Submit</button>
                                 </div>

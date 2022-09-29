@@ -4,7 +4,7 @@
             <div>
                 <header>
                     <div class="logo">
-                        <div id="nav-icon" class="open"><span></span> <span></span> <span></span> <span></span> <span></span> <span></span></div>
+                        <div id="nav-icon" :class="[(sidemenu)?'open':'']" @click="sidemenu = !sidemenu"><span></span> <span></span> <span></span> <span></span> <span></span> <span></span></div>
                         <a href="#" class="router-link-active"><img :src="logopath" alt="FormWood" /> </a>
                     </div>
                     <div class="fw_container">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <span>
-                        <div class="sidemenu sidebar-show" style="z-index: 1000;">
+                        <div class="sidemenu " :class="[(sidemenu)?'sidebar-show':'']" style="z-index: 1000;">
                             <div id="sideMenuTab" class="sidemenu-content">
                                 <div class="header-bg">
                                     <div class="header"><h2>Product Builder</h2></div>
@@ -61,22 +61,23 @@
                             </div>
                         </div>
 
-                        <div class="footer">
+                        <div class="footer" :class="[(active_step >= 3 && active_step <= 7)?'mob-footer':'', (bottommenu)?'':'close-footer']">
                             <div class="row h-100 align-items-center">
                                 <div class="footer-btns pbtns">
-                                    <button type="button" @click="goNext(8)" v-if="active_step >= 3" class="skp-btn">skip to download</button>
+                                    <button type="button" @click="goNext(8)" v-if="active_step >= 3 && active_step <= 7" class="skp-btn">skip to download</button>
                                 </div>
 
-                                <div class="footer-btns pbtns">
+                                <div class="footer-btns pbtns" :class="[(bottommenu)?'':'hide-footer-btns']">
                                     <button type="button" @click="goBack()" class="pbs-btn">previous</button>
                                 </div>
-                                <div class="footer-btns fns-btn">
-                                    <button type="button" @click="goNext()" class="">next</button>
+                                <div class="footer-btns fns-btn" :class="[(bottommenu)?'':'hide-footer-btns']">
+                                    <button type="button" @click="goNext()" v-if="active_step <= 7" class="">next</button>
                                 </div>
                             </div>
-                            <div class="close-arrow"><span class="material-icons">expand_more</span></div>
+                            <div class="close-arrow" @click="bottommenu = !bottommenu"> <span><fa-icon icon="fa-solid fa-angle-down" :rotation="(bottommenu)?0:180" /></span></div>
                         </div>
                     </span>
+                    
 
                     <div id="button" data-testid="widgetButton" class="chat-closed mobile-size__small bubbleAnimation-appear-done bubbleAnimation-enter-done">
                         <div class="buttonWave"></div>
@@ -134,6 +135,8 @@
                 logopath: "/media/FormwoodLogo.png",
                 imgpath: "/media/components",
                 active_step: 1,
+                sidemenu:false,
+                bottommenu:false
             };
         },
         methods: {

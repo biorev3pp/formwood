@@ -21,7 +21,7 @@
         </form>
 
         <div class="row row-species justify-content-center gx-md-5 gy-md-4">
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-1" name="wspecies" data-delete="Maple" value="1" />
                 <label for="fw-wspecies-1">
                     <div class="radio-img">
@@ -31,30 +31,33 @@
                                 wood species
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/maple.jpg" alt="Maple" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Maple</div>
-                    <fa-icon icon="fa-solid fa-user-secret" />
+                   
                 </label>
             </div>
 
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-2" name="wspecies" data-delete="Plain slide light" value="2" />
                 <label for="fw-wspecies-2">
                     <div class="radio-img">
-                        <div class="species-card-hover">
+                        <div class="species-card-hover" >
                             <span>
                                 Choose this<br />
                                 wood species
                             </span>
                         </div>
-                        <img class="img-fluid w-100" src="/media/components/plan-slc-lgt.jpg" alt="Plain slide light" />
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
+                        <img class="img-fluid w-100" src="/media/components/plan-slc-lgt.jpg" alt="Plain slide light"  />
+                        
                     </div>
-                    <div class="radio-txt match-height" style="height: 78px;">Plain slice light</div>
+                    <div class="radio-txt match-height" style="height: 78px;">Plain slice light </div>
                 </label>
             </div>
 
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-3" name="wspecies" data-delete="Rift dark" value="3" />
                 <label for="fw-wspecies-3">
                     <div class="radio-img">
@@ -64,13 +67,14 @@
                                 wood species
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/rift-dark.jpg" alt="Rift dark" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Rift dark</div>
                 </label>
             </div>
 
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-4" name="wspecies" data-delete="Rift light" value="4" />
                 <label for="fw-wspecies-4">
                     <div class="radio-img">
@@ -80,13 +84,14 @@
                                 wood species
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/rift-light.jpg" alt="Rift light" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Rift light</div>
                 </label>
             </div>
 
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-5" name="wspecies" data-delete="Plain slice dark" value="5" />
                 <label for="fw-wspecies-5">
                     <div class="radio-img">
@@ -96,13 +101,14 @@
                                 wood species
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/plan-slc-dark.jpg" alt="Plain slice dark" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Plain slice dark</div>
                 </label>
             </div>
 
-            <div class="col-species col-6 col-md-3 mb-3 mb-sm-4">
+            <div class="col-species col-6 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wspecies-6" name="wspecies" data-delete="Rift red oak" value="6" />
                 <label for="fw-wspecies-6">
                     <div class="radio-img">
@@ -112,6 +118,7 @@
                                 wood species
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/rift-red-oak.jpg" alt="Rift red oak" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Rift red oak</div>

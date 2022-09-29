@@ -29,6 +29,7 @@
                                 matching
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/book-match.jpg" alt="B" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">Book match</div>

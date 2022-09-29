@@ -19,7 +19,7 @@
         </form>
 
         <div class="row row-wquality justify-content-center gx-5">
-            <div class="col-quality col-12 col-md-4 mb-1 mb-sm-4">
+            <div class="col-quality col-12 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-1" name="wquality" data-delete="B" value="1" />
                 <label for="fw-wquality-1">
                     <div class="radio-img">
@@ -29,13 +29,14 @@
                                 wood quality
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/quality-b.jpg" alt="B" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">B</div>
                 </label>
             </div>
 
-            <div class="col-wquality col-12 col-md-4 mb-1 mb-sm-4">
+            <div class="col-wquality col-12 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-2" name="wquality" data-delete="A" value="2" />
                 <label for="fw-wquality-2">
                     <div class="radio-img">
@@ -45,13 +46,14 @@
                                 wood quality
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/quality-a.jpg" alt="A" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">A</div>
                 </label>
             </div>
 
-            <div class="col-wquality col-12 col-md-4 mb-1 mb-sm-4">
+            <div class="col-wquality col-12 col-md-4 mb-3 mb-sm-4">
                 <input class="fw-product-builder-radio" type="radio" id="fw-wquality-3" name="wquality" data-delete="AA" value="3" />
                 <label for="fw-wquality-3">
                     <div class="radio-img">
@@ -61,6 +63,7 @@
                                 wood quality
                             </span>
                         </div>
+                        <fa-icon class="sel-check" icon="fa-solid fa-check" />
                         <img class="img-fluid w-100" src="/media/components/quality-aa.jpg" alt="AA" />
                     </div>
                     <div class="radio-txt match-height" style="height: 78px;">AA</div>

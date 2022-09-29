@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row row-wpanels justify-content-center gx-md-5">
-            <div class="col-md-6 mb-1 mb-sm-4">
+            <div class="col-md-6 mb-3 mb-sm-4">
                 <div class="fw-substrate p-block mb-2">
                     <h4 class="mb-3 fwp-size-h">Substrate</h4>
                     <form action="/" method="post" id="substrate_form">
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-1 mb-sm-4">
+            <div class="col-md-6 mb-3 mb-sm-4">
                 <div class="fw-thickness p-block mb-2">
                     <h4 class="mb-3 fwp-size-h">Thickness</h4>
                     <form action="/" method="post" id="thickness_form">

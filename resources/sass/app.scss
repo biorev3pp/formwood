@@ -316,10 +316,10 @@ footer p a {
     visibility: visible;
     opacity: 1;
 }
-.fw-product-builder-radio:checked + label:after {
-    opacity: 1;
-    visibility: visible;
-}
+// .fw-product-builder-radio:checked + label:after {
+//     opacity: 1;
+//     visibility: visible;
+// }
 .fw-product-builder-radio + label:before {
     content: "";
     top: 0;
@@ -359,25 +359,29 @@ footer p a {
     color: $theme_color4;
     letter-spacing: 1px;
 }
-.fw-product-builder-radio + label:after {
-    content: "\f00c";
-    font-family: "font awesome 6";
-    top: 4px;
-    right: auto;
-    bottom: auto;
-    left: 4px;
-    width: 3rem;
-    height: 3rem;
-    color: $theme_color4;
-    text-align: center;
-    line-height: 3rem;
-    border-radius: 0;
-    background: $theme_color1;
-    z-index: 1;
-    font-size: 1.3rem;
-    opacity: 0;
-    visibility: hidden;
-}
+
+// .fw-product-builder-radio + label:after {
+    
+//     content: "\f00c";
+//     font-family: "Font Awesome 6 Free";
+//     top: 4px;
+//     right: auto;
+//     bottom: auto;
+//     left: 4px;
+//     width: 3rem;
+//     height: 3rem;
+//     color: $theme_color4;
+//     text-align: center;
+//     line-height: 3rem;
+//     border-radius: 0;
+//     background: $theme_color1;
+//     z-index: 1;
+//     font-size: 1.3rem;
+//     opacity: 0;
+//     visibility: hidden;
+// }
+
+
 .ml-auto,
 .mx-auto {
     margin-left: auto !important;
@@ -618,7 +622,7 @@ button.skp-btn:hover {
     background: none;
     border: 1px solid $theme_color1;
     border-radius: 0;
-    /* border-radius: 50%; */
+    
 }
 .custom-radiobtn input[type="radio"] + label:after,
 .custom-radiobtn input[type="radio"] + label:before {
@@ -631,17 +635,22 @@ button.skp-btn:hover {
     transition: all 0.2s ease-in;
     margin: auto;
 }
-.custom-radiobtn input[type="radio"] + label:after,
-.custom-radiobtn input[type="radio"] + label:before {
-    content: "";
+
+.sel-check {
+    
     display: block;
     position: absolute;
     top: 0;
-    bottom: 0;
     -webkit-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-    margin: auto;
+    transition: all 0.2s ease-in;    
+    background: $theme_color1;
+    padding: 10px;
+    font-size: 22px;
+    color: $theme_color4;
+    margin: 3px;
+    opacity: 1;
 }
+.check-show{opacity: 1;}
 .custom-radiobtn input[type="radio"] + label:after {
     left: 0.2rem;
     border: none;
@@ -895,6 +904,10 @@ button:hover:not(.skp-btn) {
     transform: rotate(45deg);
 }
 
+.c-checked:checked .cst-sz{
+    visibility: visible;
+}
+
 input[type="text"], 
 input[type="email"], 
 input[type="password"], 
@@ -922,8 +935,31 @@ select:focus {
     border: 1px solid #279b73;   
     
 }
-
-
+.mult-sign{line-height: 40px;}
+.custom-size1, .custom-size2{width: 45%;padding: 5px;}
+.custom-size1{margin-right: 6px;}
+.custom-size2{margin-left: 6px;}
+.fileupload-input{    
+    position: relative;
+    right: 0;
+    top: -43px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;    
+}
+.upload-button{
+    border: 1px solid $theme_color1;
+    padding: 4px;
+    cursor: pointer;
+}
+.upload-button .pclip{
+background: $theme_color1;
+padding: 10px;
+color: $theme_color4;
+cursor: pointer;
+vertical-align: middle;
+}
 
 
 
@@ -963,7 +999,20 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
 .footer .close-arrow { position: absolute;  left: 0;  right: 0;  margin: 0 auto;  top: -19.3px;  width: 24px;  text-align: center;
     border: 1px solid #cacaca;  border-bottom: none; background: #fff;  height: 20px; font-size: 24px;  display: flex;
     align-items: center; justify-content: center; border-top-left-radius: 10px;  border-top-right-radius: 10px;}
-
+.close-arrow span svg{ width: 16px; }
+.footer .close-arrow span {   transition: transform .3s ease;   }
+.close-footer {   height: 0;   bottom: 33px;}
+.hide-footer-btns { visibility: hidden;transition: visibility .0s ease;}
+.content-scroll {  height: 90%; }
+    .get-in-touch button { position: relative; bottom: 0;}
+.rotate-arrow { transform: rotate(-180deg);}
+.progressbar {    margin-top: 20px;}
+#mainCntWrap {    padding: 4% 8% 42%;    top: 10%;}
+.fw-product-builder-radio + label .radio-txt { padding: 1.4rem .6rem;  font-size: .9rem;  font-weight: 600;   line-height: 1.2;}
+.add-pr{width: 100%;}
+.progressbar li {  width: 90px;}
+.progressbar li span { top: 8px;  left: 39%;}
+.mob-footer.close-footer{height: 0px;}
 }
 @media (max-width: 810px){
 .footer-btns a { font-size: 13px;}
@@ -974,20 +1023,33 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
     footer p { font-size: 10px;  }
     footer { padding: 0 10px; }
     .main-wrapper {   height: calc(100vh - 55px);  }
-    .sidemenu { top: 55px;    height: calc(100vh - 92px);  display: none;  }
+    .sidemenu { top: 55px;    height: calc(100vh - 92px); }
     #mainCntWrap {  padding: 4% 8% 42%; top: 12%;   }
     .radio-txt.match-height{height: 70px!important;}
     .fw-product-builder-radio + label .radio-txt {    line-height: 1.6; font-size: .85rem; padding: 1.35rem;  }
+    .content-scroll {  height: 90%; }
+    .get-in-touch button { position: relative; bottom: 0;}
     
     .progressbar li { width: 45px;}
     .progressbar li span {  left: 30%;top: 7px; width: 18px; font-size: 14px;}
     .progressbar li:before {  width: 26px;  height: 26px;}
     .progressbar li:first-child::after {        top: 12px;}
     .progressbar li:after {        top: 12px;}
-    .footer div.row {  float: none;     justify-content: center;  }
+    .footer div.row {  float: none;     justify-content: center;width: 94%;  }
     .footer-btns button{width: 108px;}
     .sel-1{margin-bottom: 15px!important;}
     .progressbar li {font-size: 0px;    }
     .progressbar li.active {font-size: 10px;    }
+    .mob-footer{height: 95px;}
+    .mob-footer.close-footer{height: 0px;}
+    .skp-btn{  position: absolute;  width: 70%!important;  top: 3px;   }
+    .mob-footer .pbs-btn, .mob-footer .fns-btn{margin-top: 30px!important;}
+    
 
     }
+
+    @media (max-width: 375px){
+.progressbar li { width: 42px;}
+.progressbar li span { left: 28%;}
+.get-in-touch button {   bottom: 25px;}
+}
