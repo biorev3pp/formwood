@@ -21,7 +21,10 @@
             <a class="nav-link {{ ($nav == 'matchings')?'active':'' }}" href="{{ route('matchings') }}">Matching</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ ($nav == 'panel-options')?'active':'' }}" href="{{ route('panel_options') }}">Panel Options</a>
+            <a class="nav-link {{ ($nav == 'panel-options')?'active':'' }}" href="{{ route('panel_options') }}">Panel Substrate</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ ($nav == 'core-thickness')?'active':'' }}" href="{{ route('core_thickness') }}">Core Thickness</a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ ($nav == 'backers')?'active':'' }}" href="{{ route('backers') }}">Backer</a>
@@ -46,6 +49,8 @@
                 @include('admin.components.sizes')
             @elseif($nav == 'panel-options')
                 @include('admin.components.panels')
+                @elseif($nav == 'core-thickness')
+                @include('admin.components.core_thickness')
             @elseif($nav == 'backers')
                 @include('admin.components.backers')
             @else

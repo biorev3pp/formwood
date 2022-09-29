@@ -24,14 +24,16 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::get('/components/sizes', [App\Http\Controllers\Admin\SizesController::class, 'index'])->name('sizes')->defaults('menu', 'components');
     Route::get('/components/qualities', [App\Http\Controllers\Admin\QualitiesController::class, 'index'])->name('quality')->defaults('menu', 'components');
     Route::get('/components/backers', [App\Http\Controllers\Admin\BackersController::class, 'index'])->name('backers')->defaults('menu', 'components');
-    Route::get('/components/panel-options', [App\Http\Controllers\Admin\PanelOptionsController::class, 'index'])->name('panel_options')->defaults('menu', 'components');
+    Route::get('/components/panel-substrates', [App\Http\Controllers\Admin\PanelOptionsController::class, 'index'])->name('panel_options')->defaults('menu', 'components');
+    Route::get('/components/core-thickness', [App\Http\Controllers\Admin\PanelOptionsController::class, 'thickness'])->name('core_thickness')->defaults('menu', 'components');
     
     // Logics
     Route::get('/logic-graph', [App\Http\Controllers\Admin\LogicController::class, 'index'])->name('logic-graph')->defaults('menu', 'logic-graph');
 
     // Profile and Settigns
     Route::get('/profile', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('profile')->defaults('menu', 'profile');
+    Route::get('configurations/{type}', [App\Http\Controllers\Admin\SettingsController::class, 'configurations'])->name('configurations');
     Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
-    Route::post('settings/save', [App\Http\Controllers\Admin\SettingsController::class, 'update']);
+    Route::post('settings/save', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('update-settings');
     
 });

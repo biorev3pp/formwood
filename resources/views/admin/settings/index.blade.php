@@ -3,14 +3,12 @@
 <div class="content-header d-flex flex-wrap bg-white" style="padding: 0.8rem 2rem 0.4rem;">
     <div class="content-header-left p-0">
         <h3 class="content-header-title m-0 mr-1">Settings</h3>
-        <div class="row breadcrumbs-top">
-        </div>
     </div>
 </div>
 <div class="content-wrapper">
-    <form class="col-sm-12" id="custom_fonts_1" method="POST" action="{{url('admin/settings/save')}}" enctype="multipart/form-data">
+    <form class="" id="custom_fonts_1" method="POST" action="{{route('update-settings')}}" enctype="multipart/form-data">
         @csrf
-        <div class="text-right border-bottom pb-1">
+        <div class="text-right pb-1 pr-2">
             <button type="submit" class="btn btn-primary btn-glow">Save Settings</button>
         </div>
         <div class="card-body" id="new_custom_table">
@@ -37,22 +35,22 @@
                 @elseif($value->type =='email')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <input class="form-control forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
+                    <input class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
                 </div>
                 @elseif($value->type =='textarea')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <textarea class="form-control forms1" id="{{ $value->name }}" name="{{ $value->name }}">{{ $value->value }}</textarea>
+                    <textarea class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}">{{ $value->value }}</textarea>
                 </div>
                 @elseif($value->type =='readonly')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <input readonly class="form-control forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
+                    <input readonly class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
                 </div>
                 @elseif($value->type =='select')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <select class="form-control" id="{{ $value->name }}" name="{{ $value->name }}">
+                    <select class="form-control border" id="{{ $value->name }}" name="{{ $value->name }}">
                         @if($value->options)
                             @php $options = explode(',', $value->options); @endphp
                             @foreach($options as $option)
@@ -68,7 +66,7 @@
                 @else
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <input class="form-control forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
+                    <input class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
                 </div>
                 @endif @endforeach
             </div>

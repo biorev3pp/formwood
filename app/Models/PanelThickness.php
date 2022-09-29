@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Backers extends Model
+class PanelThickness extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,10 +15,5 @@ class Backers extends Model
     public function status()
     {
         return $this->belongsTo(\App\Models\Statuses::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(\App\Models\SheetTypes::class, 'sheet_type_id');
     }
 }

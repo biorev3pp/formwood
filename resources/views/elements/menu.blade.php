@@ -28,6 +28,9 @@
             <li class="nav-item {{ (isset($menu) && ($menu == 'floorplan')) ?'active':''}} ">
                 <a href="{{ route('species') }}"><span class="menu-title" data-i18n="Floorplan"><i class="la la-line-chart"></i>Analytics</span></a>
             </li>
+            <li class="nav-item {{ (isset($menu) && ($menu == 'configurations')) ?'active':''}} ">
+                <a href="{{ route('configurations', 'Mg==') }}"><span class="menu-title" data-i18n="configurations"><i class="ft-command"></i>Configurations</span></a>
+            </li>
             <li class="nav-item {{ (isset($menu) && ($menu == 'settings')) ?'active':''}} ">
                 <a href="{{ route('settings') }}"><span class="menu-title" data-i18n="settings"><i class="ft-settings"></i>Settings</span></a>
             </li>

@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Traits\HelperTrait;
 use Validator;
-use App\Validators\FloorValidator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Settings;
-use App\Admins;
+use App\Models\User;
 USE DB;
 use File;
 
@@ -24,10 +22,18 @@ class SettingsController extends Controller
 
     public function index()
     {
-        $setting = Settings::where('status', 1)->get();
+        $setting = Settings::where('section', 1)->where('status', 1)->get();
         $this->data['setting'] = $setting;
         $this->data['menu'] = 'settings';
         return view('admin.settings.index')->with($this->data);
+    }
+
+    public function configurations($type = null)
+    {
+        $setting = Settings::where('section', base64_decode($type))->where('status', 1)->get();
+        $this->data['setting'] = $setting;
+        $this->data['menu'] = 'configurations';
+        return view('admin.settings.configurations')->with($this->data);
     }
 
     
@@ -50,7 +56,7 @@ class SettingsController extends Controller
 
     public function updateAdmins(Request $request, $id)
     {
-        $users = Admins::find($id);
+        $users = User::find($id);
         $users->name = $request->name;
         $users->email = $request->email;
         $users->mobile = $request->mobile;

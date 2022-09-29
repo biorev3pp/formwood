@@ -3,7 +3,9 @@
         <table class="table table-striped biorev-table">
             <thead>
                 <tr class="text-uppercase">
-                    <th class="sno">SNo</th>
+                    <th class="sno">SNo
+                        <input type="checkbox" class="bulk_checkbox_all" name="allRecords" id="allRecords" value="1" />
+                    </th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Remark</th>
@@ -20,7 +22,7 @@
                     @foreach ($collection as $key => $item)    
                         <tr id="row{{$item->id}}">
                             <td>
-                                {{ $key+1 }}
+                                {{ $key+1 }}. <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" />
                             </td>
                             <td>
                                 <img src="{{ $MEDIA_URL.'/'.$item->image }}" class="img-thumb" />
@@ -57,11 +59,30 @@
         </table>
         <div class="footer-actions">
             <div class="row m-0">
-                <div class="col-md-2">
-
+                <div class="col-md-2 select-counter">
+                    <h6>Bulk Action</h6>
+                    <span> 0 Records selected </span>
                 </div>
                 <div class="col-md-7">
-
+                    <div id="bulk-action-form" class="d-none bulk-action-form">
+                        <div class="form-group">
+                            <select class="form-control border" name="bulk_action_type" id="bulk_action_type">
+                                <option value="">Select Bulk Action</option>
+                                <option value="stats">Change Status</option>
+                                <option value="del">Delete Selected</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-none status-options">
+                            <select class="form-control border" name="bulk_status" id="bulk_status">
+                                <option value="">Select Status</option>
+                                <option value="publish">Publish</option>
+                                <option value="unpublish">Unpublish</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="bulk_action_btn" class="btn btn-primary">Update All</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3 text-right">
                     <p class="showing">Showing {{ count($collection) }} records</p>
@@ -468,5 +489,77 @@
             }
         });
     }
+    $(document).ready(function(){
+        $('#allRecords').on('click',function(){
+            
+            if(this.checked){
+                $('.bulk_checkbox').each(function(){
+                    this.checked = true;
+                });
+                $('.select-counter span').html($('.bulk_checkbox:checked').length+' records selected');
+                $('#bulk-action-form').addClass('d-flex').removeClass('d-none');
+            }else{
+                $('.bulk_checkbox').each(function(){
+                    this.checked = false;
+                });
+                $('.select-counter span').html('0 records selected');
+                $('#bulk-action-form').removeClass('d-flex').addClass('d-none');
+            }
+        });
+        
+        $('.bulk_checkbox').on('click',function(){
+            if($('.bulk_checkbox:checked').length == $('.bulk_checkbox').length){
+                $('#allRecords').prop('checked',true);
+            }else{
+                $('#allRecords').prop('checked',false);
+            }
+            $('.select-counter span').html($('.bulk_checkbox:checked').length+' records selected');
+            if($('.bulk_checkbox:checked').length >= 1) {
+                $('#bulk-action-form').addClass('d-flex').removeClass('d-none');
+            } else {
+                $('#bulk-action-form').removeClass('d-flex').addClass('d-none');
+            }
+        });
+
+        $('#bulk_action_type').on('change', function() {
+            if($(this).val() == 'stats') {
+                $('.status-options').removeClass('d-none')
+            } else {
+                $('.status-options').addClass('d-none')
+            }
+        })
+        $('#bulk_action_btn').on('click', function(){
+            const bulk_action_type = $('#bulk_action_type').val();
+            const bulk_status = $('#bulk_status').val();
+            if(bulk_action_type == '') {
+                
+                toastr.error('Please select your bulk action type to update.');
+                return false;
+            }
+            const formData = new FormData();
+
+            formData.append('bulk_action_type', bulk_action_type);
+            formData.append('bulk_status', bulk_status);
+
+            let blk_Records = [];
+            $("input:checkbox[name=bulk_record_id]:checked").each(function(){
+                blk_Records.push($(this).val());
+            });
+            formData.append('bulk_records', blk_Records);
+
+            $.ajax({
+                type: 'POST',
+                url: siteURL+'/api/bulk/species',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    toastr.info('Bulk action applied successfully.');
+                    location.reload();
+                }
+            });
+        })
+    });
 </script>
 @endpush
