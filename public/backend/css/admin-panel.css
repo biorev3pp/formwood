@@ -9267,7 +9267,8 @@ select.form-control:not([size]):not([multiple]).input-sm{padding:.2rem .95rem!im
 .nav-vertical .nav-tabs .nav-link.active::before{opacity:0}
 .nav.nav-tabs .nav-item .nav-link{padding:1.0625rem .75rem}
 .card .card-content .card-body .nav.nav-tabs.iconfall .nav-item.dropdown .nav-link.dropdown-toggle::after,.card .card-content .card-body .nav.nav-tabs.nav-justified .nav-item .nav-link.dropdown-toggle::after,.card .card-content .card-body .nav.nav-tabs.nav-linetriangle .nav-item .nav-link.dropdown-toggle::after,.card .card-content .card-body .nav.nav-tabs.nav-topline .nav-item .nav-link.dropdown-toggle::after,.card .card-content .card-body .nav.nav-tabs.nav-underline .nav-item .nav-link.dropdown-toggle::after{position:relative;top:-1px}
-.nav-pills .nav-item .nav-link.active{color:#fff;background:#00bcd4}
+.nav-pills .nav-item .nav-link{font-weight:600; color: #323232; font-size: 12px;}
+.nav-pills .nav-item .nav-link.active{color:#fff;background-color:rgba(64, 31, 32, 0.85) !important;}
 .shopping-cart .nav-tabs{box-shadow:none}
 .shopping-cart .nav-tabs .nav-item{margin:0 1rem .75rem!important}
 .shopping-cart .nav-tabs .nav-link.active{height:100%!important}
@@ -9279,7 +9280,7 @@ select.form-control:not([size]):not([multiple]).input-sm{padding:.2rem .95rem!im
 .navbar .navbar-wrapper .navbar-container .form-inline .input-group{margin-top:0}
 .navbar .navbar-wrapper .navbar-container .input-group{margin-top:0}
 .navbar .navbar-wrapper .navbar-container .skin label{color:#fff}
-.fixed-bottom,.fixed-top{z-index:1050}
+.fixed-bottom,.fixed-top{z-index:50}
 .navbar-dark .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control,.navbar-semi-light .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control{color:#6b6f82}
 .navbar-dark .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control::-webkit-input-placeholder,.navbar-semi-light .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control::-webkit-input-placeholder{color:#6b6f82}
 .navbar-dark .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control::-moz-placeholder,.navbar-semi-light .navbar-wrapper .navbar-container .nav .nav-link-search .round.form-control::-moz-placeholder{color:#6b6f82}

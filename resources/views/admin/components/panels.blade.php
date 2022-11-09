@@ -37,7 +37,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr>
+                    <tr class="nodata"> 
                         <td colspan="6">
                             <p class="text-danger p-0 m-0">
                                 No items found in collection.
@@ -121,7 +121,7 @@
 </div>
 @push('scripts')
 <script>
-    const path = '{{$MEDIA_URL}}';
+    const path = "{{$MEDIA_URL.'components'}}";
     const date = new Date();
     
     function addSubstrate(...values){
@@ -191,7 +191,7 @@
                 success: function(response){
                     toastr.info('Substrate has been updated successfully.');
                     let card = null;
-                    card = `<td>${RowId}</td>
+                    card = `<td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 ${response.name}
                             </td>
@@ -215,6 +215,7 @@
             });
         }
         else{
+            $('.nodata').remove();
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
@@ -227,7 +228,7 @@
                     toastr.info('Substrate has been added successfully.');
                     let card = null;
                     card = `<tr id="row${response.id}">
-                            <td>${RowId}</td>
+                            <td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 ${response.name}
                             </td>
@@ -294,6 +295,7 @@
         $.ajax({
             type: 'delete',
             url: '/api/delete/substrate',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();

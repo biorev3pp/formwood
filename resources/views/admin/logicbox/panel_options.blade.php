@@ -4,11 +4,18 @@
     </label>
     <div class="step-in-50">
         <ul class="step6ul">
-            @foreach ($substrates as $sk => $si)
-                <li class="step6_list" id="step6_{{$si->id}}">
-                    <a href="javascript:;" onclick="selectSubstrate({{$si->id}})"> 
-                        {{$sk+1}}. {{ $si->name }}
-                    </a>
+            <li class="step6_list bg-secondary">
+                <button type="button" class="btn btn-sm btn-primary" onclick="updateSubstrate({{$sid}})">Save Changes</button>
+                <input type="checkbox" class="sidecheckbox top-6 substrate_checkbox_all" name="allSubstrateIds" onclick="toggleAllSubstrate()" value="1" />
+            </li>
+            @foreach ($substrates as $k => $i)
+                <li class="step6_list" id="step6_{{$i->id}}">
+                    <a href="javascript:;" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{ $i->name }}" onclick="selectSubstrate({{$i->id}})"> {{$k+1}}. {{ $i->name }} </a>
+                    @if(in_array($i->id, $ssubtrates))
+                        <input type="checkbox" class="sidecheckbox substrate_checkbox" value="{{$i->id}}" name="substrateIds" id="substrateId{{$i->id}}" checked="checked" onclick="toggleSubstrate()" />
+                    @else
+                        <input type="checkbox" class="sidecheckbox substrate_checkbox" value="{{$i->id}}" name="substrateIds" id="substrateId{{$i->id}}" onclick="toggleSubstrate()" />
+                    @endif
                 </li>
             @endforeach
         </ul>

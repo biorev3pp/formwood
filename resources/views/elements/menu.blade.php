@@ -19,17 +19,14 @@
             <li class="nav-item {{ (isset($menu) && ($menu == 'logic-graph')) ?'active':''}} ">
                 <a href="{{ route('logic-graph') }}"><span class="menu-title" data-i18n="Logic Graph"><i class="la la-code"></i>Logic Graph</span></a>
             </li>
-            <li class="nav-item {{ (isset($menu) && ($menu == 'homeplans')) ?'active':''}} ">
-                <a href="{{ route('species') }}"><span class="menu-title" data-i18n="Homeplans"><i class="la la-envelope"></i>Enquiries</span></a>
+            <li class="nav-item {{ (isset($menu) && ($menu == 'enquiries')) ?'active':''}} ">
+                <a href="{{ route('enquiries') }}"><span class="menu-title" data-i18n="Inquiries"><i class="la la-envelope"></i>Inquiries</span></a>
             </li>
-            <li class="nav-item {{ (isset($menu) && ($menu == 'exterior')) ?'active':''}} ">
-                <a href="{{ route('species') }}"><span class="menu-title" data-i18n="Exterior"><i class="la la-users"></i>Customers</span></a>
-            </li>
-            <li class="nav-item {{ (isset($menu) && ($menu == 'floorplan')) ?'active':''}} ">
-                <a href="{{ route('species') }}"><span class="menu-title" data-i18n="Floorplan"><i class="la la-line-chart"></i>Analytics</span></a>
+            <li class="nav-item {{ (isset($menu) && ($menu == 'analytics')) ?'active':''}} ">
+                <a href="{{ route('analytics') }}"><span class="menu-title" data-i18n="Analytics"><i class="la la-line-chart"></i>Analytics</span></a>
             </li>
             <li class="nav-item {{ (isset($menu) && ($menu == 'configurations')) ?'active':''}} ">
-                <a href="{{ route('configurations', 'Mg==') }}"><span class="menu-title" data-i18n="configurations"><i class="ft-command"></i>Configurations</span></a>
+                <a href="{{ route('configurations') }}"><span class="menu-title" data-i18n="configurations"><i class="ft-command"></i>Configurations</span></a>
             </li>
             <li class="nav-item {{ (isset($menu) && ($menu == 'settings')) ?'active':''}} ">
                 <a href="{{ route('settings') }}"><span class="menu-title" data-i18n="settings"><i class="ft-settings"></i>Settings</span></a>

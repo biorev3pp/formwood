@@ -13,8 +13,10 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     // Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('home')->defaults('menu', 'dashboard');
 
-    Route::get('/cropper', [App\Http\Controllers\Admin\CropperController::class, 'index'])->name('cropper')->defaults('menu', 'cropper');
-    Route::post('/crop-image-upload', [App\Http\Controllers\Admin\CropperController::class, 'upload'])->name('cropper-upload')->defaults('menu', 'cropper');
+    Route::get('/inquiries', [App\Http\Controllers\Admin\EnquiriesController::class, 'index'])->name('enquiries')->defaults('menu', 'enquiries');
+    Route::post('/export-inquiries', [App\Http\Controllers\Admin\EnquiriesController::class, 'estimatesReport'])->name('estimatesReport')->defaults('menu', 'enquiries');
+    
+    Route::get('/analytics', [App\Http\Controllers\Admin\AnalyticsController::class, 'index'])->name('analytics')->defaults('menu', 'analytics');
 
     // Components URLs
     Route::get('/components/species', [App\Http\Controllers\Admin\SpeciesController::class, 'index'])->name('species')->defaults('menu', 'components');
@@ -32,7 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
 
     // Profile and Settigns
     Route::get('/profile', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('profile')->defaults('menu', 'profile');
-    Route::get('configurations/{type}', [App\Http\Controllers\Admin\SettingsController::class, 'configurations'])->name('configurations');
+    Route::get('configurations', [App\Http\Controllers\Admin\SettingsController::class, 'configurations'])->name('configurations');
     Route::get('settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings');
     Route::post('settings/save', [App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('update-settings');
     

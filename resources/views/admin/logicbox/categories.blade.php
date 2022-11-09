@@ -8,7 +8,7 @@
                 @foreach ($i->sizes as $sk => $si)
                     <li class="step5_list" id="step5_{{$si->id}}">
                         <a href="javascript:;" onclick="selectSize({{$i->id}}, {{$si->id}})"> 
-                            {{$sk+1}}. {{ number_format($si->width) }} x {{ number_format($si->length) }} mm 
+                            {{$sk+1}}. {{ number_format($si->width) }} x {{ number_format($si->length) }} Inch 
                         </a>
                     </li>
                 @endforeach

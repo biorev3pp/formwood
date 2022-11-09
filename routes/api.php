@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -78,11 +77,43 @@ Route::get('get-category-sizes', [App\Http\Controllers\Admin\LogicController::cl
 
 
 // Step 6 data
-Route::get('get-panel-options', [App\Http\Controllers\Admin\LogicController::class, 'getPanelOptions']);
+Route::get('get-panel-options-s6/{id}', [App\Http\Controllers\Admin\LogicController::class, 'getPanelOptions']);
 Route::get('get-core-thickness/{id}', [App\Http\Controllers\Admin\LogicController::class, 'getPanelThickness']);
+Route::post('update-panel-substrate', [App\Http\Controllers\Admin\LogicController::class, 'updatePanelSubstrate']);
 Route::post('update-panel-thickness', [App\Http\Controllers\Admin\LogicController::class, 'updatePanelThickness']);
 
 
 // Step 7 data
 Route::get('get-backers/{id}', [App\Http\Controllers\Admin\LogicController::class, 'getBackers']);
 Route::post('update-size-backers', [App\Http\Controllers\Admin\LogicController::class, 'updateSizeBackers']);
+
+
+// Profile Updates API
+Route::post('edit-profile', [App\Http\Controllers\Admin\UsersController::class, 'update']);
+Route::post('update-password', [App\Http\Controllers\Admin\UsersController::class, 'changePassword']);
+
+
+// View Estimates
+Route::get('view-estimate/{id}', [App\Http\Controllers\Admin\EnquiriesController::class, 'view']);
+Route::get('get-enquiries', [App\Http\Controllers\Admin\EnquiriesController::class, 'list']);
+Route::delete('delete/enquiry', [App\Http\Controllers\Admin\EnquiriesController::class, 'destroy']);
+Route::post('bulk/enquiry', [App\Http\Controllers\Admin\EnquiriesController::class, 'bulkAction']);
+
+// Analytics
+Route::post('admin/analytics', [App\Http\Controllers\Admin\AnalyticsController::class, 'analytics']);
+
+// Configurations
+Route::post('reset-image', [App\Http\Controllers\Admin\SettingsController::class, 'resetImage']);
+
+
+// Fronend API
+Route::get('get-formwood-data', [App\Http\Controllers\FrontendController::class, 'index']);
+Route::get('get-species-options', [App\Http\Controllers\FrontendController::class, 'speciesData']);
+Route::get('get-cut-options/{id}', [App\Http\Controllers\FrontendController::class, 'cutsData']);
+Route::get('get-quality-options/{id}', [App\Http\Controllers\FrontendController::class, 'qualityData']);
+Route::get('get-matching-options/{id}', [App\Http\Controllers\FrontendController::class, 'matchingsData']);
+Route::get('get-category-options', [App\Http\Controllers\FrontendController::class, 'categoryData']);
+Route::get('get-panel-options', [App\Http\Controllers\FrontendController::class, 'panelOptionsData']);
+Route::get('get-backer-options/{id}', [App\Http\Controllers\FrontendController::class, 'backersData']);
+Route::post('get-item-string', [App\Http\Controllers\FrontendController::class, 'getItemString']);
+Route::post('submit-query', [App\Http\Controllers\FrontendController::class, 'submitQuery']);

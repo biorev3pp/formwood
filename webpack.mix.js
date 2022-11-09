@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('mix-env-file');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ const mix = require('laravel-mix');
         children: true,
     },
 });
+mix.env(process.env.ENV_FILE);
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');

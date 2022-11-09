@@ -49,10 +49,9 @@ class CutsController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id = null)
     {
         $record = Cuts::find($request->id);
-        
         $record->name = $request->name;
         $record->remark = $request->remark;
         $record->status_id = $request->status;

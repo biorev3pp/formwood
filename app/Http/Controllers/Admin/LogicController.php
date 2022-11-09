@@ -16,6 +16,7 @@ use App\Models\Qualities;
 use App\Models\SheetTypes;
 use App\Models\Sizes;
 use App\Models\SizesBackers;
+use App\Models\SizeSubstrates;
 
 class LogicController extends Controller
 {
@@ -69,10 +70,12 @@ class LogicController extends Controller
     }
 
     // By Step 5 For Step 6 ... PanelOptions
-    public function getPanelOptions()
+    public function getPanelOptions($sid = null)
     {
+        $ssubtrates = SizeSubstrates::where('size_id', $sid)->get()->pluck('substrate_id')->toArray();
+        $size = Sizes::whereId($sid)->first();
         $substrates = PanelSubstrates::where('status_id', 1)->get();
-        return view('admin.logicbox.panel_options')->with(compact('substrates'));
+        return view('admin.logicbox.panel_options')->with(compact('substrates', 'sid', 'ssubtrates', 'size'));
     }
 
     // By Step 6 For Step 6 part 2 ... PanelOptions - Core Thickness
@@ -112,6 +115,18 @@ class LogicController extends Controller
     public function updateCutMatchings(Request $request)
     {
         Cuts::where('id', $request->cut_id)->update(['matchings' => $request->matching_ids]);
+        return ['success'];
+    }
+
+    public function updatePanelSubstrate(Request $request)
+    {
+        $substrate_ids = explode(',', $request->substrate_ids);
+        SizeSubstrates::where('size_id', $request->size_id)->whereNotIn('substrate_id', $substrate_ids)->delete();
+        foreach ($substrate_ids as $value) {
+            if(SizeSubstrates::where('size_id', $request->size_id)->where('substrate_id', $value)->count() == 0) {
+                SizeSubstrates::create(['size_id' => $request->size_id, 'substrate_id' => $value]);
+            }
+        }
         return ['success'];
     }
 

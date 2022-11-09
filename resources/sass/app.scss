@@ -84,6 +84,7 @@ ul {
     display: inline-block;
     float: left;
 }
+.progressbar li em { font-style: normal;}
 .progressbar li.completed:before {
     background-color: $theme_color1;
     cursor: pointer;
@@ -226,9 +227,7 @@ footer p a {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
-::-webkit-scrollbar {
-    display: none;
-}
+
 .form-control {
     display: block;
     width: 100%;
@@ -442,8 +441,34 @@ footer p a {
     font-size: 0.85rem;
     font-weight: 300;
     letter-spacing: 0.05rem;
+    height: calc(100vh - 239px);
+    overflow: scroll;
+    text-align: justify;
 }
-.get-in-touch button {
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+
+
+.get-in-touch a {
     position: absolute;
     bottom: 12px;
     color: $theme_color4;
@@ -793,13 +818,43 @@ button:hover:not(.skp-btn) {
 .selected-p li .checkbox-item {
     display: inline-block;
     position: relative;
-    padding-left: 30px;
+    padding-left: 25px;
     margin-bottom: 0;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.selected-p li .checkbox-item:before{
+    content: "";
+    height: 16px;
+    width: 16px;
+    background-color: #0b5a3f;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    transition: all 0.3s ease-in-out;
+}
+.selected-p li .checkbox-item:after{
+    content: "";
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: none;
+    bottom: 0px;
+    margin: auto;
+    left: 4px;
+    position: absolute;
+    top: -2px;
+    width: 6px;
+    height: 6px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0px;
+    transform: rotate(320deg);
+
 }
 
 .selected-p li .checkbox-item input {
@@ -850,6 +905,7 @@ button:hover:not(.skp-btn) {
     position: relative;
     margin-bottom: 0;
     vertical-align: top;
+    cursor: pointer;
 }
 .custom-control-label:after, .custom-control-label:before {
     position: absolute;
@@ -961,10 +1017,18 @@ cursor: pointer;
 vertical-align: middle;
 }
 
-
-
-
-
+.clickable::before {
+    background-color: #48c298 !important;
+}
+.skipped::before {
+    background-color: #0f0f0f !important;
+}
+// .row.row-species .radio-img{    height: 595px;   object-fit: cover;overflow: hidden;}
+@media (min-width: 556px){
+    #tidio-chat-iframe{
+        margin: 0 0 60px !important;
+    }
+}
 
 @media (max-width: 991px){
 header { height: 60px;  padding: 10px 15px;  }
@@ -1004,10 +1068,12 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
 .close-footer {   height: 0;   bottom: 33px;}
 .hide-footer-btns { visibility: hidden;transition: visibility .0s ease;}
 .content-scroll {  height: 90%; }
-    .get-in-touch button { position: relative; bottom: 0;}
+.sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+.get-in-touch a { position: relative; bottom: 0;}
 .rotate-arrow { transform: rotate(-180deg);}
 .progressbar {    margin-top: 20px;}
-#mainCntWrap {    padding: 4% 8% 42%;    top: 10%;}
+#mainCntWrap {    padding: 4% 8% 54%;    top: 14%;}
 .fw-product-builder-radio + label .radio-txt { padding: 1.4rem .6rem;  font-size: .9rem;  font-weight: 600;   line-height: 1.2;}
 .add-pr{width: 100%;}
 .progressbar li {  width: 90px;}
@@ -1016,6 +1082,10 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
 }
 @media (max-width: 810px){
 .footer-btns a { font-size: 13px;}
+.sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+
 }
 @media (max-width: 555px){
 
@@ -1024,18 +1094,20 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
     footer { padding: 0 10px; }
     .main-wrapper {   height: calc(100vh - 55px);  }
     .sidemenu { top: 55px;    height: calc(100vh - 92px); }
-    #mainCntWrap {  padding: 4% 8% 42%; top: 12%;   }
+    #mainCntWrap {  padding: 4% 8% 54%; top: 14%;   }
     .radio-txt.match-height{height: 70px!important;}
-    .fw-product-builder-radio + label .radio-txt {    line-height: 1.6; font-size: .85rem; padding: 1.35rem;  }
+    .fw-product-builder-radio + label .radio-txt {    line-height: 1.2; font-size: .85rem; padding: 1.15rem;  }
     .content-scroll {  height: 90%; }
-    .get-in-touch button { position: relative; bottom: 0;}
-    
+    .get-in-touch a { position: relative; bottom: 0;}
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
     .progressbar li { width: 45px;}
     .progressbar li span {  left: 30%;top: 7px; width: 18px; font-size: 14px;}
     .progressbar li:before {  width: 26px;  height: 26px;}
     .progressbar li:first-child::after {        top: 12px;}
     .progressbar li:after {        top: 12px;}
-    .footer div.row {  float: none;     justify-content: center;width: 94%;  }
+    .footer div.row {  float: none;     justify-content: center;width: auto;  }
     .footer-btns button{width: 108px;}
     .sel-1{margin-bottom: 15px!important;}
     .progressbar li {font-size: 0px;    }
@@ -1044,6 +1116,7 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
     .mob-footer.close-footer{height: 0px;}
     .skp-btn{  position: absolute;  width: 70%!important;  top: 3px;   }
     .mob-footer .pbs-btn, .mob-footer .fns-btn{margin-top: 30px!important;}
+    .species-card-hover, .slicing-card-hover, .wquality-card-hover, .wmatching-card-hover { font-size: 1.1rem;}
     
 
     }
@@ -1052,4 +1125,153 @@ cursor: pointer;    display: inline-block;    top: -25px;    left: 0;    margin-
 .progressbar li { width: 42px;}
 .progressbar li span { left: 28%;}
 .get-in-touch button {   bottom: 25px;}
+#mainCntWrap { top: 18%;}
+.sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
 }
+@media (max-width: 415px){
+    .progressbar li:first-child em { position: absolute; font-style: normal;  left: 7px;text-align: left;}
+    .progressbar li:last-child em { position: absolute; font-style: normal;  right: 7px;}
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+}
+
+/* Landscape*/
+
+@media only screen and (min-device-width: 1366px) and (max-device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)  {
+    .add-pr{width: 100%;} 
+    
+}
+
+/* Portrait*/
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
+
+
+    .progressbar li { width: 92px;   font-size: 9px;}
+    .progressbar li:before { width: 26px; height: 26px;}
+    .progressbar li span { left: 40%; font-size: 14px;}
+    .fw-product-builder-radio + label .radio-txt {  line-height: 1;}
+    .sel-check { padding: 8px;  font-size: 18px;}
+    .add-pr{width: 100%;}
+    #mainCntWrap { padding: 4% 12%;}
+    .custom-radiobtn {  margin-bottom: 3px;  }
+    .custom-radiobtn input[type=radio] + label {  line-height: 1.6;  }
+    .custom-radiobtn input[type=radio] + label:after, .custom-radiobtn input[type=radio] + label:before {  bottom: unset;  }
+    .custom-radiobtn input[type=radio] + label:after {        top: 3.2px;}
+
+    
+}
+
+/* Landscape*/
+@media only screen and (min-device-width: 1024px) and (max-device-height: 768px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)  {
+    .add-pr{width: 100%;} 
+
+    
+    .progressbar li { width: 92px;   font-size: 9px;}
+    .progressbar li:before { width: 26px; height: 26px;}
+    .progressbar li span { left: 40%; font-size: 14px;}
+    .fw-product-builder-radio + label .radio-txt {  line-height: 1;}
+    .sel-check { padding: 8px;  font-size: 18px;}
+    .add-pr{width: 100%;}
+    .custom-radiobtn {  margin-bottom: 3px;  }
+    .custom-radiobtn input[type=radio] + label {  line-height: 1.6;  }
+    .custom-radiobtn input[type=radio] + label:after, .custom-radiobtn input[type=radio] + label:before {  bottom: unset;  }
+    .custom-radiobtn input[type=radio] + label:after {        top: 3.2px;}
+    
+}
+
+/* Portrait*/
+@media only screen and (min-device-width: 768px) and (max-device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
+
+.add-pr{width: 100%;} 
+
+}
+
+/* Portrait*/
+@media only screen and (min-device-width: 540px) and (max-device-height: 720px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: portrait)  {
+
+    #mainCntWrap {     top: 18%;   }
+    
+    }
+
+    /* Landscape*/
+@media only screen and (min-device-width: 720px) and (max-device-height: 540px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)  {
+    .progressbar li {    width: 82px;    }
+    #mainCntWrap {     top: 26%;    }
+    
+}
+
+
+
+@media only screen and (min-device-width: 1280px) and (max-device-height: 820px)  {
+    .fw-product-builder-radio + label .radio-txt { line-height: 1;}
+    
+}
+
+
+
+/* Landscape*/
+@media only screen and (max-device-width: 915px) and (min-device-height: 360px) and (-webkit-min-device-pixel-ratio: 2)  and (orientation: landscape)  {
+    .progressbar {   margin-top: 0;    }
+    #mainCntWrap {  top: 48%;   }
+    .progressbar li {   width: 78px;   }
+    
+}
+
+@media (max-device-width: 320px) and (min-device-width: 319px) {
+    .progressbar li:before {height: 24px; width: 24px; }    
+    .progressbar li.active { font-size: 8px;  }      
+    .progressbar li span {font-size: 12px; top: 6px; width: 17px;left: 25%; }      
+    .progressbar li:after, .progressbar li:first-child:after { top: 11px; }   
+    .progressbar li { width: 36px; }
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+
+   @media (max-device-height: 320px) and (min-device-height: 319px) {
+    .progressbar li { width: 76px;  }
+    .progressbar { margin-top: 0;  }
+    #mainCntWrap { top: 74%;  }    
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+
+   @media (max-device-height: 360px) and (min-device-height: 359px) {
+    .progressbar li {  width: 70px;   }
+    .progressbar li span {  left: 36%;}
+    #mainCntWrap { top: 54%; }
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+
+   @media (max-device-height: 414px) and (min-device-height: 413px) {
+    #mainCntWrap { top: 58%; }  
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+   
+   @media (max-device-height: 390px) and (min-device-height: 389px) {
+    #mainCntWrap { top: 62%; }  
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+   @media (max-device-height: 393px) and (min-device-height: 392px) {
+    #mainCntWrap { top: 61%; }  
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+   @media (max-device-height: 412px) and (min-device-height: 411px) {
+    #mainCntWrap { top: 60%; }  
+    .sidemenu .get-in-touch{visibility: hidden;}
+.sidemenu.sidebar-show .get-in-touch{visibility: visible;}
+
+   }
+   

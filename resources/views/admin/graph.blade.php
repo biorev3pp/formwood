@@ -42,6 +42,10 @@
         </div>
    </div>
 </div>
+<style>
+    html body .content.app-content{overflow-x: inherit;}
+    body .content .content-header, body .content .content-wrapper{min-width: 1400px;}
+</style>
 @endsection
 @push('scripts')
 <script>
@@ -235,7 +239,7 @@
             $('.logic-section-6').html(`<p class="loader"><img src="{{asset('backend/images/loader.gif')}}" /></p>`);
             $.ajax({
                 type: 'GET',
-                url: siteURL+'/api/get-panel-options',
+                url: siteURL+'/api/get-panel-options-s6/'+sid,
                 processData: false,
                 contentType: false,
                 success: function(response){
@@ -243,6 +247,46 @@
                 }
             });
         }
+    }
+
+    function toggleAllSubstrate() {
+        if($('input:checkbox[name=allSubstrateIds]').is(':checked')) {
+            $("input:checkbox[name=substrateIds]").prop("checked", true);
+        } else {
+            $("input:checkbox[name=substrateIds]").prop("checked", false);
+        } 
+    }
+
+    function toggleSubstrate() {
+        if($("input:checkbox[name=substrateIds]").length == $("input:checkbox[name=substrateIds]:checked").length) 
+        { 
+            $("input:checkbox[name=allSubstrateIds]").prop("checked", true);
+        }
+        else {
+            $("input:checkbox[name=allSubstrateIds]").prop("checked", false);            
+        }
+    }
+
+    function updateSubstrate(val) {
+        let substrate_ids = [];
+        $("input:checkbox[name=substrateIds]:checked").each(function(){
+            substrate_ids.push($(this).val());
+        });
+        const formData = new FormData();
+        formData.append('substrate_ids', substrate_ids);
+        formData.append('size_id', val);
+        $.ajax({
+            type: 'POST',
+            url: siteURL+'/api/update-panel-substrate',
+            processData: false,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: formData,
+            contentType: false,
+            success: function(response){
+                toastr.clear();
+                toastr.success("Panel Size and Substrate relation has been Updated Successfully.");
+            }
+        });
     }
 
     function selectSubstrate(sid = null) {

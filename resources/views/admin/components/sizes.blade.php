@@ -8,7 +8,7 @@
                     </th>
                     <th>Product Category</th>
                     <th>Size</th>
-                    <th>Remark</th>
+                    <th>Internal Note</th>
                     <th class="action-3">Status</th>
                     <th class="action-3">
                         <button class="icon-btn" type="button" onclick="addSize(false)">
@@ -23,7 +23,7 @@
                         <tr id="row{{$item->id}}">
                             <td>{{ $key+1 }}. <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" /></td>
                             <td>{{ $item->category->name }}</td>
-                            <td>{{ number_format($item->width) }} x {{ number_format($item->length) }} mm</td>
+                            <td>{{ number_format($item->width) }} x {{ number_format($item->length) }} Inch</td>
                             <td>{{ $item->remark }}</td>
                             <td>
                                 <span class="{{ $item->status->label }}">
@@ -41,7 +41,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr>
+                    <tr class="nodata"> 
                         <td colspan="6">
                             <p class="text-danger p-0 m-0">
                                 No items found in collection.
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="text-uppercase">Remark</label>
+                        <label class="text-uppercase">Internal Note</label>
                         <textarea id="remark" name="remark" class="form-control border px-50"></textarea>
                     </div>
                     <div class="form-group">
@@ -144,7 +144,7 @@
 </div>
 @push('scripts')
 <script>
-    const path = '{{$MEDIA_URL}}';
+    const path = "{{$MEDIA_URL.'components'}}";
     const date = new Date();
     
     function addSize(...values){
@@ -191,6 +191,12 @@
         const status = $('input[name="status"]:checked').val();
 
         // Validations
+        if(sheet_type_id == '') {
+            toastr.clear()
+            toastr.error('Product category field is required');
+            return false;
+        }
+        
         if(width == '') {
             toastr.clear()
             toastr.error('Width field is required');
@@ -202,6 +208,7 @@
             toastr.error('Length field is required');
             return false;
         }
+
 
         const formData = new FormData();
 
@@ -229,21 +236,21 @@
                 success: function(response){
                     toastr.info('Product size has been updated successfully.');
                     let card = null;
-                    card = `<td>${RowId}</td>
+                    card = `<td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 ${response.category.name}
                             </td>
                             <td>
-                                ${response.width} x ${response.length} mm
+                                ${response.width} x ${response.length} Inch
                             </td>
                             <td>
-                                ${response.remark}
+                                ${(response.remark)?response.remark:''}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addSize(true, '${response.sheet_type_id}', '${response.status_id}', '${response.width}', '${response.length}', '${response.remark}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addSize(true, '${response.sheet_type_id}', '${response.status_id}', '${response.width}', '${response.length}', '${(response.remark)?response.remark:''}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -259,6 +266,7 @@
             });
         }
         else{
+            $('.nodata').remove();
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
@@ -271,21 +279,21 @@
                     toastr.info('Product size has been added successfully.');
                     let card = null;
                     card = `<tr id="row${response.id}">
-                            <td>${RowId}</td>
+                            <td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 ${response.category.name}
                             </td>
                             <td>
-                                ${response.width} x ${response.length} mm
+                                ${response.width} x ${response.length} Inch
                             </td>
                             <td>
-                                ${response.remark}
+                                ${(response.remark)?response.remark:''}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addSize(true, '${response.sheet_type_id}', '${response.status_id}', '${response.width}', '${response.length}', '${response.remark}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addSize(true, '${response.sheet_type_id}', '${response.status_id}', '${response.width}', '${response.length}', '${(response.remark)?response.remark:''}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -344,6 +352,7 @@
         $.ajax({
             type: 'delete',
             url: '/api/delete/product-size',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();

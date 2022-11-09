@@ -8,7 +8,7 @@
                     </th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Remark</th>
+                    <th>Internal Note</th>
                     <th class="action-3">Status</th>
                     <th class="action-3">
                         <button class="icon-btn" type="button" onclick="addCategory(false)">
@@ -25,7 +25,7 @@
                                 {{ $key+1 }}. <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" />
                             </td>
                             <td>
-                                <img src="{{ $MEDIA_URL.'/'.$item->image }}" class="img-thumb" />
+                                <img src="{{ $MEDIA_URL.'components'.'/'.$item->image }}" class="img-thumb" />
                             </td>
                             <td>
                                 {{ $item->name }}
@@ -47,7 +47,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr>
+                    <tr class="nodata"> 
                         <td colspan="6">
                             <p class="text-danger p-0 m-0">
                                 No items found in collection.
@@ -109,7 +109,7 @@
                                 <input id="name" class="form-control border px-50" type="text" placeholder="Enter name" required>
                             </div>
                             <div class="form-group">
-                                <label class="text-uppercase">Remark</label>
+                                <label class="text-uppercase">Internal Note</label>
                                 <textarea id="remark" name="remark" class="form-control border px-50"></textarea>
                             </div>
                             <div class="form-group">
@@ -133,8 +133,8 @@
                                             <input type="file" id="newimage" class="d-none">
                                             <label class="btn btn-sm btn-secondary m-0" style="padding:0.59375rem 1rem" for="newimage"> <i class="ft-image"></i> Choose Image</label>
                                         </span>
-                                        <button type="button" class="btn btn-sm btn-primary mx-50 skipcropbtn" onclick="skipCropping()">Skip Cropping</button>
-                                        <button type="button" class="btn btn-sm btn-danger resetbtn" onclick="resetCropping()">Reset Cropper</button>
+                                        <button type="button" class="btn btn-sm btn-primary mx-50 skipcropbtn" onclick="skipCropping()">Skip</button>
+                                        <button type="button" class="btn btn-sm btn-danger resetbtn" onclick="resetCropping()">Reset</button>
                                     </div>
                                     <img id="image" src="{{asset('media/placeholder.jpg')}}" />
                                 </div>
@@ -167,9 +167,9 @@
 </div>
 @push('scripts')
 <script>
-    const path = '{{$MEDIA_URL}}';
+    const path = "{{$MEDIA_URL.'components'}}";
     const date = new Date();
-    let baseImage = null, isChange = null;
+    let baseImage = null, isChange = null, simg = '';
     var image = document.getElementById("image");
     var cropper;
 
@@ -258,7 +258,7 @@
             return false;
         }
 
-        if(!(/^[A-Za-z0-9-_() ]+$/.test(name))){
+        if(!(/^[A-Za-z0-9-_,&/() ]+$/.test(name))){
             toastr.clear()
             toastr.error('Name field should only contain alphabets and numbers.');
             return false;
@@ -301,7 +301,7 @@
                 success: function(response){
                     toastr.info('Product category has been updated successfully.');
                     let card = null;
-                    card = `<td>${RowId}</td>
+                    card = `<td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 <img src="${path}/${response.image}" class="img-thumb" />
                             </td>
@@ -309,13 +309,13 @@
                                 ${response.name}
                             </td>
                             <td>
-                                ${response.remark}
+                                ${(response.remark)?response.remark:''}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '${response.name}', '${response.status_id}', '${response.image}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '${response.name}', '${response.status_id}', '${response.image}', '${(response.remark)?response.remark:""}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -331,6 +331,7 @@
             });
         }
         else{
+            $('.nodata').remove();
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
@@ -343,7 +344,7 @@
                     toastr.info('Product category has been added successfully.');
                     let card = null;
                     card = `<tr id="row${response.id}">
-                            <td>${RowId}</td>
+                            <td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 <img src="${path}/${response.image}" class="img-thumb" />
                             </td>
@@ -351,13 +352,13 @@
                                 ${response.name}
                             </td>
                             <td>
-                                ${response.remark}
+                                ${(response.remark)?response.remark:''}
                             </td>
                             <td>
                                 ${(response.status_id == 1)?'<span class="badge fw-500 bg-info"><i class="ft-check mr-25"></i> Publish</span>':'<span class="badge fw-500 bg-danger"><i class="ft-x mr-25"></i> Unpublish</span>'}
                             </td>
                             <td>
-                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '${response.name}', '${response.status_id}', '${response.image}', ${response.id}, '${RowId}')">
+                                <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '${response.name}', '${response.status_id}', '${response.image}', '${(response.remark)?response.remark:""}', ${response.id}, '${RowId}')">
                                     <i class="ft-edit"></i>
                                 </a>
                                 <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal(${response.id})">
@@ -392,6 +393,7 @@
     }
 
     $("body").on("change", "#newimage", function (e) {
+        simg = '';
         var files = e.target.files;
         var done = function (url) {
             image.src = url;
@@ -403,10 +405,16 @@
             file = files[0];
             if (URL) {
                 done(URL.createObjectURL(file));
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    simg = reader.result;
+                };
+                reader.readAsDataURL(file);
             } else if (FileReader) {
                 reader = new FileReader();
                 reader.onload = function (e) {
                     done(reader.result);
+                    simg = reader.result;
                 };
                 reader.readAsDataURL(file);
             }
@@ -444,10 +452,11 @@
     function skipCropping() {
         cropper.destroy();
         cropper = null;
-        baseImage = $('#image').attr('src');
+        baseImage = simg;
         $('#image').attr('src', '{{asset("media/placeholder.jpg")}}');
         $('.croppreview').removeClass('croppreviewcss').html(`<figure class="position-relative w-full mb-0"><img src="${baseImage}" class="img-thumbnail preview"></figure>`);
         $('.applycropbtn').hide();
+        simg = '';
     }
 
     function resetCropping() {
@@ -483,6 +492,7 @@
         $.ajax({
             type: 'delete',
             url: '/api/delete/matchings',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id: id },
             success: function(){
                 $(`#row${id}`).remove();

@@ -1,5 +1,5 @@
 <div>
-    <div class="table-responsive bg-white">
+    <div class="table-responsive bg-white  fixed-header-table">
         <table class="table table-striped biorev-table">
             <thead>
                 <tr class="text-uppercase">
@@ -21,10 +21,13 @@
                     @foreach ($collection as $key => $item)    
                         <tr id="row{{$item->id}}">
                             <td>
-                                {{ $key+1 }}. <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" />
+                                {{ $key+1 }}. 
+                                @if($item->id != 1)
+                                    <input type="checkbox" class="bulk_checkbox" id="record{{$item->id}}" value="{{$item->id}}" name="bulk_record_id" />
+                                @endif
                             </td>
                             <td>
-                                <img src="{{ $MEDIA_URL.'/'.$item->image }}" class="img-thumb" />
+                                <img src="{{ $MEDIA_URL.'components'.'/'.$item->image }}" class="img-thumb" />
                             </td>
                             <td>
                                 {{ $item->name }}
@@ -38,14 +41,16 @@
                                 <a class="table-icon-btn text-warning" href="javascript:void(0);" onclick="addCategory(true, '{{$item->name}}', {{$item->status_id}}, '{{$item->image}}', {{$item->id}}, {{ $key+1}})">
                                     <i class="ft-edit"></i>
                                 </a>
-                                <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal({{$item->id}})">
-                                    <i class="ft-trash-2"></i>
-                                </a>
+                                @if($item->id != 1)
+                                    <a class="table-icon-btn text-danger" href="javascript:void(0);" onclick="deleteSwal({{$item->id}})">
+                                        <i class="ft-trash-2"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 @else
-                    <tr>
+                    <tr class="nodata">
                         <td colspan="5">
                             <p class="text-danger p-0 m-0">
                                 No items found in collection.
@@ -127,8 +132,8 @@
                                             <input type="file" id="newimage" class="d-none">
                                             <label class="btn btn-sm btn-secondary m-0" style="padding:0.59375rem 1rem" for="newimage"> <i class="ft-image"></i> Choose Image</label>
                                         </span>
-                                        <button type="button" class="btn btn-sm btn-primary mx-50 skipcropbtn" onclick="skipCropping()">Skip Cropping</button>
-                                        <button type="button" class="btn btn-sm btn-danger resetbtn" onclick="resetCropping()">Reset Cropper</button>
+                                        <button type="button" class="btn btn-sm btn-primary mx-50 skipcropbtn" onclick="skipCropping()">Skip</button>
+                                        <button type="button" class="btn btn-sm btn-danger resetbtn" onclick="resetCropping()">Reset</button>
                                     </div>
                                     <img id="image" src="{{asset('media/placeholder.jpg')}}" />
                                 </div>
@@ -161,9 +166,9 @@
 </div>
 @push('scripts')
 <script>
-    const path = '{{$MEDIA_URL}}';
+    const path = "{{$MEDIA_URL.'components'}}";
     const date = new Date();
-    let baseImage = null, isChange = null;
+    let baseImage = null, isChange = null, simg = '';
     var image = document.getElementById("image");
     var cropper;
 
@@ -250,7 +255,7 @@
             return false;
         }
 
-        if(!(/^[A-Za-z0-9 ]+$/.test(name))){
+        if(!(/^[A-Za-z0-9-_,&/() ]+$/.test(name))){
             toastr.clear()
             toastr.error('Name field should only contain alphabets and numbers.');
             return false;
@@ -292,7 +297,7 @@
                 success: function(response){
                     toastr.info('Product category has been updated successfully.');
                     let card = null;
-                    card = `<td>${RowId}</td>
+                    card = `<td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 <img src="${path}/${response.image}" class="img-thumb" />
                             </td>
@@ -319,6 +324,7 @@
             });
         }
         else{
+            $('.nodata').remove();
             let RowId = $('#recordBody').children().length+1;
             $.ajax({
                 type: 'POST',
@@ -331,7 +337,7 @@
                     toastr.info('Product category has been added successfully.');
                     let card = null;
                     card = `<tr id="row${response.id}">
-                            <td>${RowId}</td>
+                            <td>${RowId}. <input type="checkbox" class="bulk_checkbox" id="record${response.id}" value="${response.id}" name="bulk_record_id" /></td>
                             <td>
                                 <img src="${path}/${response.image}" class="img-thumb" />
                             </td>
@@ -377,6 +383,7 @@
     }
 
     $("body").on("change", "#newimage", function (e) {
+        simg = '';
         var files = e.target.files;
         var done = function (url) {
             image.src = url;
@@ -388,10 +395,16 @@
             file = files[0];
             if (URL) {
                 done(URL.createObjectURL(file));
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    simg = reader.result;
+                };
+                reader.readAsDataURL(file);
             } else if (FileReader) {
                 reader = new FileReader();
                 reader.onload = function (e) {
                     done(reader.result);
+                    simg = reader.result;
                 };
                 reader.readAsDataURL(file);
             }
@@ -429,10 +442,11 @@
     function skipCropping() {
         cropper.destroy();
         cropper = null;
-        baseImage = $('#image').attr('src');
+        baseImage = simg;
         $('#image').attr('src', '{{asset("media/placeholder.jpg")}}');
         $('.croppreview').removeClass('croppreviewcss').html(`<figure class="position-relative w-full mb-0"><img src="${baseImage}" class="img-thumbnail preview"></figure>`);
         $('.applycropbtn').hide();
+        simg = '';
     }
 
     function resetCropping() {
@@ -455,11 +469,6 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 deleteRecord(HomePlanId);
-                Swal.fire(
-                'Deleted!',
-                'Product category has been deleted.',
-                'success'
-                )
             }
         })
     }
@@ -468,9 +477,18 @@
         $.ajax({
             type: 'delete',
             url: '/api/delete/product-category',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id: id },
-            success: function(){
+            success: function(response){
+                toastr.info('Record deleted successfully.');
                 $(`#row${id}`).remove();
+            },
+            error: function(err) {
+                Swal.fire(
+                    'Not deletable!',
+                    err.responseJSON.message,
+                    'error'
+                )
             }
         });
     }
@@ -542,7 +560,7 @@
                 success: function(response){
                     toastr.info('Bulk action applied successfully.');
                     location.reload();
-                }
+                },
             });
         })
     });

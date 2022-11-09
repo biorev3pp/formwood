@@ -6,178 +6,91 @@
     </div>
 </div>
 <div class="content-wrapper">
-    <form class="number-tab-steps wizard-notification wizard clearfix" id="custom_fonts_1" method="POST" action="{{route('update-settings')}}" enctype="multipart/form-data">
-        @csrf
-        <div class="steps clearfix">
-            <ul role="tablist">
-                <li role="tab" class="first" :class="[(activestep == 1)?'current':'done']" aria-disabled="false" aria-selected="true">
-                    <a id="steps-uid-0-t-0" aria-controls="steps-uid-0-p-0">
-                        <span class="current-info audible">current step: </span><span class="step">1</span> Basic Information
-                    </a>
-                </li>
-                <li role="tab" :class="[((activestep == 1) && (donestep == 0))?'disabled':(activestep == 2)?'current':'done']" aria-disabled="false" aria-selected="false">
-                    <a id="steps-uid-0-t-1" aria-controls="steps-uid-0-p-1">
-                        <span class="step">2</span> Module Selection
-                    </a>
-                </li>
-                <li role="tab" :class="[((activestep <= 2) && (donestep <= 1))?'disabled':(activestep == 3)?'current':'done']" aria-disabled="true">
-                    <a id="steps-uid-0-t-2" aria-controls="steps-uid-0-p-2">
-                        <span class="step">3</span> Finished
-                    </a>
-                </li>
-            </ul>
-            
-        </div>   
-        <div class="content clearfix py-2">
-            <h6 id="steps-uid-3-h-0" tabindex="-1" class="title current">Step 1</h6>
-            <fieldset id="steps-uid-3-p-0" role="tabpanel" aria-labelledby="steps-uid-3-h-0" class="body current" aria-hidden="false" v-show="activestep == 1">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="firstName3">
-                                Company Name:
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="text" class="form-control required" id="firstName3" name="firstName" aria-invalid="true">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="lastName3">
-                                Handler Name :
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="text" class="form-control required" id="lastName3" name="lastName">
-                        </div>
-                    </div>
+    <div class="content-body">
+        <section id="page-account-settings">
+            <div class="row">
+                <div class="col-md-2 col-sm-3 col-12 mb-2 mb-md-0">
+                    <ul class="nav nav-pills flex-column mt-md-0 mt-1">
+                        @for ($i = 1; $i <= 8; $i++)
+                            <li class="nav-item">
+                                <a class="nav-link d-flex waves-effect waves-dark text-uppercase bg-white {{ ($i == 1)?'active':'' }} mb-25" id="step-{{$i}}" data-toggle="pill" href="#content-step-{{$i}}" aria-expanded="true">
+                                    <i class="ft-file-text mr-50"></i>
+                                    STEP {{ $i }}
+                                </a>
+                            </li>
+                        @endfor
+                    </ul>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="emailAddress5">
-                                Email Address :
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="email" class="form-control required" id="emailAddress5" name="emailAddress">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="emailAddress5">
-                                Contact No :
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="email" class="form-control required" id="emailAddress5" name="emailAddress">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="emailAddress5">
-                                Address :
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="email" class="form-control required" id="emailAddress5" name="emailAddress">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="emailAddress5">
-                                Zipcode:
-                                <span class="danger">*</span>
-                            </label>
-                            <input type="email" class="form-control required" id="emailAddress5" name="emailAddress">
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Step 2 -->
-            <h6 id="steps-uid-3-h-1" tabindex="-1" class="title">Step 2</h6>
-            <fieldset id="steps-uid-3-p-1" role="tabpanel" aria-labelledby="steps-uid-3-h-1" class="body" aria-hidden="true" v-show="activestep == 2">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="proposalTitle3">
-                                Select Modules You are interested in...
-                                <span class="danger">*</span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <div class="c-inputs-stacked">
-                                <div class="d-inline-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing1" value="1">
-                                    <label class="custom-control-label" for="staffing1">Community</label>
-                                </div>
-                                <div class="d-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing2" value="2">
-                                    <label class="custom-control-label" for="staffing2">Xplat</label>
-                                </div>
-                                <div class="d-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing3" value="3">
-                                    <label class="custom-control-label" for="staffing3">Xhome</label>
-                                </div>
-                                <div class="d-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing4" value="4">
-                                    <label class="custom-control-label" for="staffing4">Xfloor</label>
-                                </div>
-                                <div class="d-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing5" value="5">
-                                    <label class="custom-control-label" for="staffing5">Xdesign</label>
-                                </div>
-                                <div class="d-block custom-control custom-checkbox">
-                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing6" value="6">
-                                    <label class="custom-control-label" for="staffing6">Mortgage</label>
+                <!-- right content section -->
+                <div class="col-md-10 col-sm-9 col-12">
+                    <div class="card m-0">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="tab-content full-page">
+                                    @for ($i = 1; $i <= 8; $i++)
+                                        <div role="tabpanel " class="tab-pane {{ ($i == 1)?'active show':'' }}" id="content-step-{{$i}}" aria-expanded=" {{ ($i == 1)?'true':'false' }}">
+                                            <form class="col-sm-12" method="POST" action="{{route('update-settings')}}"  enctype="multipart/form-data">
+                                            @csrf
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        @foreach($settings as $key => $value)
+                                                            @if($value->section == $i+1)
+                                                                @if($value->type =='file')
+                                                                    <div class="row m-0">
+                                                                        <a href="javascript: void(0);" id="imgstep_{{$value->name}}">
+                                                                            @if($value->value)
+                                                                                <img src="{{asset('media/'.$value->value)}}" class="rounded mr-75" alt="profile image" style="height:98px">
+                                                                            @else
+                                                                                <img src="{{asset('images/placeholder.jpg')}}" class="rounded mr-2" alt="image" style="height:98px">
+                                                                            @endif
+                                                                        </a>
+                                                                        <div class="media-body mt-75 d-flex">
+                                                                            <div class="">
+                                                                                <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer waves-effect waves-light" for="account_upload_{{$value->name}}">Upload {{ str_replace('_', ' ', $value->name) }}</label>
+                                                                                <input type="file" id="account_upload_{{$value->name}}" hidden="" name="{{ $value->name }}">
+                                                                                <p class="ml-75 mt-50">
+                                                                                    <small class="font-weight-bold text-danger">Allowed JPG, GIF or PNG.<br> Max size of 800kB</small>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="">
+                                                                                @if($value->value)
+                                                                                    <button type="button" class="btn btn-sm btn-dark  ml-50 mb-50 mb-sm-0 cursor-pointer waves-effect waves-light" onclick="removeImage('{{ $value->name }}')" id="rmbbtn{{ $value->name }}">Remove Image</button>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                @elseif($value->type =='textarea')
+                                                                <div class="form-group">
+                                                                    <div class="controls">
+                                                                        <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
+                                                                        <textarea class="form-control" id="{{ $value->name }}" name="{{ $value->name }}" rows="3" placeholder="Enter {{ str_replace('_', ' ', $value->name) }}">{{ $value->value }}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                @else
+                                                                <div class="form-group">
+                                                                    <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
+                                                                    <input class="form-control" placeholder="Enter {{ str_replace('_', ' ', $value->name) }}" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}">
+                                                                </div>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                        <button type="submit" class="btn btn-dark mr-sm-1 mb-1 mb-sm-0 waves-effect waves-light">Submit Details</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endfor
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 border-left">
-                        <p><b>Community</b><br> Manage Communities with google location and related information.</p>
-                        <p><b>Plat</b><br> Homesite with available elevations and status.</p>
-                        <p><b>Home</b><br> Exterior Customization and home upgrade features.</p>
-                        <p><b>Floor</b><br> Floor feature modifications and management.</p>
-                        <p><b>Design</b><br> Manage and Customize Home Interior.</p>
-                        <p><b>Mortgage</b><br> Payment calculation with Interest rate customization.</p>
-                    </div>
                 </div>
-            </fieldset>
-
-            <!-- Step 3 -->
-            <h6 id="steps-uid-3-h-2" tabindex="-1" class="title">Step 3</h6>
-            <fieldset id="steps-uid-3-p-2" role="tabpanel" aria-labelledby="steps-uid-3-h-2" class="body" aria-hidden="true" v-show="activestep == 3">
-                <p class="m-1">You have selected Following Modules: 
-                    <span class="badge badge-striped border-left-blue">
-                        <a href="#">Xplat</a>
-                    </span>
-                    <span class="badge badge-striped border-left-blue">
-                        <a href="#">Mortgage</a>
-                    </span>
-                </p>
-                <p class="m-1">By clicking Submit, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a>.
-                </p>
-            </fieldset>
-        </div>
-        <div class="actions clearfix">
-            <ul role="menu" aria-label="Pagination">
-                <li class="disabled" aria-disabled="true">
-                    <button type="button" class="btn btn-default mw-150" v-if="activestep == 1" disabled role="menuitem">Previous</button>
-                    <button type="button" class="btn btn-default mw-150" v-else @click="GoPrevious" role="menuitem">Previous</button>
-                </li>
-                <li aria-hidden="false" aria-disabled="false" v-show="activestep < 3">
-                    <button type="button" class="btn btn-primary mw-150" @click="GoNext" role="menuitem">Next</button>
-                </li>
-                <li aria-hidden="true" v-show="activestep == 3">
-                    <button type="submit" class="btn btn-dark mw-150">Submit</button>
-                </li>
-            </ul>
-        </div>
-    </form>
-
+            </div>
+        </section>
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <?php if(\Session::has('success')): ?>
@@ -192,4 +105,24 @@
         toastr.success("<?= Session::get('error') ?>");
     </script>
 <?php endif; ?>
+<script>
+    function removeImage(p) {
+        const formData = new FormData();
+        formData.append('field', p);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: siteURL+'/api/reset-image',
+            processData: false,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            contentType: false,
+            data: formData,
+            success: function (data) {
+                toastr.success("Image has been removed successfully.");
+                $('#imgstep_'+p).html(`<img src="{{asset('images/placeholder.jpg')}}" class="rounded mr-2" alt="image" style="height:98px">`);
+                $('#rmbbtn'+p).hide();
+            },
+        });
+    }
+</script>
 @endsection

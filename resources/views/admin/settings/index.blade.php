@@ -27,20 +27,18 @@
                         </div>
                         <div class="col-xl-8">
                             <span style="border:1px solid #ccc; padding:10pxborder: 1px solid #ccc; padding: 10px; height: 120px; display: inline-block; min-width: 120px;">
-                                <img src="{{asset('uploads/'.$value->value)}}" style="max-width: 100%;" />
+                                <img src="{{asset('media/'.$value->value)}}" style="max-width: 100%;max-height: 100%;" />
                             </span>
                         </div>
                     </div>
                 </div>
-                @elseif($value->type =='email')
-                <div class="form-group col-md-6">
-                    <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <input class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
-                </div>
                 @elseif($value->type =='textarea')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
-                    <textarea class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}">{{ $value->value }}</textarea>
+                    @if($value->note)
+                        <em class="note-field">{!! $value->note !!}</em>
+                    @endif  
+                    <textarea class="form-control border forms1" rows="4" id="{{ $value->name }}" name="{{ $value->name }}">{{ $value->value }}</textarea>
                 </div>
                 @elseif($value->type =='readonly')
                 <div class="form-group col-md-6">
@@ -50,6 +48,9 @@
                 @elseif($value->type =='select')
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
+                    @if($value->note)
+                        <em class="note-field">{!! $value->note !!}</em>
+                    @endif  
                     <select class="form-control border" id="{{ $value->name }}" name="{{ $value->name }}">
                         @if($value->options)
                             @php $options = explode(',', $value->options); @endphp
@@ -66,6 +67,9 @@
                 @else
                 <div class="form-group col-md-6">
                     <label for="name" class="font-weight-bold text-uppercase">{{ str_replace('_', ' ', $value->name) }}</label>
+                    @if($value->note)
+                        <em class="note-field">{!! $value->note !!}</em>
+                    @endif
                     <input class="form-control border forms1" id="{{ $value->name }}" name="{{ $value->name }}" type="{{ $value->type }}" value="{{ $value->value }}" />
                 </div>
                 @endif @endforeach

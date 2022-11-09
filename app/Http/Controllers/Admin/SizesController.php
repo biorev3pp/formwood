@@ -30,7 +30,7 @@ class SizesController extends Controller
             'sheet_type_id'     => $request->sheet_type_id,
             'width'             => $request->width,
             'length'            => $request->length,
-            'remark'            => $request->remark,
+            'remark'            => ($request->remark && $request->remark != 'null')?$request->remark:NULL,
             'status_id'         => $request->status
         ]);
         return Sizes::with(['status', 'category'])->where('id', $record->id)->first();

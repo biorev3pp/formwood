@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backers;
 use App\Models\SheetTypes;
+use App\Models\Sizes;
 use Illuminate\Http\Request;
 
 class ProductCategoriesController extends Controller
@@ -92,7 +94,12 @@ class ProductCategoriesController extends Controller
     public function destroy(Request $request)
     {
         $record = SheetTypes::find($request->id);
+        $sizes = Sizes::where('sheet_type_id', $request->id)->count();
+        $backers = Backers::where('sheet_type_id', $request->id)->count();
+        if(($backers+$sizes) >= 1) {
+            return response(['status' =>'failed', 'message' => 'You have sizes and backers associated with this category. Please delete them first.'], 500);
+        }
         $record->delete();  
-        return ['success'];
+        return response(['success']);
     }
 }

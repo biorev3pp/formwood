@@ -20,9 +20,9 @@
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <span class="mr-1 user-name text-bold-700">Hi Admin,</span>
+                            <span class="mr-1 user-name text-bold-700">Hi {{ Auth::user()->name }},</span>
                             <span class="avatar avatar-online">
-                                <img src="{{asset('backend/images/avatar.png')}}" alt="avatar"><i></i>
+                                <img src="{{asset('backend/images/'.Auth::user()->profile_image)}}" alt="{{ Auth::user()->name }}"><i></i>
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
